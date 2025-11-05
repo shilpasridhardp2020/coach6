@@ -26,11 +26,11 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
 
-      - name: Deploy via rsync
-        run: |
-          RSYNC_SRC="."
-          RSYNC_DEST="${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.TARGET_DIR || '/home/coach6' }}/"
-          rsync -avz --delete \
-            --exclude ".git" \
-            --exclude ".github" \
-            $RSYNC_SRC "$RSYNC_DEST"
+      - name: Deploy Coach
+       uses: easingthemes/ssh-deploy@v5.0.3
+        with:
+          REMOTE_HOST: 20.244.95.90
+          REMOTE_USER: kreat
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          TARGET: /home/coach6
+
