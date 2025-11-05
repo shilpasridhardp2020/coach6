@@ -1,48 +1,39 @@
-name: Deploy static site to Azure VM
+name: Build and Deploy
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      # If you add a build step later, update SRC_PATH
-      - name: Define paths
-        id: paths
-        run: |
-          echo "SRC_PATH=." >> $GITHUB_OUTPUT
-          echo "DEST_PATH=${{ secrets.TARGET_DIR }}" >> $GITHUB_OUTPUT
+      # (Optional) if you add a build later, do it here and set SOURCE to your build output
+      - name: Deploy to SSH Server
+        uses: easingthemes/ssh-deploy@v5.0.3
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}         # don't hardcode IPs
+          REMOTE_USER: ${{ secrets.SSH_USERNAME }}     # don't hardcode usernames
+          ARGS: "-avzr --delete --exclude='.git*' --exclude='.github' --exclude='node_modules' --exclude='.DS_Store'"
+          SOURCE: "."                                  # change to dist/ or build/ if you later build
+          TARGET: "/var/www/html/coach6"
 
-      - name: Ensure destination exists
+      - name: Post-deploy (set perms and reload nginx)
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            sudo mkdir -p ${{ steps.paths.outputs.DEST_PATH }}
-            sudo chown -R $USER:$USER ${{ steps.paths.outputs.DEST_PATH }}
-
-      - name: Sync files to VM via rsync
-        uses: burnett01/rsync-action@v2.2.4
-        with:
-          switches: -avzr --delete \
-            --exclude '.git*' --exclude '.github' --exclude 'node_modules' --exclude '.DS_Store'
-          path: ${{ steps.paths.outputs.SRC_PATH }}/
-          remote_path: ${{ steps.paths.outputs.DEST_PATH }}/
-          remote_host: ${{ secrets.SSH_HOST }}
-          remote_user: ${{ secrets.SSH_USERNAME }}
-          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Post-deploy (permissions + optional Nginx reload)
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+            sudo find /var/www/html/coach6 -type d -exec chmod 755 {} \;
+            sudo find /var/www/html/coach6 -type f -exec chmod 644 {} \;
+            if command -v nginx >/dev/null 2>&1; then
+              sudo nginx -t && sudo systemctl reload nginx && echo "Nginx reloaded."
+            else
+              echo "Nginx not installed; skipped reload."
+            fi
