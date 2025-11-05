@@ -13,6 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # (Optional) If you have a build (npm/yarn/etc), add it here.
+      # - name: Build
+      #   run: |
+      #     npm ci
+      #     npm run build
+
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -28,4 +34,3 @@ jobs:
             --exclude ".git" \
             --exclude ".github" \
             $RSYNC_SRC "$RSYNC_DEST"
-
