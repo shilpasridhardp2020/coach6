@@ -1,36 +1,73 @@
-name: Deploy to Azure VM
+name: CI/CD to Azure VM (SSH → /home/coach6)
 
 on:
   push:
-    branches: [ "main" ]
-  workflow_dispatch: {}
+    branches: [ main ]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      # (Optional) If you have a build (npm/yarn/etc), add it here.
-      # - name: Build
-      #   run: |
-      #     npm ci
-      #     npm run build
+      # ----- Build & test (adjust for your stack) -----
+      # Examples (uncomment what you need):
+      # - name: Setup Node
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '20'
+      # - run: npm ci && npm test --if-present && npm run build
 
-      - name: Setup SSH
+      # If you have a build output directory (e.g., dist/ or build/), set it here:
+      - name: Define deploy paths
+        id: paths
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+          echo "SRC_PATH=." >> $GITHUB_OUTPUT     # change to build/ or dist/ if applicable
+          echo "DEST_PATH=${{ secrets.AZURE_TARGET_DIR }}/app" >> $GITHUB_OUTPUT
 
-      - name: Deploy via rsync
-        run: |
-          RSYNC_SRC="."
-          RSYNC_DEST="${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.TARGET_DIR || '/home/coach6' }}/"
-          rsync -avz --delete \
-            --exclude ".git" \
-            --exclude ".github" \
-            $RSYNC_SRC "$RSYNC_DEST"
+      # ----- Upload files to the VM using rsync over SSH -----
+      - name: Rsync to VM
+        uses: burnett01/rsync-action@v2.2.4
+        with:
+          switches: -avzr --delete
+          path: ${{ steps.paths.outputs.SRC_PATH }}/
+          remote_path: ${{ steps.paths.outputs.DEST_PATH }}/
+          remote_host: ${{ secrets.AZURE_HOST }}
+          remote_user: ${{ secrets.AZURE_USER }}
+          remote_key: ${{ secrets.AZURE_SSH_KEY }}
+
+      # ----- Post-deploy commands on the VM -----
+      # Choose ONE of the blocks below and customize.
+
+      # (A) Plain app (e.g., Node/Poetry/etc.). Install deps & restart a systemd service.
+      # - name: Post-deploy (systemd restart)
+      #   uses: appleboy/ssh-action@v1.2.0
+      #   with:
+      #     host: ${{ secrets.AZURE_HOST }}
+      #     username: ${{ secrets.AZURE_USER }}
+      #     key: ${{ secrets.AZURE_SSH_KEY }}
+      #     script: |
+      #       cd ${{ steps.paths.outputs.DEST_PATH }}
+      #       # Example Node:
+      #       # npm ci --omit=dev
+      #       # pm2 reload myapp || pm2 start server.js --name myapp
+      #       # Or systemd:
+      #       # sudo systemctl daemon-reload
+      #       # sudo systemctl restart myapp
+      #       # sudo systemctl status myapp --no-pager -l
+
+      # (B) Docker Compose deployment (recommended for services)
+      # Make sure /home/coach6/app/docker-compose.yml exists on the VM first.
+      # - name: Post-deploy (docker compose pull/up)
+      #   uses: appleboy/ssh-action@v1.2.0
+      #   with:
+      #     host: ${{ secrets.AZURE_HOST }}
+      #     username: ${{ secrets.AZURE_USER }}
+      #     key: ${{ secrets.AZURE_SSH_KEY }}
+      #     script: |
+      #       cd ${{ steps.paths.outputs.DEST_PATH }}
+      #       docker compose pull || true
+      #       docker compose up -d
+      #       docker image prune -f || true
