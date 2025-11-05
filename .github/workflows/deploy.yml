@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # If you later add a build (vite/webpack), put it above and change SRC_PATH.
+      # If you add a build step later, update SRC_PATH
       - name: Define paths
         id: paths
         run: |
@@ -27,7 +27,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             sudo mkdir -p ${{ steps.paths.outputs.DEST_PATH }}
-            # make sure your user can write there
             sudo chown -R $USER:$USER ${{ steps.paths.outputs.DEST_PATH }}
 
       - name: Sync files to VM via rsync
@@ -47,12 +46,3 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            # readable by web server (www-data) and others
-            sudo find ${{ steps.paths.outputs.DEST_PATH }} -type d -exec chmod 755 {} \;
-            sudo find ${{ steps.paths.outputs.DEST_PATH }} -type f -exec chmod 644 {} \;
-            if command -v nginx >/dev/null 2>&1; then
-              sudo nginx -t && sudo systemctl reload nginx && echo "Nginx reloaded."
-            else
-              echo "Nginx not installed; skipped reload."
-            fi
