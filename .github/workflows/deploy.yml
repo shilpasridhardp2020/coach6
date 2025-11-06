@@ -22,11 +22,4 @@ jobs:
           TARGET: /var/www/html/coach6     # ✅ Hardcoded deploy path
           SOURCE: .
           ARGS: "-rltgoDzvO --delete"
-          EXCLUDE: |
-            .git*
-            .github/
-            node_modules/
-            **/.DS_Store
-            README.md
-            package*.json
-            **/*.md
+         
