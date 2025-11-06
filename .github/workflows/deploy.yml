@@ -1,39 +1,32 @@
-name: Build and Deploy
+name: Deploy static site
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
+  workflow_dispatch: {}
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # (Optional) if you add a build later, do it here and set SOURCE to your build output
-      - name: Deploy to SSH Server
+      - name: Deploy to server via SSH
         uses: easingthemes/ssh-deploy@v5.0.3
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.SSH_HOST }}         # don't hardcode IPs
-          REMOTE_USER: ${{ secrets.SSH_USERNAME }}     # don't hardcode usernames
-          ARGS: "-avzr --delete --exclude='.git*' --exclude='.github' --exclude='node_modules' --exclude='.DS_Store'"
-          SOURCE: "."                                  # change to dist/ or build/ if you later build
-          TARGET: "/var/www/html/coach6"
-
-      - name: Post-deploy (set perms and reload nginx)
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            sudo find /var/www/html/coach6 -type d -exec chmod 755 {} \;
-            sudo find /var/www/html/coach6 -type f -exec chmod 644 {} \;
-            if command -v nginx >/dev/null 2>&1; then
-              sudo nginx -t && sudo systemctl reload nginx && echo "Nginx reloaded."
-            else
-              echo "Nginx not installed; skipped reload."
-            fi
+          REMOTE_HOST: 20.244.95.90        # ✅ Hardcoded IP
+          REMOTE_USER: kreat               # ✅ Hardcoded SSH user
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  # 🔒 Still comes from secrets
+          TARGET: /var/www/html/coach6     # ✅ Hardcoded deploy path
+          SOURCE: .
+          ARGS: "-rltgoDzvO --delete"
+          EXCLUDE: |
+            .git*
+            .github/
+            node_modules/
+            **/.DS_Store
+            README.md
+            package*.json
+            **/*.md
