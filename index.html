@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Login Page</title>
+    <title>Login Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,7 +58,7 @@
 
     <script>
         const users = {
-            "admin": "12345",
+            "sagun": "123456",
             "user": "password"
         };
 
@@ -68,11 +68,18 @@
             const message = document.getElementById("message");
 
             if (users[username] && users[username] === password) {
+                // ✅ Mark the user as logged in
+                sessionStorage.setItem("loggedIn", "true");
+
                 message.style.color = "green";
-                message.textContent = "Login successful!";
-                // Redirect or show dashboard
-                setTimeout(() => window.location.href = "dashboard.html", 1000);
+                message.textContent = "Login successful! Redirecting...";
+
+                // Redirect to dashboard after short delay
+                setTimeout(() => {
+                    window.location.href = "dashboard.html";
+                }, 800);
             } else {
+                message.style.color = "red";
                 message.textContent = "Invalid username or password";
             }
         }
