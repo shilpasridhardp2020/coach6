@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Surya Namaskar: Sanskrit Chapter 3 Tutor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef1fa; --surface:#ffffff; --surface2:#e3e8f7; --ink:#1a1e3c; --muted:#525879; --line:#ccd3ea;
+  --sun:#f5a524; --sun-deep:#c77d00; --sun-soft:#fde8b8; --on-sun:#1a1e3c;
+  --good:#17704f; --good-bg:#d8f2e5; --bad:#a81f3a; --bad-bg:#fbe0e6; --focus:#3444c4;
+  --sk:'Tiro Devanagari Sanskrit','Noto Serif Devanagari','Kohinoor Devanagari','Nirmala UI','Mangal',serif;
+  --ui:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#12142b; --surface:#1b1e3e; --surface2:#262a54; --ink:#eceefc; --muted:#a4a9cf; --line:#333866;
+    --sun:#ffc04a; --sun-deep:#ffc04a; --sun-soft:#4a3a17; --on-sun:#1a1e3c;
+    --good:#66d9a6; --good-bg:#12382b; --bad:#ff8fa5; --bad-bg:#40182a; --focus:#9fb0ff;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12142b; --surface:#1b1e3e; --surface2:#262a54; --ink:#eceefc; --muted:#a4a9cf; --line:#333866;
+  --sun:#ffc04a; --sun-deep:#ffc04a; --sun-soft:#4a3a17; --on-sun:#1a1e3c;
+  --good:#66d9a6; --good-bg:#12382b; --bad:#ff8fa5; --bad-bg:#40182a; --focus:#9fb0ff;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:17px;line-height:1.55;-webkit-text-size-adjust:100%}
+.sk{font-family:var(--sk);line-height:1.5}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+
+/* header + nav */
+.top{max-width:1040px;margin:0 auto;padding:22px 18px 10px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.top h1{margin:0;font-family:var(--sk);font-weight:400;font-size:clamp(2rem,6vw,3rem);line-height:1.15}
+.top p{margin:2px 0 0;color:var(--muted);font-size:.95rem}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.tabs .in{max-width:1040px;margin:0 auto;padding:8px 18px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.tabs .in::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:1px solid transparent;background:transparent;padding:8px 16px;border-radius:999px;font-weight:600;color:var(--muted)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tab:not([aria-selected="true"]):hover{background:var(--surface2);color:var(--ink)}
+main{max-width:1040px;margin:0 auto;padding:22px 18px 60px}
+section.panel{animation:none}
+h2{font-size:1.5rem;margin:0 0 6px;line-height:1.25}
+h3{font-size:1.1rem;margin:26px 0 8px}
+.lead{color:var(--muted);margin:0 0 20px;max-width:62ch}
+p{max-width:68ch}
+
+/* buttons */
+.btn{border:1px solid var(--line);background:var(--surface);padding:9px 16px;border-radius:10px;font-weight:600}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--sun);border-color:var(--sun);color:var(--on-sun)}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn.small{padding:6px 12px;font-size:.9rem}
+.btn[disabled]{opacity:.5;cursor:default}
+.mini{border:1px solid var(--line);background:transparent;border-radius:8px;padding:3px 10px;font-size:.85rem;font-weight:600;color:var(--muted)}
+.mini:hover{color:var(--ink);border-color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.switch{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.95rem;cursor:pointer}
+.switch input{width:18px;height:18px;accent-color:var(--sun-deep)}
+
+/* sun wheel */
+.wheel-layout{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:28px;align-items:start}
+#wheel{width:100%;height:auto;display:block;max-width:440px;margin:0 auto}
+.ray{cursor:pointer;transform-origin:200px 200px;animation:rayin .5s ease both;animation-delay:calc(var(--i)*45ms)}
+.ray path{fill:var(--surface2);stroke:var(--line);stroke-width:5;stroke-linejoin:round;transition:fill .2s}
+.ray text{font:600 13px var(--ui);fill:var(--muted);text-anchor:middle;dominant-baseline:central}
+.ray.learned path{fill:var(--sun);stroke:var(--sun-deep)}
+.ray.sel path{stroke:var(--ink);stroke-width:5}
+.ray.sel text{fill:var(--ink);font-weight:700}
+.ray:hover path{stroke:var(--ink)}
+.ray:focus-visible{outline:none}
+.ray:focus-visible path{stroke:var(--focus);stroke-width:6}
+.disc{fill:var(--sun)}
+.omtext{font-family:var(--sk);font-size:66px;fill:var(--on-sun);text-anchor:middle;dominant-baseline:central}
+@keyframes rayin{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
+.prog{text-align:center;color:var(--muted);margin:8px auto 0;font-weight:500}
+.bar{height:8px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--sun);border-radius:99px;transition:width .3s}
+.mpanel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
+.mnum{margin:0;color:var(--muted);font-weight:600;font-size:.95rem}
+.mant{font-size:clamp(1.9rem,5vw,2.6rem);margin:6px 0 0;line-height:1.3}
+.tr{margin:0;font-style:italic;color:var(--muted);font-size:1.05rem}
+.mean{font-size:1.25rem;font-weight:600;margin:16px 0 8px;padding:10px 14px;background:var(--sun-soft);border-radius:10px;display:inline-block}
+.covered{filter:blur(7px);cursor:pointer;user-select:none}
+.why{border-left:4px solid var(--sun);padding:2px 0 2px 14px;margin:18px 0}
+.why p{margin:0;font-size:.98rem}
+
+/* dialogue */
+.scene{margin:0 0 34px}
+.scene h3{margin-top:0}
+.line{display:grid;grid-template-columns:96px 1fr auto;gap:6px 14px;padding:12px 0;border-top:1px solid var(--line);align-items:start}
+.who{font-weight:700;color:var(--sun-deep);font-size:.95rem;padding-top:6px}
+.line .s{font-size:1.32rem;margin:0}
+.line .en{margin:2px 0 0;color:var(--muted)}
+.lact{display:flex;gap:6px;padding-top:4px}
+.line.verse{background:var(--sun-soft);border-radius:14px;border-top:none;padding:16px;margin:10px 0}
+.line.verse .who{color:var(--ink)}
+.linkline{padding:14px 0;border-top:1px solid var(--line)}
+details.wbw{margin:6px 0 4px 110px}
+details.wbw summary{cursor:pointer;font-weight:600;color:var(--muted)}
+.wbw ul{margin:8px 0 0;padding-left:20px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:10px}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.fact h4{margin:0 0 4px;font-size:1.05rem}
+.fact p{margin:0;color:var(--muted);font-size:.97rem}
+.asanas{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.asana{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.asana .sk{font-size:1.2rem;display:block}
+.asana span:last-child{color:var(--muted);font-size:.9rem}
+
+/* flashcards */
+.deck{max-width:520px}
+.card3d{width:100%;min-height:230px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;cursor:pointer}
+.card3d .big{font-size:clamp(2.2rem,8vw,3rem);margin:0}
+.card3d .hintline{color:var(--muted);font-size:.95rem;margin:0}
+.card3d .ans{font-size:1.6rem;font-weight:700;margin:0}
+.deckbar{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.deckbar .bar{flex:1}
+
+/* grammar */
+.callout{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--sun);border-radius:12px;padding:16px 18px;max-width:720px}
+.callout p{margin:0 0 6px}
+.callout p:last-child{margin:0}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.rule{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.rule h4{margin:0;font-size:1.05rem}
+.rule .rl{margin:2px 0 10px;color:var(--muted);font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:4px 12px;font-family:var(--sk);font-size:1.15rem}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.formbox{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px;max-width:760px}
+.formbox .hd{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.formbox .hd .sk{font-size:1.6rem}
+.forms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.form{background:var(--bg);border-radius:10px;padding:10px 12px}
+.form small{display:block;color:var(--muted);font-size:.85rem}
+.form .sk{font-size:1.25rem}
+.form.hl{background:var(--sun-soft)}
+.tablewrap{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+th{font-weight:600;color:var(--muted);font-size:.92rem}
+td .sk{font-size:1.2rem;display:block}
+td .en2{font-size:.88rem;color:var(--muted)}
+table.cover .en2{filter:blur(6px);cursor:pointer}
+table.cover .en2.open{filter:none}
+.sent{display:flex;flex-wrap:wrap;gap:6px 10px;margin:12px 0 4px}
+.sent div{border-bottom:4px solid var(--line);padding:2px 2px 4px}
+.sent .sk{font-size:1.5rem;display:block}
+.sent small{color:var(--muted);font-size:.85rem}
+.sent .giver{border-color:var(--ink)}
+.sent .recv{border-color:var(--sun)}
+.sent .thing{border-color:var(--muted);border-bottom-style:dotted}
+.sent .verb{border-color:var(--good)}
+
+/* practice */
+.stats{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center;margin-bottom:18px}
+.stats b{font-size:1.25rem}
+.stats span{color:var(--muted);font-size:.92rem;display:block}
+.seg{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.seg button{border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:10px;font-weight:600}
+.seg button[aria-pressed="true"]{background:var(--sun);border-color:var(--sun);color:var(--on-sun)}
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;max-width:760px}
+.qhead{display:flex;align-items:center;gap:14px;color:var(--muted);font-weight:600;font-size:.95rem;margin-bottom:14px}
+.qhead .bar{flex:1}
+.qtext{font-size:1.3rem;font-weight:600;margin:0 0 4px;line-height:1.4}
+.qtext.dev{font-family:var(--sk);font-weight:400;font-size:1.55rem}
+.qen{color:var(--muted);margin:0 0 14px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:14px 0}
+.opt{text-align:left;border:2px solid var(--line);background:var(--bg);border-radius:12px;padding:12px 14px;font-weight:500}
+.opt.dev{font-family:var(--sk);font-size:1.3rem;font-weight:400}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.right{border-color:var(--good);background:var(--good-bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt[disabled]{cursor:default}
+.fb{min-height:1.5em;margin:6px 0 10px}
+.fb .ok{color:var(--good);font-weight:700}
+.fb .no{color:var(--bad);font-weight:700}
+.fb p{margin:0 0 4px}
+.hintbox{background:var(--sun-soft);border-radius:10px;padding:8px 12px;margin:8px 0;font-size:.97rem}
+.big-score{font-size:2.6rem;font-weight:700;margin:0}
+.miss{border-top:1px solid var(--line);padding:10px 0}
+.miss p{margin:0}
+.miss .a{font-weight:600}
+.tiles{display:flex;flex-wrap:wrap;gap:8px;min-height:52px}
+.tile{border:2px solid var(--line);background:var(--bg);border-radius:10px;padding:6px 14px;font-family:var(--sk);font-size:1.4rem}
+.tile:hover{border-color:var(--ink)}
+.linebox{border-bottom:3px solid var(--ink);padding:8px 4px;min-height:60px;margin:10px 0 16px}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;max-width:760px}
+.pairs button{border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:12px;text-align:left;font-weight:500}
+.pairs .l{font-family:var(--sk);font-size:1.3rem;font-weight:400}
+.pairs button:hover:not([disabled]){border-color:var(--ink)}
+.pairs .pick{border-color:var(--ink);background:var(--sun-soft)}
+.pairs .done{border-color:var(--good);background:var(--good-bg);opacity:.8}
+.pairs .bad{border-color:var(--bad);background:var(--bad-bg)}
+
+/* textbook */
+details.ex{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin:0 0 12px;padding:0 18px}
+details.ex summary{cursor:pointer;padding:14px 0;font-weight:700;list-style:none}
+details.ex summary::-webkit-details-marker{display:none}
+details.ex summary::after{content:"+";float:right;font-weight:400;color:var(--muted)}
+details.ex[open] summary::after{content:"–"}
+.exin{color:var(--muted);margin:0 0 8px}
+.q{border-top:1px solid var(--line);padding:12px 0}
+.q .qs{font-family:var(--sk);font-size:1.25rem;margin:0}
+.q .qe{color:var(--muted);margin:0 0 6px;font-size:.95rem}
+.q .as{margin-top:8px;background:var(--good-bg);border-radius:10px;padding:8px 12px;white-space:pre-line}
+.q .as .sk{font-size:1.25rem;display:block}
+.q .as small{display:block;color:var(--muted);margin-top:2px}
+.note{font-size:.9rem;color:var(--muted);margin-top:6px}
+footer{max-width:1040px;margin:0 auto;padding:0 18px 30px;color:var(--muted);font-size:.9rem}
+
+@media (max-width:760px){
+  body{font-size:16px}
+  .wheel-layout{grid-template-columns:1fr}
+  .line{grid-template-columns:1fr auto}
+  .who{grid-column:1/-1;padding-top:0}
+  details.wbw{margin-left:0}
+  .forms{grid-template-columns:1fr}
+  .pairs{gap:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ray{animation:none}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div>
+    <h1 class="sk" lang="sa">सूर्यनमस्कारः</h1>
+    <p>Sanskrit Chapter 3 tutor</p>
+  </div>
+  <button id="themeBtn" class="btn small" type="button" aria-label="Switch between light and dark theme">Dark theme</button>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="in" role="tablist">
+    <button class="tab" role="tab" data-tab="wheel" aria-selected="true">Mantras</button>
+    <button class="tab" role="tab" data-tab="dialogue" aria-selected="false">Dialogue</button>
+    <button class="tab" role="tab" data-tab="words" aria-selected="false">Words</button>
+    <button class="tab" role="tab" data-tab="grammar" aria-selected="false">Grammar</button>
+    <button class="tab" role="tab" data-tab="practice" aria-selected="false">Practice</button>
+    <button class="tab" role="tab" data-tab="book" aria-selected="false">Textbook</button>
+  </div>
+</nav>
+
+<main>
+  <!-- MANTRAS -->
+  <section class="panel" id="tab-wheel" role="tabpanel">
+    <h2>The thirteen mantras</h2>
+    <p class="lead">Each ray is one salutation to the Sun. Tap a ray to study it, mark it learned, and watch the sun fill with gold.</p>
+    <div class="wheel-layout">
+      <div>
+        <svg id="wheel" viewBox="0 0 400 400" role="group" aria-label="Thirteen sun rays, one for each mantra"></svg>
+        <p class="prog" id="wheelProg"></p>
+      </div>
+      <div class="mpanel" id="mantraPanel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- DIALOGUE -->
+  <section class="panel" id="tab-dialogue" role="tabpanel" hidden>
+    <h2>The lesson, line by line</h2>
+    <p class="lead">Read each Sanskrit line first, try to guess it, then reveal the English.</p>
+    <label class="switch" style="margin-bottom:16px"><input type="checkbox" id="allEn"> Show all English</label>
+    <div id="dialogueBody"></div>
+    <h3>Beyond the classroom</h3>
+    <div class="facts" id="factsBody"></div>
+    <div class="asanas" id="asanaBody"></div>
+  </section>
+
+  <!-- WORDS -->
+  <section class="panel" id="tab-words" role="tabpanel" hidden>
+    <h2>Word cards</h2>
+    <p class="lead">Tap the card to flip it. Cards you know leave the pile. Cards you miss come back later.</p>
+    <div class="deck" id="deck"></div>
+  </section>
+
+  <!-- GRAMMAR -->
+  <section class="panel" id="tab-grammar" role="tabpanel" hidden>
+    <h2>चतुर्थी विभक्तिः: the dative case</h2>
+    <p class="lead">This chapter’s grammar answers one question: <strong>to whom, or for whom?</strong></p>
+    <div class="callout">
+      <p><span class="sk">ॐ सूर्याय नमः।</span> Salutations <strong>to</strong> the Sun.</p>
+      <p><span class="sk">माता याचकाय वस्त्रं ददाति।</span> Mother gives clothes <strong>to</strong> the beggar.</p>
+      <p>Two things always call for the dative: the word <span class="sk">नमः</span> (salutation) and the verb <span class="sk">ददाति</span> (gives).</p>
+    </div>
+
+    <h3>Pick a word to see its dative forms</h3>
+    <p class="lead" style="margin-bottom:12px">Words are grouped by how they end. Each group follows one rule.</p>
+    <div class="rules" id="rules"></div>
+    <div class="formbox" id="formbox" aria-live="polite"></div>
+
+    <h3>The verb <span class="sk">ददाति</span> (to give)</h3>
+    <p class="lead" style="margin-bottom:10px">Present tense (लट्) says what happens. Command (लोट्) requests or urges.</p>
+    <label class="switch" style="margin-bottom:10px"><input type="checkbox" id="coverVerb"> Blur the English so I can test myself (tap a blurred meaning to reveal it)</label>
+    <div id="verbTables"></div>
+
+    <h3>How a “giving” sentence is built</h3>
+    <div class="callout">
+      <div class="sent" id="sentPattern"></div>
+      <p class="note">The receiver takes the dative ending. The verb usually comes last.</p>
+    </div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section class="panel" id="tab-practice" role="tabpanel" hidden>
+    <h2>Practice</h2>
+    <div class="stats" id="stats"></div>
+    <div class="seg" id="modeSeg" role="group" aria-label="Practice type">
+      <button type="button" data-mode="quiz" aria-pressed="true">Quiz</button>
+      <button type="button" data-mode="drill" aria-pressed="false">Dative drill</button>
+      <button type="button" data-mode="build" aria-pressed="false">Sentence builder</button>
+      <button type="button" data-mode="match" aria-pressed="false">Mantra match</button>
+    </div>
+    <div id="practiceArea"></div>
+  </section>
+
+  <!-- TEXTBOOK -->
+  <section class="panel" id="tab-book" role="tabpanel" hidden>
+    <h2>Textbook exercises</h2>
+    <p class="lead">Try each question in your notebook first, then tap to check your answer.</p>
+    <div id="bookBody"></div>
+  </section>
+</main>
+
+<footer>
+  <p>Answers follow the chapter’s exercise key. “Listen” buttons use your device’s Hindi voice, so Sanskrit sounds are close but not exact. Your progress is saved on this device only.</p>
+</footer>
+
+<script>
+/* ---------- helpers ---------- */
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const isDev=s=>/[\u0900-\u097F]/.test(s);
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const canSpeak=('speechSynthesis' in window);
+function speak(t){
+  if(!canSpeak)return;
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(t);u.lang='hi-IN';u.rate=.8;
+    const v=speechSynthesis.getVoices().find(v=>/^hi/i.test(v.lang));if(v)u.voice=v;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+const listenBtn=(txt,cls='mini')=>canSpeak?`<button type="button" class="${cls}" data-speak="${esc(txt)}">Listen</button>`:'';
+
+/* ---------- saved state ---------- */
+const KEY='sanskrit-ch3-tutor-v1';
+const state={learned:Array(13).fill(false),stats:{total:0,correct:0,topics:{}},theme:''};
+function load(){try{const r=localStorage.getItem(KEY);if(r){const s=JSON.parse(r);if(s.learned&&s.learned.length===13)state.learned=s.learned;if(s.stats)state.stats=s.stats;if(s.theme)state.theme=s.theme;}}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+function record(topic,ok){
+  const s=state.stats;s.total++;if(ok)s.correct++;
+  const t=s.topics[topic]||(s.topics[topic]={t:0,c:0});t.t++;if(ok)t.c++;
+  save();renderStats();
+}
+
+/* ---------- theme ---------- */
+function effectiveDark(){
+  const t=document.documentElement.getAttribute('data-theme');
+  if(t)return t==='dark';
+  return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches;
+}
+function applyTheme(){
+  if(state.theme)document.documentElement.setAttribute('data-theme',state.theme);
+  else document.documentElement.removeAttribute('data-theme');
+  $('#themeBtn').textContent=effectiveDark()?'Light theme':'Dark theme';
+}
+$('#themeBtn').addEventListener('click',()=>{state.theme=effectiveDark()?'light':'dark';save();applyTheme();});
+
+/* ---------- data ---------- */
+const MANTRAS=[
+ {sk:'ॐ मित्राय नमः',tr:'Om Mitrāya Namaḥ',en:'Salutations to the Friend of all',stem:'मित्र',stemEn:'Mitra',k:'a'},
+ {sk:'ॐ रवये नमः',tr:'Om Ravaye Namaḥ',en:'Salutations to the Shining One',stem:'रवि',stemEn:'Ravi',k:'i'},
+ {sk:'ॐ सूर्याय नमः',tr:'Om Sūryāya Namaḥ',en:'Salutations to the Sun',stem:'सूर्य',stemEn:'Surya',k:'a'},
+ {sk:'ॐ भानवे नमः',tr:'Om Bhānave Namaḥ',en:'Salutations to the Radiant One',stem:'भानु',stemEn:'Bhanu',k:'u'},
+ {sk:'ॐ खगाय नमः',tr:'Om Khagāya Namaḥ',en:'Salutations to the One who moves through the sky',stem:'खग',stemEn:'Khaga',k:'a'},
+ {sk:'ॐ पूष्णे नमः',tr:'Om Pūṣṇe Namaḥ',en:'Salutations to the Nourisher',stem:'पूषन्',stemEn:'Pushan',k:'n'},
+ {sk:'ॐ हिरण्यगर्भाय नमः',tr:'Om Hiraṇyagarbhāya Namaḥ',en:'Salutations to the Golden Cosmic Source',stem:'हिरण्यगर्भ',stemEn:'Hiranyagarbha',k:'a'},
+ {sk:'ॐ मरीचये नमः',tr:'Om Marīcaye Namaḥ',en:'Salutations to the Lord of Rays',stem:'मरीचि',stemEn:'Marichi',k:'i'},
+ {sk:'ॐ आदित्याय नमः',tr:'Om Ādityāya Namaḥ',en:'Salutations to Aditya, the Sun',stem:'आदित्य',stemEn:'Aditya',k:'a'},
+ {sk:'ॐ सवित्रे नमः',tr:'Om Savitre Namaḥ',en:'Salutations to the Life-giving Sun',stem:'सवितृ',stemEn:'Savitri',k:'r'},
+ {sk:'ॐ अर्काय नमः',tr:'Om Arkāya Namaḥ',en:'Salutations to the Radiant One',stem:'अर्क',stemEn:'Arka',k:'a'},
+ {sk:'ॐ भास्कराय नमः',tr:'Om Bhāskarāya Namaḥ',en:'Salutations to the Giver of Light',stem:'भास्कर',stemEn:'Bhaskara',k:'a'},
+ {sk:'ॐ सवितृसूर्यनारायणाय नमः',tr:'Om Savitṛ-Sūrya-Nārāyaṇāya Namaḥ',en:'Salutations to Savitri, Surya Narayana',stem:'सवितृसूर्यनारायण',stemEn:'Savitri-Surya-Narayana',k:'a'}
+];
+const KIND_NOTE={
+  a:'It ends in -अ, so it takes -आय.',
+  i:'It ends in -इ, so the इ turns into -अये.',
+  u:'It ends in -उ, so the उ turns into -अवे.',
+  n:'This name is a special word (it ends in -न्). Its dative, पूष्णे, is worth remembering as it is.',
+  r:'This name ends in -ऋ. Its dative, सवित्रे, is worth remembering as it is.'
+};
+
+const SCENES=[
+ {title:'In the park',lines:[
+  {who:'Friend',sk:'अहो! योगिते त्वं प्रातः किं करोषि?',en:'Oh Yogita! What do you do in the morning?'},
+  {who:'Yogita',sk:'अहं प्रतिदिनं प्रातः पित्रा सह उद्यानं गच्छामि।',en:'Every morning, I go to the park with my father.'},
+  {who:'Friend',sk:'उद्याने किं करोषि भोः?',en:'What do you do in the park?'},
+  {who:'Yogita',sk:'अहं तु भ्रमणं करोमि। किन्तु बहवः जनाः तत्र व्यायामं योगासनानि च कुर्वन्ति।',en:'I go for a walk. But many people there exercise and practise yoga postures.'},
+  {who:'Friend',sk:'अहो योगासनानि! वयम् अपि ज्ञातुम् इच्छामः।',en:'Oh! Yoga postures! We also want to learn about them.'},
+  {who:'Yogita',sk:'तर्हि वयं सर्वे योगशिक्षिकायाः समीपं गच्छामः।',en:'Then let us all go to the yoga teacher.'}
+ ]},
+ {title:'In the yoga class',lines:[
+  {who:'Students',sk:'नमो नमः आचार्ये!',en:'Greetings, Teacher!'},
+  {who:'Teacher',sk:'शुभं भवतु। उपविशन्तु सर्वे।',en:'May all be well. Everyone, please sit down.'},
+  {who:'Students',sk:'आचार्ये! किम् अद्य भवती अस्मान् योगासनं शिक्षयति?',en:'Teacher, will you teach us yoga today?'},
+  {who:'Teacher',sk:'निश्चयेन। वदन्तु, किम् आसनं ज्ञातुम् इच्छथ?',en:'Certainly. Tell me, which asana would you like to learn?'},
+  {who:'Yogita',sk:'आचार्ये! अद्य सूर्यनमस्कारं ज्ञातुम् इच्छामः।',en:'Teacher, today we would like to learn Surya Namaskar.'},
+  {who:'Teacher',sk:'समीचीनम्। सूर्यनमस्कारः द्वादशानाम् आसनानां समाहारः अस्ति।',en:'Very good. Surya Namaskar is a sequence of twelve postures.'},
+  {who:'Teacher',sk:'सूर्यनमस्कारात् पूर्वमेव एकः मन्त्रः अस्ति: “ॐ मित्राय नमः” इति।',en:'Before beginning Surya Namaskar, there is a mantra: “Om Mitrāya Namaḥ.”'},
+  {who:'Students',sk:'आम् महोदये! वयं स्मरामः।',en:'Yes, Teacher! We remember.'},
+  {who:'Teacher',sk:'अत्युत्तमम्! मिलित्वा वदन्तु।',en:'Excellent! Say them together.'},
+  {link:true}
+ ]},
+ {title:'The verse on the benefits',lines:[
+  {who:'Teacher',sk:'इदानीम् एकेन श्लोकेन सूर्यनमस्कारस्य बहूनि प्रयोजनानि वदामि। भवन्तः शृण्वन्तु अनुवदन्तु च।',en:'Now I will tell you, through a verse, some of the many benefits of Surya Namaskar. Listen carefully and repeat.'},
+  {who:'The verse',verse:true,sk:'आदित्यस्य नमस्कारान् ये कुर्वन्ति दिने दिने।\nआयुः प्रज्ञा बलं वीर्यं तेजः तेषां च जायते॥',en:'Those who perform salutations to the Sun every day gain long life, intelligence, strength, energy and radiance.',
+   wbw:[['आदित्यस्य','of the Sun'],['नमस्कारान्','salutations'],['ये कुर्वन्ति','those who perform'],['दिने दिने','day after day'],['आयुः प्रज्ञा बलं वीर्यं तेजः','life, intelligence, strength, energy, radiance'],['तेषां च जायते','and arises in them']]},
+  {who:'Teacher',sk:'एवं योगासनेषु सूर्यनमस्कारः एकः श्रेष्ठः आसनक्रमः अस्ति।',en:'Thus, among yoga practices, Surya Namaskar is an excellent sequence of postures.'},
+  {who:'Teacher',sk:'सूर्यनमस्कारेण शारीरिकं, मानसिकम्, आध्यात्मिकं च बलं वर्धते।',en:'Surya Namaskar increases physical, mental and spiritual strength.'},
+  {who:'Teacher',sk:'अतः वयं प्रतिदिनं सूर्यनमस्कारं करवाम। स्वस्थं शरीरं स्वस्थं मनः च प्राप्तव्यम् अस्तु।',en:'Therefore, we should practise Surya Namaskar every day. We should attain a healthy body and a healthy mind.'},
+  {who:'Teacher',sk:'पुनः अग्रिमकक्षायाम् अन्येषाम् आसनानां विषये ज्ञास्यामः।',en:'In the next class, we shall learn about other yoga postures.'},
+  {who:'Students',sk:'धन्यवादः आचार्ये!',en:'Thank you, Teacher!'}
+ ]}
+];
+
+const FACTS=[
+ {h:'International Yoga Day',p:'People around the world observe 21 June as International Yoga Day.'},
+ {h:'Yoga Sutras',p:'Written by Maharshi Patanjali. It has 196 sutras about the health of body and mind.'},
+ {h:'Hatha Yoga Pradipika',p:'Composed by Swami Swatmarama. It describes many yoga postures.'}
+];
+const ASANAS=[['वज्रासनम्','Thunderbolt Pose'],['पद्मासनम्','Lotus Pose'],['पश्चिमोत्तानासनम्','Seated Forward Bend'],['हलासनम्','Plough Pose'],['ताडासनम्','Mountain Pose']];
+
+const WORDS=[
+ ['प्रातः','morning'],['उद्यानम्','park, garden'],['भ्रमणम्','a walk'],['व्यायामः','exercise'],['आसनम्','yoga posture'],
+ ['आचार्या','teacher (female)'],['समीपम्','near, to the side of'],['उपविशन्तु','please sit down'],['निश्चयेन','certainly'],['समीचीनम्','very good, correct'],
+ ['द्वादश','twelve'],['समाहारः','a collection, a sequence'],['मन्त्रः','mantra'],['पूर्वम्','before'],['श्लोकः','a verse'],
+ ['प्रयोजनम्','benefit, purpose'],['आयुः','lifespan'],['प्रज्ञा','intelligence'],['बलम्','strength'],['वीर्यम्','energy, vigour'],
+ ['तेजः','radiance'],['शरीरम्','body'],['मनः','mind'],['स्वस्थम्','healthy'],['श्रेष्ठः','excellent, best'],
+ ['शारीरिकम्','physical'],['मानसिकम्','mental'],['आध्यात्मिकम्','spiritual'],['प्रतिदिनम्','every day'],['दिने दिने','day after day'],
+ ['अग्रिमकक्षा','next class'],['धन्यवादः','thank you'],['ज्ञातुम्','to know, to learn'],['इच्छामः','we want'],['वर्धते','increases, grows'],
+ ['अत्युत्तमम्','excellent'],['नमस्कारः','salutation']
+];
+
+/* grammar data */
+const GROUPS={
+ a:{title:'Words ending in -अ',rl:'Masculine and neuter. Add -आय.',rule:'Words ending in -अ add -आय.',ex:'मित्र → मित्राय'},
+ aa:{title:'Words ending in -आ',rl:'Feminine. Add -यै.',rule:'Feminine words ending in -आ add -यै.',ex:'सेविका → सेविकायै'},
+ ii:{title:'Words ending in -ई',rl:'Feminine. The ई becomes -्यै.',rule:'Feminine words ending in -ई change the ई to -्यै.',ex:'नदी → नद्यै'},
+ i:{title:'Words ending in -इ',rl:'Masculine. The इ becomes -अये.',rule:'Masculine words ending in -इ change the इ to -अये.',ex:'अग्नि → अग्नये'},
+ u:{title:'Words ending in -उ',rl:'Masculine. The उ becomes -अवे.',rule:'Masculine words ending in -उ change the उ to -अवे.',ex:'भानु → भानवे'}
+};
+const NOUNS=[
+ {sk:'मित्र',en:'friend',t:'a',f:['मित्राय','मित्राभ्याम्','मित्रेभ्यः']},
+ {sk:'गणेश',en:'Ganesha',t:'a',f:['गणेशाय','गणेशाभ्याम्','गणेशेभ्यः']},
+ {sk:'भक्त',en:'devotee',t:'a',f:['भक्ताय','भक्ताभ्याम्','भक्तेभ्यः']},
+ {sk:'वन',en:'forest',t:'a',f:['वनाय','वनाभ्याम्','वनेभ्यः']},
+ {sk:'याचक',en:'beggar',t:'a',f:['याचकाय','याचकाभ्याम्','याचकेभ्यः']},
+ {sk:'वृक्ष',en:'tree',t:'a',f:['वृक्षाय','वृक्षाभ्याम्','वृक्षेभ्यः']},
+ {sk:'सेविका',en:'female helper',t:'aa',f:['सेविकायै','सेविकाभ्याम्','सेविकाभ्यः']},
+ {sk:'अनुजा',en:'younger sister',t:'aa',f:['अनुजायै','अनुजाभ्याम्','अनुजाभ्यः']},
+ {sk:'आचार्या',en:'female teacher',t:'aa',f:['आचार्यायै','आचार्याभ्याम्','आचार्याभ्यः']},
+ {sk:'गृहिणी',en:'housewife',t:'ii',f:['गृहिण्यै','गृहिणीभ्याम्','गृहिणीभ्यः']},
+ {sk:'कुमारी',en:'girl',t:'ii',f:['कुमार्यै','कुमारीभ्याम्','कुमारीभ्यः']},
+ {sk:'नदी',en:'river',t:'ii',f:['नद्यै','नदीभ्याम्','नदीभ्यः']},
+ {sk:'भगिनी',en:'sister',t:'ii',f:['भगिन्यै','भगिनीभ्याम्','भगिनीभ्यः']},
+ {sk:'अग्नि',en:'fire, Agni',t:'i',f:['अग्नये','अग्निभ्याम्','अग्निभ्यः']},
+ {sk:'रवि',en:'the sun',t:'i',f:['रवये','रविभ्याम्','रविभ्यः']},
+ {sk:'भानु',en:'the sun, a ray',t:'u',f:['भानवे','भानुभ्याम्','भानुभ्यः']}
+];
+const LAT=[
+ ['Third person','प्रथमपुरुषः',['ददाति','He/she gives'],['दत्तः','Those two give'],['ददति','They give']],
+ ['Second person','मध्यमपुरुषः',['ददासि','You give'],['दत्थः','You two give'],['दत्थ','You all give']],
+ ['First person','उत्तमपुरुषः',['ददामि','I give'],['दद्वः','We two give'],['दद्मः','We give']]
+];
+const LOT=[
+ ['Third person','प्रथमपुरुषः',['ददातु','Let him/her give'],['दत्ताम्','Let those two give'],['ददतु','Let them give']],
+ ['Second person','मध्यमपुरुषः',['देहि','Give, please give'],['दत्तम्','You two give'],['दत्त','You all give']],
+ ['First person','उत्तमपुरुषः',['ददानि','Let me give'],['ददाव','Let us two give'],['ददाम','Let us give']]
+];
+
+/* quiz pool */
+const POOL=[
+ // chapter
+ {t:'Chapter',q:'Who says “शुभं भवतु”?',o:['The teacher','Yogita','The students','Yogita’s father'],a:0,why:'आचार्या says शुभं भवतु, “may all be well”, when the students greet her.'},
+ {t:'Chapter',q:'With whom does Yogita go to the park every morning?',o:['Her father','Her teacher','Her friend','Her grandmother'],a:0,why:'पित्रा सह means “with father”.'},
+ {t:'Chapter',q:'What does Yogita do in the park?',o:['Goes for a walk','Practises yoga','Plays a game','Reads a book'],a:0,why:'अहं तु भ्रमणं करोमि: she walks. It is the other people who do yoga.'},
+ {t:'Chapter',q:'Surya Namaskar is a sequence of how many postures?',o:['Twelve','Ten','Thirteen','Eight'],a:0,why:'द्वादशानाम् आसनानां समाहारः. द्वादश means twelve.'},
+ {t:'Chapter',q:'Which mantra comes first?',o:['ॐ मित्राय नमः','ॐ सूर्याय नमः','ॐ भास्कराय नमः','ॐ रवये नमः'],a:0,why:'The teacher names “ॐ मित्राय नमः” as the first mantra.'},
+ {t:'Chapter',q:'Which kinds of strength grow through Surya Namaskar?',o:['Physical, mental and spiritual','Only physical','Physical and financial','Mental and social'],a:0,why:'शारीरिकं मानसिकम् आध्यात्मिकं च बलं वर्धते.'},
+ {t:'Chapter',q:'What does the verse promise to those who salute the Sun daily?',o:['Long life, intelligence, strength, energy, radiance','Wealth and fame','Speed and height','Only good sleep'],a:0,why:'आयुः प्रज्ञा बलं वीर्यं तेजः: the five gifts named in the verse.'},
+ {t:'Chapter',q:'What should we attain, says the teacher?',o:['A healthy body and a healthy mind','A big house','Many friends','Good marks'],a:0,why:'स्वस्थं शरीरं स्वस्थं मनः.'},
+ {t:'Chapter',q:'What will the class learn next?',o:['Other yoga postures','More mantras','Grammar only','A new verse about the Moon'],a:0,why:'अन्येषाम् आसनानां विषये ज्ञास्यामः: about other asanas.'},
+ // vocab
+ {t:'Vocabulary',q:'आयुः means…',o:['Lifespan','Strength','Energy','Body'],a:0,why:'आयुः is lifespan, long life.'},
+ {t:'Vocabulary',q:'प्रज्ञा means…',o:['Intelligence','Radiance','A verse','A park'],a:0,why:'प्रज्ञा is wisdom or intelligence.'},
+ {t:'Vocabulary',q:'बलम् means…',o:['Strength','Body','Morning','Benefit'],a:0,why:'बलम् is strength.'},
+ {t:'Vocabulary',q:'तेजः means…',o:['Radiance','Life','Mind','Twelve'],a:0,why:'तेजः is radiance or brilliance.'},
+ {t:'Vocabulary',q:'श्लोकः means…',o:['A verse','A mantra','A posture','A teacher'],a:0,why:'A श्लोकः is a verse. The teacher teaches one about the benefits.'},
+ {t:'Vocabulary',q:'प्रयोजनम् means…',o:['Benefit','Posture','Salutation','Friend'],a:0,why:'बहूनि प्रयोजनानि = many benefits.'},
+ {t:'Vocabulary',q:'मनः means…',o:['Mind','Body','Strength','Day'],a:0,why:'शरीरम् is body and मनः is mind.'},
+ {t:'Vocabulary',q:'उद्यानम् means…',o:['Park, garden','School','Temple','River'],a:0,why:'Yogita goes to the उद्यानम् every morning.'},
+ {t:'Vocabulary',q:'प्रातः means…',o:['Morning','Evening','Night','Noon'],a:0,why:'अहं प्रतिदिनं प्रातः…: every morning I…'},
+ {t:'Vocabulary',q:'स्वस्थम् means…',o:['Healthy','Weak','Tall','Quick'],a:0,why:'स्वस्थं शरीरम् = a healthy body.'},
+ // mantras
+ {t:'Mantras',q:'What does ॐ खगाय नमः mean?',o:['Salutations to the One who moves through the sky','Salutations to the Nourisher','Salutations to the Lord of Rays','Salutations to the Friend of all'],a:0,why:'खग is “sky-goer”, the one who moves through the sky.'},
+ {t:'Mantras',q:'What does ॐ भास्कराय नमः mean?',o:['Salutations to the Giver of Light','Salutations to the Nourisher','Salutations to the Lord of Rays','Salutations to the Life-giving Sun'],a:0,why:'भास्कर is the Giver of Light.'},
+ {t:'Mantras',q:'What does ॐ पूष्णे नमः mean?',o:['Salutations to the Nourisher','Salutations to the Friend of all','Salutations to the Shining One','Salutations to the Giver of Light'],a:0,why:'पूषन् is the Nourisher.'},
+ {t:'Mantras',q:'What does ॐ हिरण्यगर्भाय नमः mean?',o:['Salutations to the Golden Cosmic Source','Salutations to the Lord of Rays','Salutations to the Sun','Salutations to the Radiant One'],a:0,why:'हिरण्यगर्भ means the golden cosmic source.'},
+ {t:'Mantras',q:'What does ॐ मरीचये नमः mean?',o:['Salutations to the Lord of Rays','Salutations to the Nourisher','Salutations to the Giver of Light','Salutations to the Friend of all'],a:0,why:'मरीचि: a ray of light, so the Lord of Rays.'},
+ {t:'Mantras',q:'What does ॐ सवित्रे नमः mean?',o:['Salutations to the Life-giving Sun','Salutations to the Shining One','Salutations to the Nourisher','Salutations to the Friend of all'],a:0,why:'सवितृ is the life-giving Sun.'},
+ {t:'Mantras',q:'Which mantra comes right after ॐ रवये नमः?',o:['ॐ सूर्याय नमः','ॐ भानवे नमः','ॐ खगाय नमः','ॐ मित्राय नमः'],a:0,why:'The order is मित्र, रवि, सूर्य, भानु, खग…'},
+ {t:'Mantras',q:'Which is the 6th mantra?',o:['ॐ पूष्णे नमः','ॐ खगाय नमः','ॐ मरीचये नमः','ॐ अर्काय नमः'],a:0,why:'1 मित्र, 2 रवि, 3 सूर्य, 4 भानु, 5 खग, 6 पूषन्.'},
+ {t:'Mantras',q:'Which is the last (13th) mantra?',o:['ॐ सवितृसूर्यनारायणाय नमः','ॐ भास्कराय नमः','ॐ अर्काय नमः','ॐ सवित्रे नमः'],a:0,why:'The 13th is the long one: सवितृसूर्यनारायणाय.'},
+ {t:'Mantras',q:'Which mantra comes right before ॐ आदित्याय नमः?',o:['ॐ मरीचये नमः','ॐ हिरण्यगर्भाय नमः','ॐ सवित्रे नमः','ॐ अर्काय नमः'],a:0,why:'…हिरण्यगर्भ (7), मरीचि (8), आदित्य (9), सवितृ (10).'},
+ // grammar
+ {t:'Grammar',q:'The dative case (चतुर्थी विभक्तिः) answers which question?',o:['To whom or for whom?','Who does it?','By what means?','From where?'],a:0,why:'Dative = “to / for”.'},
+ {t:'Grammar',q:'Which word is always followed by the dative?',o:['नमः','च','तु','अपि'],a:0,why:'सूर्याय नमः, वृक्षाय नमः: the one you salute takes the dative.'},
+ {t:'Grammar',q:'Which ending do words like मित्र, भक्त, वन take in the dative singular?',o:['-आय','-यै','-अये','-अवे'],a:0,why:'मित्र → मित्राय, भक्त → भक्ताय, वन → वनाय.'},
+ {t:'Grammar',q:'Feminine words ending in -आ, like सेविका, take…',o:['-यै','-आय','-अये','-अवे'],a:0,why:'सेविका → सेविकायै, अनुजा → अनुजायै.'},
+ {t:'Grammar',q:'In which sentence is the dative used correctly for “to the friend”?',o:['मित्राय','मित्रः','मित्रम्','मित्रस्य'],a:0,why:'मित्राय is the dative. मित्रः is “the friend” (doer) and मित्रस्य is “of the friend”.'},
+ // verb
+ {t:'Verb ददाति',q:'ददाति means…',o:['He/she gives','I give','You give','They give'],a:0,why:'-ति marks the third person singular.'},
+ {t:'Verb ददाति',q:'ददामि means…',o:['I give','He gives','You give','We give'],a:0,why:'-मि marks “I”.'},
+ {t:'Verb ददाति',q:'ददति means…',o:['They give','He gives','We give','You give'],a:0,why:'-अन्ति/-ति in the plural: third person plural.'},
+ {t:'Verb ददाति',q:'ददासि means…',o:['You give','I give','They give','He gives'],a:0,why:'-सि marks “you”.'},
+ {t:'Verb ददाति',q:'देहि means…',o:['Give (please give)','Let me give','We give','He gives'],a:0,why:'देहि is the command form (लोट्) for “you”.'},
+ {t:'Verb ददाति',q:'दद्मः means…',o:['We give','We two give','You all give','They give'],a:0,why:'-मः marks “we” (three or more). दद्वः is “we two”.'},
+ // yoga facts
+ {t:'Yoga facts',q:'On which date is International Yoga Day observed?',o:['21 June','15 August','2 October','5 June'],a:0,why:'World Yoga Day is on 21 June.'},
+ {t:'Yoga facts',q:'Who wrote the Yoga Sutras?',o:['Maharshi Patanjali','Swami Swatmarama','Valmiki','Vyasa'],a:0,why:'Patanjali wrote the Yoga Sutras.'},
+ {t:'Yoga facts',q:'Who composed the Hatha Yoga Pradipika?',o:['Swami Swatmarama','Maharshi Patanjali','Panini','Kalidasa'],a:0,why:'Swami Swatmarama composed it. It describes many asanas.'},
+ {t:'Yoga facts',q:'How many sutras are in the Yoga Sutras, as per your textbook?',o:['196','108','12','64'],a:0,why:'The textbook says 196 sutras.'},
+ {t:'Yoga facts',q:'Which posture is the Lotus Pose?',o:['पद्मासनम्','हलासनम्','ताडासनम्','वज्रासनम्'],a:0,why:'पद्म means lotus.'},
+ {t:'Yoga facts',q:'Which posture is the Mountain Pose?',o:['ताडासनम्','हलासनम्','पद्मासनम्','वज्रासनम्'],a:0,why:'ताडासनम् is Mountain Pose. हलासनम् is Plough Pose.'}
+];
+const TOPICS=['All topics','Chapter','Vocabulary','Mantras','Grammar','Verb ददाति','Yoga facts'];
+
+/* dative drill */
+const DRILL=[
+ {q:'माता ______ धनं ददाति।',w:'पुत्री',en:'The mother gives money to her daughter.',a:'पुत्र्यै',d:['पुत्राय','पुत्रीयै','पुत्री'],r:'ii'},
+ {q:'सैनिकः ______ जीवनं प्रयच्छति।',w:'देश',en:'A soldier gives his life for the country.',a:'देशाय',d:['देशायै','देशः','देशे'],r:'a'},
+ {q:'पौत्रः ______ औषधं ददाति।',w:'पितामही',en:'The grandson gives medicine to his grandmother.',a:'पितामह्यै',d:['पितामहाय','पितामहीयै','पितामही'],r:'ii'},
+ {q:'अहं ______ उपहारं ददामि।',w:'भगिनी',en:'I give a gift to my sister.',a:'भगिन्यै',d:['भगिनीयै','भगिनाय','भगिनी'],r:'ii'},
+ {q:'पिता ______ वेतनं ददाति।',w:'सेविका',en:'The father gives a salary to the helper.',a:'सेविकायै',d:['सेविकाय','सेविकायाः','सेविका'],r:'aa'},
+ {q:'त्वं ______ पुष्पं ददासि।',w:'मित्र',en:'You give a flower to your friend.',a:'मित्राय',d:['मित्रायै','मित्रः','मित्रे'],r:'a'},
+ {q:'देवः ______ आशीर्वादं ददाति।',w:'भक्त',en:'God gives blessings to the devotee.',a:'भक्ताय',d:['भक्तायै','भक्तः','भक्ते'],r:'a'},
+ {q:'आरक्षकः ______ दण्डं ददाति।',w:'चोर',en:'The policeman gives punishment to the thief.',a:'चोराय',d:['चोरायै','चोरः','चोरे'],r:'a'},
+ {q:'______ नमः।',w:'नदी',en:'Salutations to the river.',a:'नद्यै',d:['नदीयै','नदाय','नदी'],r:'ii'},
+ {q:'______ नमः।',w:'देवी',en:'Salutations to the Goddess.',a:'देव्यै',d:['देवीयै','देवाय','देवी'],r:'ii'},
+ {q:'______ नमः।',w:'वृक्ष',en:'Salutations to the tree.',a:'वृक्षाय',d:['वृक्षायै','वृक्षः','वृक्षे'],r:'a'},
+ {q:'______ नमः।',w:'अग्नि',en:'Salutations to Agni.',a:'अग्नये',d:['अग्नाय','अग्नियै','अग्निः'],r:'i'},
+ {q:'______ नमः।',w:'भानु',en:'Salutations to Bhanu, the Radiant One.',a:'भानवे',d:['भानवाय','भानुयै','भानुः'],r:'u'},
+ {q:'______ नमः।',w:'जननी',en:'Salutations to the mother.',a:'जनन्यै',d:['जननीयै','जननाय','जननी'],r:'ii'},
+ {q:'______ नमः।',w:'पृथिवी',en:'Salutations to the Earth.',a:'पृथिव्यै',d:['पृथिवीयै','पृथिवाय','पृथिवी'],r:'ii'},
+ {q:'______ नमः।',w:'मातामही',en:'Salutations to the maternal grandmother.',a:'मातामह्यै',d:['मातामहाय','मातामहीयै','मातामही'],r:'ii'},
+ {q:'______ नमः।',w:'जनक',en:'Salutations to the father.',a:'जनकाय',d:['जनकायै','जनकः','जनके'],r:'a'},
+ {q:'______ नमः।',w:'आचार्या',en:'Salutations to the female teacher.',a:'आचार्यायै',d:['आचार्याय','आचार्याः','आचार्या'],r:'aa'},
+ {q:'______ नमः।',w:'रवि',en:'Salutations to Ravi, the Shining One.',a:'रवये',d:['रवाय','रवियै','रविः'],r:'i'},
+ {q:'______ नमः।',w:'कुमारी',en:'Salutations to the girl.',a:'कुमार्यै',d:['कुमारीयै','कुमाराय','कुमारी'],r:'ii'}
+];
+
+/* sentence builder */
+const BUILD=[
+ {en:'Salutations to the tree.',w:['वृक्षाय','नमः'],x:['वृक्षः','वृक्षे']},
+ {en:'Salutations to the sister.',w:['भगिन्यै','नमः'],x:['भगिनी','भगिनीयै']},
+ {en:'Salutations to the Sun.',w:['सूर्याय','नमः'],x:['सूर्यः','सूर्यम्']},
+ {en:'Salutations to the female teacher.',w:['आचार्यायै','नमः'],x:['आचार्याय','आचार्या']},
+ {en:'The mother gives money to the shopkeeper.',w:['माता','आपणिकाय','धनं','ददाति'],x:['आपणिकः','ददामि']},
+ {en:'A soldier gives his life for the country.',w:['सैनिकः','देशाय','जीवनं','प्रयच्छति'],x:['देशः','ददामि']},
+ {en:'I give a gift to my sister.',w:['अहं','भगिन्यै','उपहारं','ददामि'],x:['भगिनी','ददाति']},
+ {en:'God gives blessings to the devotee.',w:['देवः','भक्ताय','आशीर्वादं','ददाति'],x:['भक्तः','ददासि']},
+ {en:'You give a flower to your friend.',w:['त्वं','मित्राय','पुष्पं','ददासि'],x:['मित्रः','ददामि']},
+ {en:'The mother gives clothes to the beggar.',w:['माता','याचकाय','वस्त्रं','ददाति'],x:['याचकः','ददति']}
+];
+
+/* textbook */
+const BOOK=[
+ {title:'1. One-word answers',in_en:'Write the answers in one word.',qs:[
+  {sk:'(क) शुभं भवतु इति कः वदति?',en:'Who says “May all be well”?',a:'आचार्या',ae:'The teacher.'},
+  {sk:'(ख) योगिता आचार्यां ‘किं शिक्षयतु’ इति वदति?',en:'What does Yogita ask the teacher to teach?',a:'योगासनम्',ae:'Yoga postures.',note:'This follows the chapter’s answer key. In the dialogue itself, Yogita names Surya Namaskar, so check with your teacher if it comes up.'},
+  {sk:'(ग) सूर्यनमस्कारः कतिनाम् आसनानां समाहारः अस्ति?',en:'Surya Namaskar is a combination of how many postures?',a:'द्वादश',ae:'Twelve.'},
+  {sk:'(घ) केषु सूर्यनमस्कारः श्रेष्ठः?',en:'Among what is Surya Namaskar excellent?',a:'योगासनेषु',ae:'Among yoga postures.'},
+  {sk:'(ङ) सूर्यनमस्कारेण जनाः कीदृशं शरीरं प्राप्नुवन्ति?',en:'What kind of body do people attain through Surya Namaskar?',a:'स्वस्थम्',ae:'Healthy.'}
+ ]},
+ {title:'2. Full-sentence answers',in_en:'Answer in complete sentences.',qs:[
+  {sk:'(क) सर्वे छात्राः आचार्यां किं पृच्छन्ति?',en:'What do all the students ask the teacher?',a:'सर्वे छात्राः आचार्यां “किम् अद्य भवती अस्मान् योगासनं शिक्षयति?” इति पृच्छन्ति।',ae:'They ask, “Will you teach us yoga today?”'},
+  {sk:'(ख) सूर्यनमस्कारः इत्यनेन कः आशयः?',en:'What is meant by “Surya Namaskar”?',a:'सूर्यस्य नमस्कारः इति आशयः।',ae:'It means salutation to the Sun.'},
+  {sk:'(ग) आचार्या कं श्लोकं पाठयति?',en:'Which verse does the teacher teach?',a:'आचार्या “आदित्यस्य नमस्कारान् ये कुर्वन्ति दिने दिने” इति श्लोकं पाठयति।',ae:'The verse beginning “Those who offer salutations to the Sun every day…”'},
+  {sk:'(घ) सूर्यनमस्कारस्य प्रथमः मन्त्रः कः?',en:'What is the first mantra of Surya Namaskar?',a:'सूर्यनमस्कारस्य प्रथमः मन्त्रः “ॐ मित्राय नमः” अस्ति।',ae:'The first mantra is “Om Mitrāya Namaḥ.”'},
+  {sk:'(ङ) सूर्यनमस्कारेण कीदृशं बलं वर्धते?',en:'What kinds of strength increase through Surya Namaskar?',a:'सूर्यनमस्कारेण शारीरिकं मानसिकम् आध्यात्मिकं च बलं वर्धते।',ae:'Physical, mental and spiritual strength increase.'}
+ ]},
+ {title:'3. Fill in the blanks',in_en:'Choose the right word from the lesson.',qs:[
+  {sk:'(क) प्रत्येकस्मात् ______ पूर्वमेव एकः मन्त्रः भवति।',en:'Before each ______, there is a mantra.',a:'सूर्यनमस्कारात्',ae:'Before each Surya Namaskar, there is a mantra.'},
+  {sk:'(ख) वयं प्रतिदिनं ______ करवाम।',en:'We should practise ______ every day.',a:'सूर्यनमस्कारं',ae:'We should practise Surya Namaskar every day.'},
+  {sk:'(ग) स्वस्थं ______ स्वस्थं ______ च प्राप्नवाम।',en:'We should attain a healthy ______ and a healthy ______.',a:'शरीरं … मनः',ae:'A healthy body and a healthy mind.'},
+  {sk:'(घ) एकेन ______ सूर्यनमस्कारस्य बहूनि प्रयोजनानि वदामि।',en:'Through one ______, I will explain the many benefits.',a:'श्लोकेन',ae:'Through one verse.'},
+  {sk:'(ङ) आदित्यस्य ______ ये कुर्वन्ति दिने दिने।',en:'Those who offer ______ to the Sun every day.',a:'नमस्कारान्',ae:'Salutations.'}
+ ]},
+ {title:'4. Words used with नमः',in_en:'Collect the words used with नमः. The example is मित्राय नमः.',qs:[
+  {sk:'सर्वे मन्त्राः लिखन्तु।',en:'Write all the mantras from the lesson.',a:'रवये नमः\nसूर्याय नमः\nभानवे नमः\nखगाय नमः\nपूष्णे नमः\nहिरण्यगर्भाय नमः\nमरीचये नमः\nआदित्याय नमः\nसवित्रे नमः\nअर्काय नमः\nभास्कराय नमः',ae:'Use the Mantras tab to check the meanings.'}
+ ]},
+ {title:'5. Make sentences with नमः',in_en:'Use the dative case, following the example अग्नये नमः.',qs:[
+  {sk:'(क) आचार्या + नमः',en:'Salutations to the female teacher.',a:'आचार्यायै नमः।'},
+  {sk:'(ख) त्रिवर्णध्वज + नमः',en:'Salutations to the tricolour flag.',a:'त्रिवर्णध्वजाय नमः।'},
+  {sk:'(ग) जनक + नमः',en:'Salutations to the father.',a:'जनकाय नमः।'},
+  {sk:'(घ) वृक्ष + नमः',en:'Salutations to the tree.',a:'वृक्षाय नमः।'},
+  {sk:'(ङ) देवी + नमः',en:'Salutations to the Goddess.',a:'देव्यै नमः।'},
+  {sk:'(च) भगिनी + नमः',en:'Salutations to the sister.',a:'भगिन्यै नमः।'},
+  {sk:'(छ) मातामही + नमः',en:'Salutations to the maternal grandmother.',a:'मातामह्यै नमः।'},
+  {sk:'(ज) जननी + नमः',en:'Salutations to the mother.',a:'जनन्यै नमः।'},
+  {sk:'(झ) पृथिवी + नमः',en:'Salutations to the Earth.',a:'पृथिव्यै नमः।'},
+  {sk:'(ञ) नदी + नमः',en:'Salutations to the river.',a:'नद्यै नमः।'}
+ ]},
+ {title:'6. Rewrite with the dative form',in_en:'Rewrite each sentence using the dative form of the word in brackets. Example: सैनिकः (देश) जीवनं प्रयच्छति → सैनिकः देशाय जीवनं प्रयच्छति।',qs:[
+  {sk:'(क) माता (याचक) वस्त्रं ददाति।',en:'The mother gives clothes to the beggar.',a:'माता याचकाय वस्त्रं ददाति।'},
+  {sk:'(ख) पौत्रः (पितामही) औषधं ददाति।',en:'The grandson gives medicine to his grandmother.',a:'पौत्रः पितामह्यै औषधं ददाति।'},
+  {sk:'(ग) अहं (भगिनी) उपहारं ददामि।',en:'I give a gift to my sister.',a:'अहं भगिन्यै उपहारं ददामि।'},
+  {sk:'(घ) पिता (सेविका) वेतनं ददाति।',en:'The father gives a salary to the helper.',a:'पिता सेविकायै वेतनं ददाति।'},
+  {sk:'(ङ) त्वं (मित्र) पुष्पं ददासि।',en:'You give a flower to your friend.',a:'त्वं मित्राय पुष्पं ददासि।'},
+  {sk:'(च) देवः (भक्त) आशीर्वादं ददाति।',en:'God gives blessings to the devotee.',a:'देवः भक्ताय आशीर्वादं ददाति।'},
+  {sk:'(ज) आरक्षकः (चोर) दण्डं ददाति।',en:'The policeman gives punishment to the thief.',a:'आरक्षकः चोराय दण्डं ददाति।'}
+ ]},
+ {title:'7. To whom does the mother give money?',in_en:'Use the words: पुत्री, पुत्रः, पालिका, आपणिकः, याचकः, पितामही. Example: माता पुत्र्यै धनं ददाति।',qs:[
+  {sk:'पुत्रः',en:'…to the son.',a:'माता पुत्राय धनं ददाति।'},
+  {sk:'पालिका',en:'…to the female caretaker.',a:'माता पालिकायै धनं ददाति।'},
+  {sk:'आपणिकः',en:'…to the shopkeeper.',a:'माता आपणिकाय धनं ददाति।'},
+  {sk:'याचकः',en:'…to the beggar.',a:'माता याचकाय धनं ददाति।'},
+  {sk:'पितामही',en:'…to the grandmother.',a:'माता पितामह्यै धनं ददाति।'}
+ ]},
+ {title:'Project 3. Find the dative words in a verse',in_en:'Pick out the dative (चतुर्थी) words in the verse.',qs:[
+  {sk:'विद्या विवादाय धनं मदाय शक्तिः परेषां परिपीडनाय।\nखलस्य साधोर्विपरीतमेतत् ज्ञानाय दानाय च रक्षणाय॥',en:'For a wicked person, knowledge is for argument, wealth for pride, power for troubling others. For a good person it is the opposite: knowledge for wisdom, wealth for charity, power for protection.',a:'विवादाय (for argument)\nमदाय (for pride)\nपरिपीडनाय (for troubling others)\nज्ञानाय (for wisdom)\nदानाय (for charity)\nरक्षणाय (for protection)',ae:'All six end in -आय, the dative ending for words ending in -अ.'}
+ ]}
+];
+
+/* ---------- tabs ---------- */
+function showTab(id){
+  $$('.tab').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===id)));
+  $$('section.panel').forEach(s=>s.hidden=(s.id!=='tab-'+id));
+  window.scrollTo(0,0);
+  if(id==='practice')renderStats();
+}
+$$('.tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+
+/* global click handler for speak buttons */
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-speak]');
+  if(b)speak(b.dataset.speak);
+});
+
+/* ---------- SUN WHEEL ---------- */
+let sel=0,cover=false;
+function polar(r,deg){const a=deg*Math.PI/180;return [200+r*Math.cos(a),200+r*Math.sin(a)];}
+function buildWheel(){
+  const N=13,step=360/N;let g='';
+  MANTRAS.forEach((m,i)=>{
+    const c=-90+i*step,half=step*0.36;
+    const [x1,y1]=polar(86,c-half),[x2,y2]=polar(86,c+half),[tx,ty]=polar(152,c),[lx,ly]=polar(176,c);
+    g+=`<g class="ray" data-i="${i}" style="--i:${i}" role="button" tabindex="0" aria-label="Mantra ${i+1}: ${m.tr}"><path d="M${x1.toFixed(1)} ${y1.toFixed(1)} L${tx.toFixed(1)} ${ty.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)} Z"/><text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}">${i+1}</text></g>`;
+  });
+  g+=`<circle class="disc" cx="200" cy="200" r="76"/><text class="omtext" x="200" y="204">ॐ</text>`;
+  $('#wheel').innerHTML=g;
+  syncWheel();
+}
+function syncWheel(){
+  $$('#wheel .ray').forEach(r=>{
+    const i=+r.dataset.i;
+    r.classList.toggle('learned',state.learned[i]);
+    r.classList.toggle('sel',i===sel);
+  });
+  const n=state.learned.filter(Boolean).length;
+  $('#wheelProg').textContent=`${n} of 13 mantras learned`;
+}
+function renderMantra(){
+  const m=MANTRAS[sel],dat=m.sk.split(' ')[1],learned=state.learned[sel];
+  $('#mantraPanel').innerHTML=`
+    <p class="mnum">Mantra ${sel+1} of 13</p>
+    <p class="mant" lang="sa">${m.sk}</p>
+    <p class="tr">${m.tr}</p>
+    <p class="mean ${cover?'covered':''}" id="mean" tabindex="0">${m.en}</p>
+    <div><label class="switch"><input type="checkbox" id="coverChk" ${cover?'checked':''}> Blur the meaning so I can test myself</label></div>
+    <div class="why"><p><strong>Why ${dat}?</strong> The name here is ${m.stem} (${m.stemEn}). We salute <em>to</em> the Sun, so the name takes the dative. ${KIND_NOTE[m.k]}</p></div>
+    <div class="row">
+      <button type="button" class="btn" id="mPrev">Previous</button>
+      <button type="button" class="btn" id="mNext">Next</button>
+      ${listenBtn(m.sk,'btn')}
+      <button type="button" class="btn ${learned?'':'primary'}" id="mLearn">${learned?'Learned. Undo':'Mark as learned'}</button>
+    </div>`;
+  $('#mPrev').onclick=()=>pick((sel+12)%13);
+  $('#mNext').onclick=()=>pick((sel+1)%13);
+  $('#mLearn').onclick=()=>{state.learned[sel]=!state.learned[sel];save();syncWheel();renderMantra();renderStats();};
+  $('#coverChk').onchange=e=>{cover=e.target.checked;renderMantra();};
+  const mean=$('#mean');
+  const reveal=()=>mean.classList.remove('covered');
+  mean.onclick=reveal;mean.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();reveal();}};
+}
+function pick(i){sel=i;syncWheel();renderMantra();}
+$('#wheel').addEventListener('click',e=>{const r=e.target.closest('.ray');if(r)pick(+r.dataset.i);});
+$('#wheel').addEventListener('keydown',e=>{
+  const r=e.target.closest('.ray');if(!r)return;
+  const i=+r.dataset.i;
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(i);}
+  else if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+    e.preventDefault();
+    const n=(i+(e.key==='ArrowRight'?1:12))%13;
+    pick(n);$(`#wheel .ray[data-i="${n}"]`).focus();
+  }
+});
+
+/* ---------- DIALOGUE ---------- */
+function buildDialogue(){
+  let h='';
+  SCENES.forEach(s=>{
+    h+=`<div class="scene"><h3>${s.title}</h3>`;
+    s.lines.forEach(l=>{
+      if(l.link){
+        h+=`<div class="linkline"><button type="button" class="btn primary" data-go="wheel">Practise the 13 mantras</button></div>`;
+        return;
+      }
+      const sk=esc(l.sk).replace(/\n/g,'<br>');
+      h+=`<div class="line ${l.verse?'verse':''}">
+        <div class="who">${l.who}</div>
+        <div class="ltxt"><p class="sk s" lang="sa">${sk}</p><p class="en" hidden>${esc(l.en)}</p></div>
+        <div class="lact"><button type="button" class="mini" data-en>English</button>${listenBtn(l.sk.replace(/\n/g,' '))}</div>
+      </div>`;
+      if(l.wbw){
+        h+=`<details class="wbw"><summary>Word by word</summary><ul>${l.wbw.map(w=>`<li><span class="sk">${w[0]}</span>: ${w[1]}</li>`).join('')}</ul></details>`;
+      }
+    });
+    h+='</div>';
+  });
+  $('#dialogueBody').innerHTML=h;
+  $('#factsBody').innerHTML=FACTS.map(f=>`<div class="fact"><h4>${f.h}</h4><p>${f.p}</p></div>`).join('');
+  $('#asanaBody').innerHTML=ASANAS.map(a=>`<div class="asana"><span class="sk">${a[0]}</span><span>${a[1]}</span></div>`).join('');
+}
+document.addEventListener('click',e=>{
+  const go=e.target.closest('[data-go]');
+  if(go){showTab(go.dataset.go);return;}
+  const en=e.target.closest('[data-en]');
+  if(en){const p=en.closest('.line').querySelector('.en');p.hidden=!p.hidden;}
+});
+$('#allEn').addEventListener('change',e=>{$$('#dialogueBody .en').forEach(p=>p.hidden=!e.target.checked);});
+
+/* ---------- FLASHCARDS ---------- */
+let queue=[],flipped=false,totalCards=WORDS.length,known=0;
+function resetDeck(){queue=shuffle(WORDS.map((_,i)=>i));flipped=false;known=0;renderDeck();}
+function renderDeck(){
+  const d=$('#deck');
+  if(!queue.length){
+    d.innerHTML=`<div class="card3d" style="cursor:default"><p class="big">शोभनम्!</p><p class="hintline">You went through all ${totalCards} words.</p><button type="button" class="btn primary" id="deckAgain">Start again</button></div>`;
+    $('#deckAgain').onclick=resetDeck;return;
+  }
+  const w=WORDS[queue[0]];
+  d.innerHTML=`
+    <div class="deckbar"><div class="bar" aria-hidden="true"><i style="width:${known/totalCards*100}%"></i></div><span>${known} known, ${queue.length} left</span></div>
+    <div class="card3d" id="card" role="button" tabindex="0" aria-label="Flip card">
+      <p class="big sk" lang="sa">${w[0]}</p>
+      ${flipped?`<p class="ans">${w[1]}</p>`:`<p class="hintline">Tap to see the meaning</p>`}
+    </div>
+    <div class="row" style="margin-top:12px">
+      ${listenBtn(w[0],'btn')}
+      <button type="button" class="btn" id="cAgain" ${flipped?'':'disabled'}>Show me again</button>
+      <button type="button" class="btn primary" id="cKnow" ${flipped?'':'disabled'}>I knew it</button>
+    </div>`;
+  const flip=()=>{flipped=!flipped;renderDeck();};
+  $('#card').onclick=flip;
+  $('#card').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip();}};
+  $('#cAgain').onclick=()=>{const i=queue.shift();queue.splice(Math.min(3,queue.length),0,i);flipped=false;renderDeck();};
+  $('#cKnow').onclick=()=>{queue.shift();known++;flipped=false;renderDeck();};
+}
+
+/* ---------- GRAMMAR ---------- */
+function buildGrammar(){
+  $('#rules').innerHTML=Object.keys(GROUPS).map(k=>{
+    const g=GROUPS[k];
+    return `<div class="rule"><h4>${g.title}</h4><p class="rl">${g.rl} Example: <span class="sk">${g.ex}</span></p>
+      <div class="chips">${NOUNS.filter(n=>n.t===k).map(n=>`<button type="button" class="chip" aria-pressed="false" data-noun="${n.sk}">${n.sk}</button>`).join('')}</div></div>`;
+  }).join('');
+  showNoun(NOUNS[0].sk);
+  const tbl=(rows)=>`<div class="tablewrap"><table class="vt cover-off"><thead><tr><th>Person</th><th>Singular</th><th>Dual (two)</th><th>Plural (three or more)</th></tr></thead><tbody>${
+    rows.map(r=>`<tr><th scope="row">${r[0]}<br><span class="sk" style="font-weight:400">${r[1]}</span></th>${[2,3,4].map(i=>`<td><span class="sk">${r[i][0]}</span><span class="en2">${r[i][1]}</span></td>`).join('')}</tr>`).join('')
+  }</tbody></table></div>`;
+  $('#verbTables').innerHTML=`<h4 style="margin:0 0 6px">Present tense (लट्)</h4>${tbl(LAT)}<h4 style="margin:18px 0 6px">Command or request (लोट्)</h4>${tbl(LOT)}`;
+  $('#sentPattern').innerHTML=[
+    ['giver','माता','mother (the giver)'],['recv','याचकाय','to the beggar (dative)'],['thing','वस्त्रं','clothes (the thing given)'],['verb','ददाति','gives']
+  ].map(p=>`<div class="${p[0]}"><span class="sk">${p[1]}</span><small>${p[2]}</small></div>`).join('');
+}
+function showNoun(sk){
+  const n=NOUNS.find(x=>x.sk===sk),g=GROUPS[n.t];
+  $$('.chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.noun===sk)));
+  $('#formbox').innerHTML=`
+    <div class="hd"><span class="sk">${n.sk}</span><span>${n.en}</span>${listenBtn(n.f[0])}</div>
+    <p style="margin:6px 0 0"><strong>Rule:</strong> ${g.rule}</p>
+    <div class="forms">
+      <div class="form hl"><small>Singular (one)</small><span class="sk">${n.f[0]}</span></div>
+      <div class="form"><small>Dual (two)</small><span class="sk">${n.f[1]}</span></div>
+      <div class="form"><small>Plural (three or more)</small><span class="sk">${n.f[2]}</span></div>
+    </div>
+    <p class="note">In this chapter you mostly need the singular, the highlighted form.</p>`;
+}
+document.addEventListener('click',e=>{
+  const c=e.target.closest('[data-noun]');if(c)showNoun(c.dataset.noun);
+  const t=e.target.closest('table.cover .en2');if(t)t.classList.toggle('open');
+});
+$('#coverVerb').addEventListener('change',e=>{
+  $$('#verbTables table').forEach(t=>t.classList.toggle('cover',e.target.checked));
+  if(!e.target.checked)$$('#verbTables .en2').forEach(x=>x.classList.remove('open'));
+});
+
+/* ---------- PRACTICE ---------- */
+function renderStats(){
+  const box=$('#stats');if(!box)return;
+  const s=state.stats,n=state.learned.filter(Boolean).length;
+  const acc=s.total?Math.round(s.correct/s.total*100)+'%':'–';
+  let weak='';
+  const arr=Object.entries(s.topics).filter(([k,v])=>v.t>=3&&v.c/v.t<0.8).sort((a,b)=>a[1].c/a[1].t-b[1].c/b[1].t);
+  if(arr.length)weak=arr[0][0];
+  box.innerHTML=`
+    <div><b>${n}/13</b><span>mantras learned</span></div>
+    <div><b>${s.total}</b><span>questions answered</span></div>
+    <div><b>${acc}</b><span>accuracy</span></div>
+    <div><b>${weak||(s.total>=5?'None':'–')}</b><span>${weak?'needs more practice':'weak spot'}</span></div>
+    <button type="button" class="btn small" id="resetProg" style="margin-left:auto">Reset progress</button>`;
+  let armed=false;
+  $('#resetProg').onclick=function(){
+    if(!armed){armed=true;this.textContent='Tap again to confirm';return;}
+    state.learned=Array(13).fill(false);state.stats={total:0,correct:0,topics:{}};save();
+    syncWheel();renderMantra();renderStats();
+  };
+}
+
+let mode='quiz',quizTopic='All topics';
+function setMode(m){
+  mode=m;
+  $$('#modeSeg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===m)));
+  renderMode();
+}
+$('#modeSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setMode(b.dataset.mode);});
+
+function renderMode(){
+  const area=$('#practiceArea');
+  if(mode==='quiz'){
+    area.innerHTML=`<div class="qbox"><h3 style="margin-top:0">Pick a topic</h3>
+      <div class="seg" id="topicSeg">${TOPICS.map(t=>`<button type="button" data-topic="${t}" aria-pressed="${t===quizTopic}">${t}</button>`).join('')}</div>
+      <p class="note" style="margin:0 0 14px">10 questions, a new mix each time.</p>
+      <button type="button" class="btn primary" id="startQuiz">Start quiz</button></div>`;
+    $('#topicSeg').onclick=e=>{const b=e.target.closest('button');if(!b)return;quizTopic=b.dataset.topic;renderMode();};
+    $('#startQuiz').onclick=()=>{
+      const pool=quizTopic==='All topics'?POOL:POOL.filter(p=>p.t===quizTopic);
+      runQuiz(area,shuffle(pool).slice(0,10),{onBack:renderMode});
+    };
+  }else if(mode==='drill'){
+    area.innerHTML=`<div class="qbox"><h3 style="margin-top:0">Dative drill</h3>
+      <p style="margin-top:0">Pick the correct dative form to complete each sentence. Use the hint if you are stuck.</p>
+      <button type="button" class="btn primary" id="startDrill">Start drill</button></div>`;
+    $('#startDrill').onclick=()=>{
+      const items=shuffle(DRILL).slice(0,10).map(d=>({t:'Dative forms',q:d.q,dev:true,en:`${d.en}  (word: ${d.w})`,o:[d.a,...d.d],a:0,why:`${d.w} → ${d.a}. ${GROUPS[d.r].rule}`,hint:GROUPS[d.r].rule+' Example: '+GROUPS[d.r].ex}));
+      runQuiz(area,items,{onBack:renderMode});
+    };
+  }else if(mode==='build'){runBuilder(area);}
+  else runMatch(area);
+}
+
+function runQuiz(root,items,opts){
+  let idx=0,score=0,misses=[];
+  const total=items.length;
+  function render(){
+    if(idx>=total)return summary();
+    const it=items[idx];
+    const os=shuffle(it.o.map((t,k)=>({t,ok:k===it.a})));
+    root.innerHTML=`<div class="qbox">
+      <div class="qhead"><span>Question ${idx+1} of ${total}</span><div class="bar" aria-hidden="true"><i style="width:${idx/total*100}%"></i></div></div>
+      <p class="qtext ${it.dev||isDev(it.q)&&it.q.length<40?'dev':''}">${esc(it.q)}</p>
+      ${it.en?`<p class="qen">${esc(it.en)}</p>`:''}
+      <div class="opts">${os.map((o,k)=>`<button type="button" class="opt ${isDev(o.t)?'dev':''}" data-k="${k}">${esc(o.t)}</button>`).join('')}</div>
+      <div class="fb" aria-live="polite"></div>
+      <div class="row">
+        ${it.hint?`<button type="button" class="btn small" id="hintBtn">Hint</button>`:''}
+        <button type="button" class="btn primary" id="nextBtn" hidden>${idx+1===total?'See results':'Next question'}</button>
+      </div></div>`;
+    const btns=$$('.opt',root);
+    btns.forEach(b=>b.onclick=()=>{
+      const o=os[+b.dataset.k];
+      btns.forEach((x,k)=>{x.disabled=true;if(os[k].ok)x.classList.add('right');});
+      if(o.ok){score++;$('.fb',root).innerHTML=`<p><span class="ok">Correct.</span> ${esc(it.why)}</p>`;}
+      else{b.classList.add('wrong');misses.push(it);$('.fb',root).innerHTML=`<p><span class="no">Not quite.</span> ${esc(it.why)}</p>`;}
+      record(it.t,o.ok);
+      $('#nextBtn',root).hidden=false;$('#nextBtn',root).focus();
+      const h=$('#hintBtn',root);if(h)h.hidden=true;
+    });
+    const h=$('#hintBtn',root);
+    if(h)h.onclick=()=>{h.insertAdjacentHTML('afterend',`<div class="hintbox">${esc(it.hint)}</div>`);h.remove();};
+    $('#nextBtn',root).onclick=()=>{idx++;render();};
+  }
+  function summary(){
+    const pct=Math.round(score/total*100);
+    const msg=pct===100?'Full marks.':pct>=70?'Good work. Review the misses below.':'Keep going. Review the misses, then try again.';
+    root.innerHTML=`<div class="qbox"><p class="big-score">${score} / ${total}</p><p style="margin-top:4px">${msg}</p>
+      ${misses.length?`<h3>To review</h3>${misses.map(m=>`<div class="miss"><p class="${isDev(m.q)?'sk':''}">${esc(m.q)}</p><p class="a">Answer: ${esc(m.o[m.a])}</p><p class="note">${esc(m.why)}</p></div>`).join('')}`:''}
+      <div class="row" style="margin-top:18px">
+        <button type="button" class="btn primary" id="again">Try new questions</button>
+        ${misses.length?`<button type="button" class="btn" id="redo">Redo the misses</button>`:''}
+        <button type="button" class="btn" id="back">Back</button></div></div>`;
+    $('#again').onclick=()=>{
+      if(mode==='drill')$('#modeSeg [data-mode="drill"]').click();
+      const pool=mode==='drill'?null:(quizTopic==='All topics'?POOL:POOL.filter(p=>p.t===quizTopic));
+      if(pool)runQuiz(root,shuffle(pool).slice(0,10),opts);else{renderMode();$('#startDrill').click();}
+    };
+    if(misses.length)$('#redo').onclick=()=>runQuiz(root,misses.slice(),opts);
+    $('#back').onclick=opts.onBack;
+  }
+  render();
+}
+
+function runBuilder(root){
+  const items=shuffle(BUILD).slice(0,6);let i=0,ok=0;
+  function render(){
+    if(i>=items.length){
+      root.innerHTML=`<div class="qbox"><p class="big-score">${ok} / ${items.length}</p><p>Sentences built correctly on the first check.</p><div class="row"><button type="button" class="btn primary" id="again">New sentences</button></div></div>`;
+      $('#again').onclick=runBuilder.bind(null,root);return;
+    }
+    const it=items[i];
+    let bank=shuffle(it.w.concat(it.x)).map((w,k)=>({w,k,used:false})),line=[],done=false,tried=false;
+    root.innerHTML=`<div class="qbox">
+      <div class="qhead"><span>Sentence ${i+1} of ${items.length}</span><div class="bar" aria-hidden="true"><i style="width:${i/items.length*100}%"></i></div></div>
+      <p class="qtext">${esc(it.en)}</p>
+      <p class="qen">Tap the Sanskrit words in order. Some tiles are decoys with the wrong ending or verb.</p>
+      <div class="linebox tiles" id="lineBox" aria-label="Your sentence"></div>
+      <div class="tiles" id="bankBox" aria-label="Word tiles"></div>
+      <div class="fb" aria-live="polite" style="margin-top:12px"></div>
+      <div class="row">
+        <button type="button" class="btn primary" id="chk">Check</button>
+        <button type="button" class="btn" id="clr">Clear</button>
+        <button type="button" class="btn primary" id="nxt" hidden>${i+1===items.length?'See results':'Next sentence'}</button>
+      </div></div>`;
+    const draw=()=>{
+      $('#lineBox').innerHTML=line.map(k=>`<button type="button" class="tile" data-l="${k}">${bank[k].w}</button>`).join('');
+      $('#bankBox').innerHTML=bank.filter(b=>!b.used).map(b=>`<button type="button" class="tile" data-b="${b.k}">${b.w}</button>`).join('');
+    };
+    draw();
+    $('#bankBox').onclick=e=>{const t=e.target.closest('[data-b]');if(!t||done)return;const k=+t.dataset.b;bank[k].used=true;line.push(k);draw();};
+    $('#lineBox').onclick=e=>{const t=e.target.closest('[data-l]');if(!t||done)return;const k=+t.dataset.l;bank[k].used=false;line=line.filter(x=>x!==k);draw();};
+    $('#clr').onclick=()=>{if(done)return;bank.forEach(b=>b.used=false);line=[];draw();};
+    $('#chk').onclick=()=>{
+      if(done||!line.length)return;
+      const guess=line.map(k=>bank[k].w).join(' '),right=it.w.join(' ');
+      const good=guess===right;
+      if(good){
+        done=true;if(!tried)ok++;record('Sentences',true);
+        $('.fb').innerHTML=`<p><span class="ok">Correct.</span> <span class="sk">${right}</span></p>`;
+        $('#nxt').hidden=false;$('#chk').hidden=true;$('#nxt').focus();
+      }else{
+        if(!tried)record('Sentences',false);tried=true;
+        $('.fb').innerHTML=`<p><span class="no">Not yet.</span> Check the endings: the receiver needs the dative, and the verb usually comes last.</p>`;
+      }
+    };
+    $('#nxt').onclick=()=>{i++;render();};
+  }
+  render();
+}
+
+function runMatch(root){
+  const uniq=MANTRAS.filter((m,i)=>i!==3&&i!==10);
+  const set=shuffle(uniq).slice(0,6).map(m=>({sk:m.sk,en:m.en.replace('Salutations to ','')}));
+  const L=shuffle(set.map(s=>s.sk)),R=shuffle(set.map(s=>s.en));
+  let pickL=null,solved=0,slips=0;
+  root.innerHTML=`<div class="qbox" style="max-width:820px"><h3 style="margin-top:0">Mantra match</h3>
+    <p style="margin-top:0">Tap a mantra, then tap its meaning.</p>
+    <div class="pairs" id="pairs">${L.map((t,i)=>`<button type="button" class="l" data-side="l" data-v="${esc(t)}">${t}</button><button type="button" data-side="r" data-v="${esc(R[i])}">${R[i]}</button>`).join('')}</div>
+    <div class="fb" aria-live="polite" style="margin-top:12px"></div>
+    <div class="row"><button type="button" class="btn" id="mAgain">New round</button></div></div>`;
+  $('#mAgain').onclick=()=>runMatch(root);
+  $('#pairs').onclick=e=>{
+    const b=e.target.closest('button');if(!b||b.classList.contains('done'))return;
+    if(b.dataset.side==='l'){
+      $$('#pairs .l').forEach(x=>x.classList.remove('pick'));
+      pickL=b;b.classList.add('pick');return;
+    }
+    if(!pickL)return;
+    const s=set.find(x=>x.sk===pickL.dataset.v);
+    if(s&&s.en===b.dataset.v){
+      pickL.classList.remove('pick');pickL.classList.add('done');b.classList.add('done');
+      pickL.disabled=true;b.disabled=true;pickL=null;solved++;record('Mantras',true);
+      if(solved===set.length)$('.fb').innerHTML=`<p><span class="ok">All matched</span> with ${slips} wrong ${slips===1?'try':'tries'}.</p>`;
+    }else{
+      slips++;record('Mantras',false);
+      b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),600);
+    }
+  };
+}
+
+/* ---------- TEXTBOOK ---------- */
+function buildBook(){
+  $('#bookBody').innerHTML=BOOK.map((ex,ei)=>`
+    <details class="ex" ${ei===0?'open':''}><summary>${ex.title}</summary>
+      <p class="exin">${esc(ex.in_en)}</p>
+      ${ex.qs.map(q=>`<div class="q">
+        <p class="qs" lang="sa">${esc(q.sk).replace(/\n/g,'<br>')}</p>
+        <p class="qe">${esc(q.en)}</p>
+        <button type="button" class="mini" data-rev>Show answer</button>
+        <div class="as" hidden><span class="sk" lang="sa">${esc(q.a)}</span>${q.ae?`<small>${esc(q.ae)}</small>`:''}${q.note?`<small>${esc(q.note)}</small>`:''}</div>
+      </div>`).join('')}
+    </details>`).join('');
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-rev]');if(!b)return;
+  const a=b.parentElement.querySelector('.as');a.hidden=!a.hidden;
+  b.textContent=a.hidden?'Show answer':'Hide answer';
+});
+
+/* ---------- init ---------- */
+load();applyTheme();
+buildWheel();renderMantra();
+buildDialogue();resetDeck();buildGrammar();buildBook();
+renderStats();renderMode();
+</script>
+</body>
+</html>

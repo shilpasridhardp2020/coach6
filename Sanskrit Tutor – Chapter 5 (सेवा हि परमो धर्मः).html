@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sanskrit Tutor – Chapter 5: सेवा हि परमो धर्मः</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f2f7f4; --surface:#ffffff; --surface2:#e3f0e9; --ink:#1c2b25; --muted:#5b6f66; --line:#cfe0d6;
+  --main:#1f6f55; --main-ink:#ffffff; --sun:#f2a516; --sun-soft:#fff2d1;
+  --ok:#1f7a4d; --ok-bg:#dff3e7; --bad:#b3261e; --bad-bg:#fbe1de; --end:#c2410c;
+  --sa:'Noto Serif Devanagari','Kokila','Mangal','Nirmala UI',serif;
+  --en:'Nunito','Segoe UI',system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101c17; --surface:#182a22; --surface2:#1f3a2f; --ink:#e9f4ee; --muted:#a2bbb0; --line:#2b4a3c;
+    --main:#63d1a6; --main-ink:#0e1c16; --sun:#f5b73a; --sun-soft:#3a2f12;
+    --ok:#6fdca0; --ok-bg:#163a29; --bad:#ff9a92; --bad-bg:#4a1d1a; --end:#ffa36b;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101c17; --surface:#182a22; --surface2:#1f3a2f; --ink:#e9f4ee; --muted:#a2bbb0; --line:#2b4a3c;
+  --main:#63d1a6; --main-ink:#0e1c16; --sun:#f5b73a; --sun-soft:#3a2f12;
+  --ok:#6fdca0; --ok-bg:#163a29; --bad:#ff9a92; --bad-bg:#4a1d1a; --end:#ffa36b;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--en);font-size:17px;line-height:1.55;min-height:100%}
+.sa{font-family:var(--sa);line-height:1.7}
+button{font-family:inherit;font-size:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 72px}
+header.top{padding:22px 0 10px}
+header.top h1{margin:0;font-family:var(--sa);font-weight:700;font-size:clamp(26px,5.5vw,40px);line-height:1.35;color:var(--main)}
+header.top p{margin:4px 0 0;color:var(--muted);font-weight:600}
+.modebar{display:flex;gap:8px;margin:14px 0 6px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:8px 0;border-bottom:1px solid var(--line)}
+.modebar button{flex:1;border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 8px;font-weight:800}
+.modebar button[aria-selected="true"]{background:var(--main);color:var(--main-ink);border-color:var(--main)}
+.themebtn{flex:0 0 auto !important;width:46px}
+.steps{display:flex;gap:6px;overflow-x:auto;padding:10px 0;scrollbar-width:thin}
+.steps button{flex:0 0 auto;border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-weight:700;color:var(--muted)}
+.steps button[aria-current="true"]{background:var(--sun);border-color:var(--sun);color:#2b1d00}
+.steps button.done:not([aria-current="true"]){border-color:var(--ok);color:var(--ok)}
+h2.sec{font-family:var(--sa);font-size:28px;margin:22px 0 4px;color:var(--main)}
+.sub{color:var(--muted);margin:0 0 14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.note{background:var(--sun-soft);border-left:6px solid var(--sun);border-radius:8px;padding:12px 16px;margin:14px 0}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 4px}
+.chip{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 14px;font-weight:700}
+.chip[aria-pressed="true"]{background:var(--main);color:var(--main-ink);border-color:var(--main)}
+.scene{margin:28px 0 8px}
+.scene h3{margin:0;font-size:21px}
+.scene span{color:var(--muted);font-weight:600}
+figure.fig{margin:12px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+figure.fig svg{display:block;width:100%;height:auto}
+figure.fig figcaption{padding:8px 14px;color:var(--muted);font-size:15px;border-top:1px solid var(--line)}
+.figrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.qual{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:12px 0}
+.qual div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center}
+.qual b{display:block;font-size:30px;line-height:1.2}
+.qual .sa{font-weight:700;font-size:19px}
+.qual small{display:block;color:var(--muted);font-weight:600}
+.line{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:12px 4px;border-bottom:1px dashed var(--line)}
+.line .s{font-family:var(--sa);font-size:22px;font-weight:600;line-height:1.6}
+.line .e{grid-column:1;color:var(--muted);font-size:16.5px}
+.line .say{grid-row:1 / span 2;grid-column:2;align-self:center;border:none;background:var(--surface2);border-radius:50%;width:38px;height:38px}
+.line.hl .s{color:var(--end)}
+.hide-en .line .e{display:none}
+.hide-en .line.peek .e{display:block}
+.hide-en .line{cursor:pointer}
+.words{display:flex;flex-wrap:wrap;gap:6px 8px;margin:6px 0 10px}
+.words span{background:var(--surface2);border-radius:8px;padding:2px 10px;font-size:15.5px}
+.words b{font-family:var(--sa);font-weight:600}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.fc{perspective:700px;border:none;background:none;padding:0;height:96px}
+.fc .in{position:relative;width:100%;height:100%;transition:transform .35s;transform-style:preserve-3d}
+.fc.flip .in{transform:rotateY(180deg)}
+.fc .f,.fc .b{position:absolute;inset:0;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;padding:6px;border:1px solid var(--line)}
+.fc .f{background:var(--surface);font-family:var(--sa);font-size:21px;font-weight:600}
+.fc .b{background:var(--main);color:var(--main-ink);transform:rotateY(180deg);font-weight:800;font-size:16px}
+@media (prefers-reduced-motion:reduce){.fc .in{transition:none}}
+.scroll{overflow-x:auto;max-width:100%}
+table.vt{border-collapse:collapse;width:100%;min-width:480px;margin:8px 0}
+.vt th,.vt td{border:1px solid var(--line);padding:9px 10px;text-align:center}
+.vt th{background:var(--surface2);font-size:14px;font-weight:800}
+.vt td{font-family:var(--sa);font-size:20px;font-weight:600;background:var(--surface)}
+.vt td small{display:block;font-family:var(--en);font-size:13px;color:var(--muted);font-weight:600}
+.vt .end{color:var(--end)}
+.vt th.rowh{text-align:left}
+.roots{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.roots .chip{font-family:var(--sa);font-size:19px;padding:2px 14px}
+.pattern{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:10px 0}
+.pattern div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center;font-family:var(--sa);font-size:22px;font-weight:700}
+.pattern div small{display:block;font-family:var(--en);font-size:14px;font-weight:700;color:var(--muted)}
+.verse{border-left:6px solid var(--main);padding-left:14px;margin:14px 0}
+.verse .l{margin:8px 0 0;font-family:var(--sa);font-size:21px;font-weight:600}
+.verse .e{margin:0;color:var(--muted);font-size:16.5px}
+.tips li{margin:8px 0}
+.tips .sa{font-weight:700;font-size:20px}
+.navrow{display:flex;justify-content:space-between;gap:10px;margin:26px 0 0}
+.btn{border:2px solid var(--main);background:var(--main);color:var(--main-ink);border-radius:12px;padding:11px 20px;font-weight:800}
+.btn.ghost{background:transparent;color:var(--main)}
+.btn.sun{background:var(--sun);border-color:var(--sun);color:#2b1d00}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.score{font-weight:800;background:var(--surface2);border-radius:999px;padding:4px 14px}
+.bar{height:10px;background:var(--surface2);border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:14px 0}
+.q .qt{font-family:var(--sa);font-size:22px;font-weight:600;margin:0}
+.q .qe{color:var(--muted);margin:2px 0 10px;font-size:16px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.opt{border:2px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;text-align:left;font-family:var(--sa);font-size:20px;font-weight:600}
+.opt.en{font-family:var(--en);font-size:17px}
+.opt:hover:not([disabled]){border-color:var(--main)}
+.opt.right{background:var(--ok-bg);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-bg);border-color:var(--bad)}
+.fb{margin:10px 0 0;padding:10px 12px;border-radius:10px;font-size:16px;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--ok-bg)}
+.fb.no{background:var(--bad-bg)}
+.fb .sa{font-weight:700}
+.model{display:none;margin-top:10px}
+.model.show{display:block}
+.model .a{font-family:var(--sa);font-size:21px;font-weight:700;color:var(--ok)}
+.selfmark{display:none;gap:8px;margin-top:10px;flex-wrap:wrap}
+.selfmark.show{display:flex}
+.result{text-align:center;padding:28px 16px}
+.result .big{font-size:56px;font-weight:800;color:var(--main)}
+.stars{font-size:38px;letter-spacing:6px}
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>अध्याय 5 — सेवा हि परमो धर्मः</h1>
+    <p>Grade 7 Sanskrit · Chapter 5 · “Service is indeed the highest duty”</p>
+  </header>
+  <div class="modebar" role="tablist" aria-label="Choose mode">
+    <button role="tab" id="tabLesson" aria-selected="true">📖 Lesson</button>
+    <button role="tab" id="tabQuiz" aria-selected="false">✏️ Questions &amp; Answers</button>
+    <button class="themebtn" id="themeBtn" aria-label="Switch light or dark theme" title="Light / dark">🌗</button>
+  </div>
+
+  <main id="lesson">
+    <nav class="steps" id="steps" aria-label="Lesson parts"></nav>
+    <section id="lessonBody"></section>
+    <div class="navrow">
+      <button class="btn ghost" id="prevBtn">Back</button>
+      <button class="btn" id="nextBtn">Next</button>
+    </div>
+  </main>
+
+  <main id="quiz" class="hidden">
+    <div class="qhead">
+      <h2 class="sec" id="qTitle" style="margin:6px 0"></h2>
+      <span class="score" id="scoreTag">Score 0</span>
+    </div>
+    <div class="bar"><i id="barFill"></i></div>
+    <p class="sub" id="qInstr"></p>
+    <div id="qBody"></div>
+    <div class="navrow">
+      <button class="btn ghost" id="qPrev">Back</button>
+      <button class="btn" id="qNext">Next section</button>
+    </div>
+  </main>
+</div>
+
+<script>
+const $=(s,e=document)=>e.querySelector(s);
+const el=(t,c,h)=>{const n=document.createElement(t);if(c)n.className=c;if(h!==undefined)n.innerHTML=h;return n;};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;};
+function say(t){try{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='hi-IN';u.rate=.75;speechSynthesis.speak(u);}catch(e){}}
+$('#themeBtn').onclick=()=>{const r=document.documentElement;const d=r.getAttribute('data-theme')==='dark'||(!r.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: dark)').matches);r.setAttribute('data-theme',d?'light':'dark');};
+
+/* ================= ILLUSTRATIONS (simple SVG) ================= */
+const FF="font-family=\"'Noto Serif Devanagari',serif\"";
+function person(x,y,shirt,o={}){
+  return `<g transform="translate(${x} ${y})">
+    <rect x="-9" y="8" width="7" height="20" rx="3" fill="#3b3b5c"/><rect x="2" y="8" width="7" height="20" rx="3" fill="#3b3b5c"/>
+    <rect x="-13" y="-22" width="26" height="34" rx="10" fill="${shirt}"/>
+    ${o.coat?'<rect x="-13" y="-22" width="26" height="34" rx="10" fill="#fff" opacity=".9"/><rect x="-2" y="-20" width="4" height="30" fill="#cfd8dc"/>':''}
+    <circle cy="-34" r="12" fill="#f0c6a0"/>
+    ${o.crown?'<path d="M-11 -44 l4 -11 l7 8 l7 -8 l4 11z" fill="#f2b705"/>':'<path d="M-12 -38 q12 -14 24 0 z" fill="#2a2018"/>'}
+    <circle cx="-4" cy="-34" r="1.6" fill="#222"/><circle cx="4" cy="-34" r="1.6" fill="#222"/>
+    <path d="M-4 -29 q4 4 8 0" stroke="#7a3b2e" stroke-width="1.6" fill="none"/></g>`;
+}
+function flask(x,y,color){
+  return `<g transform="translate(${x} ${y})"><path d="M-7 -40 h14 v20 l19 26 a6 6 0 0 1 -5 9 h-42 a6 6 0 0 1 -5 -9 l19 -26 z" fill="#e8f7ff" stroke="#456" stroke-width="2"/>
+  <path d="M-20 -2 h40 l7 10 a6 6 0 0 1 -5 9 h-44 a6 6 0 0 1 -5 -9z" fill="${color}" opacity=".85"/><circle cx="-5" cy="-6" r="3" fill="#fff" opacity=".8"/><circle cx="6" cy="-12" r="2" fill="#fff" opacity=".8"/></g>`;
+}
+function bubble(x,y,w,text){
+  return `<g><rect x="${x}" y="${y}" width="${w}" height="26" rx="10" fill="#fff" stroke="#9aa" /><text x="${x+w/2}" y="${y+18}" text-anchor="middle" font-size="13" fill="#222" ${FF}>${text}</text></g>`;
+}
+const FIG={
+ lab:`<figure class="fig"><svg viewBox="0 0 320 160" role="img" aria-label="Nagarjuna working in his laboratory">
+  <rect width="320" height="160" fill="#e6f2ff"/><rect y="128" width="320" height="32" fill="#c9b79c"/>
+  <rect x="150" y="98" width="150" height="10" rx="3" fill="#8a5a33"/><rect x="158" y="108" width="8" height="30" fill="#8a5a33"/><rect x="284" y="108" width="8" height="30" fill="#8a5a33"/>
+  ${flask(190,98,'#3fbf7f')}${flask(255,98,'#e0664f')}
+  ${person(90,100,'#5a8dee',{coat:1})}
+  <text x="20" y="28" font-size="16" fill="#1d4d8f" ${FF}>प्रयोगशाला</text>
+  <circle cx="200" cy="40" r="4" fill="#fff"/><circle cx="210" cy="28" r="3" fill="#fff"/></svg>
+  <figcaption>Nagarjuna, the chemist-physician, works day and night in his laboratory (प्रयोगशाला).</figcaption></figure>`,
+ king:`<figure class="fig"><svg viewBox="0 0 320 160" role="img" aria-label="Nagarjuna speaks to the king">
+  <rect width="320" height="160" fill="#fdf1dc"/><rect y="130" width="320" height="30" fill="#b98a5a"/>
+  <rect x="40" y="60" width="70" height="72" rx="8" fill="#9c2f3a"/><rect x="34" y="118" width="82" height="14" rx="4" fill="#6f1f28"/>
+  ${person(75,100,'#c0392b',{crown:1})}
+  ${person(240,102,'#ffffff',{coat:1})}
+  ${bubble(150,28,160,'महाराज! सहायकः आवश्यकः')}
+  <text x="75" y="24" text-anchor="middle" font-size="15" fill="#8a5a1a" ${FF}>राजा</text></svg>
+  <figcaption>Nagarjuna asks the king for an assistant (सहायकः).</figcaption></figure>`,
+ first:`<figure class="fig"><svg viewBox="0 0 320 160" role="img" aria-label="The first young man gives the medicine to Nagarjuna">
+  <rect width="320" height="160" fill="#eaf4ea"/><rect y="130" width="320" height="30" fill="#c9b79c"/>
+  ${person(95,102,'#3d6fd1')}${flask(150,100,'#3fbf7f')}${person(235,102,'#ffffff',{coat:1})}
+  ${bubble(30,18,150,'औषधं निर्मितवान्')}
+  <text x="95" y="150" text-anchor="middle" font-size="13" fill="#333" ${FF}>प्रथमः युवकः</text></svg>
+  <figcaption>The first young man made the medicine and handed it over, even though he left his parents' troubles aside.</figcaption></figure>`,
+ road:`<figure class="fig"><svg viewBox="0 0 320 170" role="img" aria-label="Two young men on the highway, one stops to help a sick person">
+  <rect width="320" height="170" fill="#dff1ff"/><rect y="118" width="320" height="52" fill="#7c8791"/>
+  <g stroke="#fff" stroke-width="3" stroke-dasharray="14 10"><line x1="0" y1="146" x2="320" y2="146"/></g>
+  <text x="10" y="20" font-size="15" fill="#1d4d8f" ${FF}>राजमार्गः (highway)</text>
+  <g transform="translate(60 130)"><rect x="-26" y="-8" width="52" height="16" rx="8" fill="#e08a3c"/><circle cx="-30" cy="-2" r="10" fill="#f0c6a0"/><text x="-12" y="-16" font-size="20">🤒</text></g>
+  ${person(120,100,'#2f9e6b')}
+  <text x="120" y="48" text-anchor="middle" font-size="13" fill="#1a6b48" ${FF}>द्वितीयः: स्थितवान्</text>
+  ${person(250,100,'#3d6fd1')}
+  <text x="250" y="48" text-anchor="middle" font-size="13" fill="#2a4fa0" ${FF}>प्रथमः: अग्रे गतवान्</text>
+  <path d="M275 112 l25 0 l-8 -7 m8 7 l-8 7" stroke="#2a4fa0" stroke-width="3" fill="none"/></svg>
+  <figcaption>Both were told to take the highway. The first walked past the sick man. The second stopped.</figcaption></figure>`,
+ home:`<figure class="fig"><svg viewBox="0 0 320 160" role="img" aria-label="The second young man takes the sick person home and serves him">
+  <rect width="320" height="160" fill="#fff3d6"/><rect y="130" width="320" height="30" fill="#a8c98a"/>
+  <circle cx="40" cy="34" r="16" fill="#ffd54a"/>
+  <rect x="215" y="72" width="80" height="60" fill="#e6b98a"/><path d="M205 76 l50 -38 l50 38z" fill="#b5482f"/><rect x="243" y="98" width="24" height="34" fill="#7a4a2a"/>
+  ${person(120,102,'#2f9e6b')}
+  <g transform="translate(160 106)"><rect x="-9" y="-22" width="18" height="34" rx="8" fill="#e08a3c"/><circle cy="-34" r="11" fill="#f0c6a0"/><rect x="-7" y="12" width="6" height="16" fill="#3b3b5c"/><rect x="2" y="12" width="6" height="16" fill="#3b3b5c"/></g>
+  <text x="140" y="46" font-size="26">❤️</text>
+  <text x="230" y="62" font-size="14" fill="#7a2f1a" ${FF}>स्वगृहम्</text></svg>
+  <figcaption>He took the sick man to his own home and served him for two days. The man became well.</figcaption></figure>`,
+ scale:`<figure class="fig"><svg viewBox="0 0 320 170" role="img" aria-label="A balance: knowledge alone is not enough, service is also needed">
+  <rect width="320" height="170" fill="#f1ecff"/>
+  <rect x="152" y="40" width="16" height="110" fill="#6a5a8e"/><rect x="110" y="146" width="100" height="10" rx="4" fill="#6a5a8e"/>
+  <g transform="rotate(-6 160 40)"><rect x="40" y="36" width="240" height="8" rx="4" fill="#8b78c4"/>
+   <line x1="60" y1="44" x2="60" y2="96" stroke="#6a5a8e" stroke-width="2"/><rect x="24" y="96" width="72" height="8" rx="4" fill="#8b78c4"/>
+   <text x="60" y="88" text-anchor="middle" font-size="26">📚</text>
+   <line x1="260" y1="44" x2="260" y2="104" stroke="#6a5a8e" stroke-width="2"/><rect x="224" y="104" width="72" height="8" rx="4" fill="#8b78c4"/>
+   <text x="260" y="98" text-anchor="middle" font-size="26">❤️</text></g>
+  <text x="50" y="132" text-anchor="middle" font-size="14" fill="#3b2d6b" ${FF}>ज्ञानम्</text>
+  <text x="270" y="140" text-anchor="middle" font-size="14" fill="#3b2d6b" ${FF}>सेवाभावना</text></svg>
+  <figcaption>A good doctor needs both: knowledge and a spirit of service.</figcaption></figure>`
+};
+
+/* ================= LESSON DATA ================= */
+const STORY=[
+ {title:"Page 47–48 — What makes a person truly successful?",sub:"A talk between a teacher and her students.",fig:'quals',lines:[
+  ["प्रियच्छात्राः! जीवने सफलतां प्राप्तुं किं किम् अपेक्षितम्?","Dear students! What all is required to achieve success in life?"],
+  ["विद्याम्!","Education / knowledge!"],["उपाधिम्!","A degree / qualification!"],["पदवीम्!","A position / designation!"],["धनम्!","Money / wealth!"],
+  ["किम् एतदेव पर्याप्तम्?","Are these things alone sufficient?"],
+  ["अन्यत् किम् आवश्यकं महोदये?","What else is necessary, Madam?"],
+  ["मानवीयाः गुणाः अपि आवश्यकाः भोः!","Human qualities are also necessary."],
+  ["यथा सिद्धार्थस्य जीवने विद्या, धनं, पदं च सर्वमपि आसीत्।","For example, Siddhartha had education, wealth, position and everything in his life."],
+  ["किन्तु मानवीयगुणैः एव सः महात्मा बुद्धः जातः।","But it was because of his human qualities that he became Mahatma Buddha."],
+  ["आर्ये! के ते मानवीयाः गुणाः?","Madam, what are those human qualities?"],
+  ["सत्यम्, करुणा, उदारता, सेवा, परोपकारः, अक्रोधः इत्यादयः मानवीयाः गुणाः सन्ति।","Truth, compassion, generosity, service, helping others, absence of anger and similar qualities are human virtues."],
+  ["अद्य एतैः गुणैः सम्बद्धाम् एकां कथां पठामः।","Today we shall read a story connected with these qualities."],
+  ["आम्, मातः! वयम् अपि पठितुम् इच्छामः।","Yes, Madam! We too want to read it."]
+ ],words:[["उपाधिम्","degree"],["पदवीम्","position"],["पर्याप्तम्","sufficient"],["मानवीयाः गुणाः","human qualities"],["महात्मा बुद्धः","Mahatma Buddha"]]},
+ {title:"Page 49 — Nagarjuna asks for an assistant",sub:"नागार्जुनः",fig:['lab','king'],lines:[
+  ["नागार्जुनः प्रसिद्धः रसायनशास्त्रज्ञः चिकित्सकः च आसीत्।","Nagarjuna was a famous chemist and physician."],
+  ["सः अहोरात्रं प्रयोगशालायां कार्यं करोति स्म।","He used to work in the laboratory day and night."],
+  ["एकदा सः महाराजं निवेदितवान् — “महाराज! मम चिकित्साकार्याय एकः सहायकः आवश्यकः।”","One day he told the king, “Your Majesty! I need an assistant for my medical work.”"],
+  ["राजा एतत् अङ्गीकृतवान् उक्तवान् च — “अस्तु, अहं व्यवस्थां करोमि।”","The king accepted this and said, “Very well, I shall make the arrangements.”"],
+  ["“श्वः केचन योग्याः युवकाः आगमिष्यन्ति।”","“Tomorrow some suitable young men will come.”"],
+  ["“भवान् परीक्षां कृत्वा तेषु युवकेषु कमपि योग्यं स्वीकरोतु।”","“Test them and select a suitable person from among them.”"]
+ ],words:[["रसायनशास्त्रज्ञः","chemist"],["चिकित्सकः","physician"],["अहोरात्रम्","day and night"],["प्रयोगशालायाम्","in the laboratory"],["अङ्गीकृतवान्","accepted"],["व्यवस्थाम्","arrangement"]]},
+ {title:"Page 49 — The test and the first young man",sub:"Two candidates, one task.",fig:'first',lines:[
+  ["अन्यस्मिन् दिने द्वौ युवकौ आगतवन्तौ।","On the next day, two young men came."],
+  ["नागार्जुनः द्वयोः विद्याभ्यासविषये पृष्टवान्।","Nagarjuna asked both of them about their education."],
+  ["द्वयोः अपि विद्याभ्यासविषये समानः एव आसीत्।","Both were equally qualified in their studies."],
+  ["तदा नागार्जुनः तौ एकं विशिष्टं रसायनं निर्माय आगच्छताम् इति सूचितवान्।","Then Nagarjuna instructed them to prepare a special medicine and return."],
+  ["तदर्थं दिनद्वयस्य अवसरं दत्तवान्।","He gave them two days to complete the task."],
+  ["दिनद्वयानन्तरं नागार्जुनस्य समीपे प्रथमः युवकः आगतवान्।","After two days, the first young man came to Nagarjuna."],
+  ["“औषधनिर्माणे किमपि कष्टं न अभवत् खलु?” इति नागार्जुनः पृष्टवान्।","Nagarjuna asked, “You did not face any difficulty in preparing the medicine, did you?”"],
+  ["युवकः स्वनिष्ठां दर्शयितुं स्वगृहस्य समस्याः वर्णितवान्।","The young man described the problems at his home in order to show his dedication."],
+  ["“पितुः उदरवेदना, मातुः ज्वरः च आसीत्।”","“My father had stomach pain and my mother had fever.”"],
+  ["“तथापि अहं तत्सर्वं परित्यज्य औषधं निर्मितवान्।”","“Even then, leaving all those problems aside, I prepared the medicine.”"],
+  ["इति उक्त्वा नागार्जुनाय रसायनं दत्तवान्।","Saying this, he gave the medicine to Nagarjuna."]
+ ],words:[["अन्यस्मिन् दिने","on another day"],["द्वौ युवकौ","two young men"],["विशिष्टम्","special"],["सूचितवान्","instructed"],["दिनद्वयम्","two days"],["उदरवेदना","stomach pain"],["ज्वरः","fever"],["परित्यज्य","leaving aside"]]},
+ {title:"Page 50 — The second young man",sub:"He arrives sad and empty-handed.",fig:['road','home'],lines:[
+  ["तदनन्तरं द्वितीयः युवकः अपि आगतवान्।","After that, the second young man also came."],
+  ["सः खिन्नः आसीत्।","He was sad / disappointed."],
+  ["तं नागार्जुनः पृष्टवान्।","Nagarjuna questioned him."],
+  ["युवकः उक्तवान् — “अहम् औषधं निर्मातुं न शक्तवान्।”","The young man said, “I was unable to prepare the medicine.”"],
+  ["“किमर्थं न शक्तवान्?” इति नागार्जुनः पृच्छति।","Nagarjuna asked, “Why were you unable to do it?”"],
+  ["युवकः उक्तवान् — “राजमार्गे अहं कञ्चित् रोगिणं दृष्टवान्।”","The young man replied, “On the highway, I saw a sick person.”"],
+  ["“तस्य परिस्थितिः शोचनीया आसीत्।”","“His condition was miserable.”"],
+  ["“अहं तं स्वगृहं नीतवान्।”","“I took him to my home.”"],
+  ["“दिनद्वयं तस्य एव सेवायां निरतः आसम्।”","“For two days, I was fully engaged in serving him.”"],
+  ["“अद्य प्रातः सः स्वस्थः अभवत्।”","“This morning, he became well.”"],
+  ["“अहं ततः साक्षात् अत्र आगतवान्।”","“I came here directly from there.”"],
+  ["“रसायननिर्माणार्थं समयम् एव न प्राप्तवान्।”","“I simply did not get time to prepare the medicine.”"]
+ ],words:[["खिन्नः","sad"],["शक्तवान्","was able"],["राजमार्गे","on the highway"],["रोगिणम्","sick person"],["शोचनीया","miserable"],["स्वगृहम्","his own home"],["निरतः","fully engaged"],["स्वस्थः","healthy / well"],["साक्षात्","directly"]]},
+ {title:"Page 50 — Nagarjuna's decision",sub:"Why the second young man was chosen.",fig:'scale',lines:[
+  ["तदनन्तरं नागार्जुनः द्वितीयं युवकं सहायकत्वेन स्वीकृतवान्।","After that, Nagarjuna selected the second young man as his assistant.",1],
+  ["राजा एतं वृत्तान्तं श्रुत्वा आश्चर्यं प्रकटितवान्।","The king was surprised when he heard about this incident."],
+  ["सः नागार्जुनं पृष्टवान् — “प्रथमः युवकः औषधं कृत्वा आनीतवान्।”","He asked Nagarjuna, “The first young man prepared the medicine and brought it.”"],
+  ["“द्वितीयः तथा न कृतवान्।”","“The second young man did not do so.”"],
+  ["“तथापि भवान् किमर्थं द्वितीयं चितवान्?”","“Even then, why did you choose the second one?”"],
+  ["नागार्जुनः अवदत् — “द्वितीयः अपि औषधनिर्माणे कुशलः अस्ति।”","Nagarjuna said, “The second young man is also skilled in preparing medicines.”"],
+  ["“किन्तु तेन समयः न प्राप्तः।”","“But he did not get the time.”"],
+  ["“यतः सः सेवायां निरतः आसीत्।”","“Because he was engaged in serving someone.”"],
+  ["“तं रोगिणम् अहं पूर्वमेव मार्गे दृष्टवान्।”","“I had already seen that sick person on the road.”"],
+  ["“अतः ‘राजमार्गेण गन्तव्यम्’ इति अहं युवकद्वयं सूचितवान्।”","“That is why I specifically instructed both young men to travel by the highway.”"],
+  ["“प्रथमः रोगिणं दृष्ट्वा अपि अग्रे गतवान्।”","“The first young man saw the sick person but continued on his way.”"],
+  ["“सः यन्त्रवत् कार्यं करोति।”","“He works like a machine.”"],
+  ["“तस्मिन् सेवायाः भावना नास्ति।”","“He does not have a spirit of service.”"],
+  ["“सेवाभावनां विना चिकित्सकः कथं भवेत्?”","“How can one become a doctor without a spirit of service?”",1],
+  ["“अतः अहं द्वितीयस्य चयनं कृतवान्।”","“Therefore, I selected the second young man.”"]
+ ],words:[["सहायकत्वेन","as an assistant"],["वृत्तान्तम्","incident / account"],["आश्चर्यम्","surprise"],["कुशलः","skilled"],["चितवान्","selected"],["यन्त्रवत्","like a machine"],["सेवाभावना","spirit of service"],["चयनम्","selection"]]}
+];
+const CENTRAL="चिकित्सकस्य केवलं ज्ञानं पर्याप्तं न भवति। सेवाभावना अपि आवश्यकी अस्ति।";
+
+const VOCAB=[["उपाधिम्","Degree / qualification"],["पदवीम्","Designation / position"],["मानवीयाः","Humane / human qualities"],["रसायनशास्त्रज्ञः","Chemist"],["चिकित्सकः","Physician / doctor"],["प्रयोगशालायाम्","In the laboratory"],["अङ्गीकृतवान्","Accepted"],["व्यवस्थाम्","Arrangement"],["अन्यस्मिन् दिने","On another day"],["राजमार्गः","Highway"],["खिन्नः","Sad / disappointed"],["शक्तवान्","Was able"],["रोगिणम्","Sick person"],["शोचनीया","Miserable / pitiable"],["निरतः","Engrossed / fully engaged"],["वृत्तान्तम्","Incident / account"],["चितवान्","Selected"],["यन्त्रवत्","Like a machine"],["कषायम्","Herbal decoction"],["सत्यम्","Truth"],["करुणा","Compassion"],["उदारता","Generosity"],["सेवा","Service"],["परोपकारः","Helping others"],["अक्रोधः","Absence of anger"]];
+
+/* verbs for क्तवतु */
+const VERBS=[
+ {r:"गम्",m:"go",pre:"गच्छति",imp:"अगच्छत्",st:"गत"},
+ {r:"लिख्",m:"write",pre:"लिखति",imp:"अलिखत्",st:"लिखित"},
+ {r:"गा",m:"sing",pre:"गायति",imp:"अगायत्",st:"गीत"},
+ {r:"पा",m:"drink",pre:"पिबति",imp:"अपिबत्",st:"पीत"},
+ {r:"श्रु",m:"hear",pre:"शृणोति",imp:"अशृणोत्",st:"श्रुत"},
+ {r:"दा",m:"give",pre:"ददाति",imp:"अददात्",st:"दत्त"},
+ {r:"ज्ञा",m:"know",pre:"जानाति",imp:"अजानात्",st:"ज्ञात"},
+ {r:"कृ",m:"do",pre:"करोति",imp:"अकरोत्",st:"कृत"},
+ {r:"दृश्",m:"see",pre:"पश्यति",imp:"अपश्यत्",st:"दृष्ट"},
+ {r:"स्था",m:"stand / stay",pre:"तिष्ठति",imp:"अतिष्ठत्",st:"स्थित"},
+ {r:"पठ्",m:"read",pre:"पठति",st:"पठित"},
+ {r:"खाद्",m:"eat",pre:"खादति",st:"खादित"},
+ {r:"क्रीड्",m:"play",pre:"क्रीडति",st:"क्रीडित"},
+ {r:"हस्",m:"laugh",pre:"हसति",st:"हसित"},
+ {r:"निवेदय्",m:"inform",pre:"निवेदयति",st:"निवेदित"},
+ {r:"सूचय्",m:"instruct / indicate",pre:"सूचयति",st:"सूचित"},
+ {r:"प्रक्षालय्",m:"wash",pre:"प्रक्षालयति",st:"प्रक्षालित"},
+ {r:"धाव्",m:"run",pre:"धावति",st:"धावित"},
+ {r:"नी",m:"take / carry",pre:"नयति",st:"नीत"},
+ {r:"पत्",m:"fall",pre:"पतति",st:"पतित"}
+];
+const KT=(st)=>({ms:st+"वान्",mp:st+"वन्तः",fs:st+"वती",fp:st+"वत्यः"});
+
+const PARTS=["Story","Words","Grammar","Health & project","Exam tips"];
+let part=0,hideEN=false;const seen=new Set([0]);
+function renderSteps(){const s=$('#steps');s.innerHTML='';PARTS.forEach((p,i)=>{const b=el('button',seen.has(i)?'done':'',(i+1)+'. '+p);if(i===part)b.setAttribute('aria-current','true');b.onclick=()=>{part=i;renderLesson();window.scrollTo({top:0,behavior:'smooth'});};s.appendChild(b);});}
+function renderLesson(){
+  seen.add(part);renderSteps();
+  const body=$('#lessonBody');body.innerHTML='';
+  [lStory,lVocab,lGrammar,lHealth,lTips][part](body);
+  $('#prevBtn').disabled=part===0;
+  const nb=$('#nextBtn');
+  nb.textContent=part===PARTS.length-1?'Start the questions ✏️':'Next: '+PARTS[part+1];
+  nb.className=part===PARTS.length-1?'btn sun':'btn';
+}
+$('#prevBtn').onclick=()=>{if(part>0){part--;renderLesson();window.scrollTo({top:0})}};
+$('#nextBtn').onclick=()=>{if(part<PARTS.length-1){part++;renderLesson();window.scrollTo({top:0})}else showMode('quiz');};
+
+function qualsHTML(){
+  const q=[["🕊️","सत्यम्","Truth"],["💗","करुणा","Compassion"],["🎁","उदारता","Generosity"],["🤲","सेवा","Service"],["🤝","परोपकारः","Helping others"],["😌","अक्रोधः","No anger"]];
+  return '<div class="qual">'+q.map(x=>'<div><b>'+x[0]+'</b><span class="sa">'+x[1]+'</span><small>'+x[2]+'</small></div>').join('')+'</div>';
+}
+
+function lStory(body){
+  body.appendChild(el('h2','sec','कथा — The Story of Nagarjuna'));
+  body.appendChild(el('p','sub','Read each Sanskrit line, then its English meaning right below it. Pictures are added to help you follow the story.'));
+  body.appendChild(el('div','note','<b>Title:</b> सेवा हि परमो धर्मः — “Service is indeed the highest duty.” You will find out why at the end of the story.'));
+  const tools=el('div','tools');
+  const hb=el('button','chip','🙈 Hide English (test yourself)');hb.setAttribute('aria-pressed',hideEN);
+  hb.onclick=()=>{hideEN=!hideEN;hb.setAttribute('aria-pressed',hideEN);body.classList.toggle('hide-en',hideEN);};
+  tools.appendChild(hb);tools.appendChild(el('span','sub','Tap 🔊 to hear a line. With English hidden, tap a line to peek.'));
+  body.appendChild(tools);body.classList.toggle('hide-en',hideEN);
+  STORY.forEach(sc=>{
+    const h=el('div','scene');h.appendChild(el('h3','',sc.title));h.appendChild(el('span','',sc.sub));body.appendChild(h);
+    if(sc.fig==='quals')body.insertAdjacentHTML('beforeend',qualsHTML());
+    else if(Array.isArray(sc.fig))body.insertAdjacentHTML('beforeend','<div class="figrow">'+sc.fig.map(f=>FIG[f]).join('')+'</div>');
+    else if(sc.fig)body.insertAdjacentHTML('beforeend',FIG[sc.fig]);
+    sc.lines.forEach(l=>{
+      const d=el('div','line'+(l[2]?' hl':''));
+      d.appendChild(el('div','s',l[0]));d.appendChild(el('div','e',l[1]));
+      const sp=el('button','say','🔊');sp.setAttribute('aria-label','Hear this line');sp.onclick=ev=>{ev.stopPropagation();say(l[0]);};
+      d.appendChild(sp);d.onclick=()=>{if(hideEN)d.classList.toggle('peek');};body.appendChild(d);
+    });
+    const w=el('div','words');sc.words.forEach(x=>w.appendChild(el('span','','<b>'+x[0]+'</b> = '+x[1])));body.appendChild(w);
+  });
+  body.appendChild(el('h3','','The central message'));
+  body.appendChild(el('div','card','The first young man was <b>skilled</b> but lacked <b>compassion</b>. The second young man could not finish the medicine, but when he saw a suffering person he <b>stopped and helped</b>.<div class="sa" style="font-size:21px;font-weight:700;color:var(--end);margin-top:8px">'+CENTRAL+'</div>Knowledge alone is not enough for a doctor. A spirit of service is also necessary.'));
+  body.appendChild(el('div','note','<b>That explains the title:</b> <span class="sa" style="font-weight:700">सेवा हि परमो धर्मः</span> — Service is indeed the highest duty.'));
+}
+
+function lVocab(body){
+  body.appendChild(el('h2','sec','शब्दसङ्ग्रहः — Important Words'));
+  body.appendChild(el('p','sub','Tap a card to flip it. Try to guess the meaning before you flip.'));
+  const g=el('div','vgrid');
+  VOCAB.forEach(v=>{const c=el('button','fc');c.setAttribute('aria-label',v[0]+' — tap to flip');c.innerHTML='<div class="in"><div class="f">'+v[0]+'</div><div class="b">'+v[1]+'</div></div>';c.onclick=()=>c.classList.toggle('flip');g.appendChild(c);});
+  body.appendChild(g);
+}
+
+function lGrammar(body){
+  body.appendChild(el('h2','sec','व्याकरणम् — क्तवतु-प्रत्ययः'));
+  body.appendChild(el('p','sub','The suffix <b class="sa">क्तवतु</b> tells us an action is <b>finished</b> (past tense). Example: <span class="sa">पठ् + क्तवतु = पठितवान्</span> — “he read / has read”.'));
+  body.appendChild(el('div','note','<b>Easy rule — the ending shows who did it:</b>'+
+    '<div class="pattern"><div>वान्<small>one male</small></div><div>वन्तः<small>many males</small></div><div>वती<small>one female</small></div><div>वत्यः<small>many females</small></div></div>'));
+  body.appendChild(el('h3','','Masculine'));
+  body.appendChild(el('div','scroll','<table class="vt"><tr><th>Sanskrit</th><th>English</th></tr>'+
+   [["सः पठितवान्।","He read."],["छात्रः पठितवान्।","The boy/student read."],["छात्राः पठितवन्तः।","The boys/students read."],["त्वं पठितवान्।","You (male) read."],["अहं पठितवान्।","I (male) read."]].map(x=>'<tr><td>'+x[0]+'</td><td style="font-family:var(--en);font-size:17px">'+x[1]+'</td></tr>').join('')+'</table>'));
+  body.appendChild(el('h3','','Feminine'));
+  body.appendChild(el('div','scroll','<table class="vt"><tr><th>Sanskrit</th><th>English</th></tr>'+
+   [["सा पठितवती।","She read."],["राधिका पठितवती।","Radhika read."],["बालिकाः पठितवत्यः।","The girls read."],["त्वं पठितवती।","You (female) read."],["अहं पठितवती।","I (female) read."]].map(x=>'<tr><td>'+x[0]+'</td><td style="font-family:var(--en);font-size:17px">'+x[1]+'</td></tr>').join('')+'</table>'));
+
+  body.appendChild(el('h3','','Try it: pick a verb'));
+  const roots=el('div','roots');const box=el('div');
+  function show(i){
+    [...roots.children].forEach(c=>c.setAttribute('aria-pressed',+c.dataset.i===i));
+    const v=VERBS[i],k=KT(v.st);box.innerHTML='';
+    let h='<p><b class="sa" style="font-size:22px">'+v.r+'</b> — to '+v.m+'</p><div class="scroll"><table class="vt"><tr><th></th><th>One (एकवचनम्)</th><th>Many (बहुवचनम्)</th></tr>'+
+     '<tr><th class="rowh">Male</th><td>'+v.st+'<span class="end">वान्</span></td><td>'+v.st+'<span class="end">वन्तः</span></td></tr>'+
+     '<tr><th class="rowh">Female</th><td>'+v.st+'<span class="end">वती</span></td><td>'+v.st+'<span class="end">वत्यः</span></td></tr></table></div>';
+    h+='<div class="card">Present: <b class="sa">'+v.pre+'</b> → with स्म: <b class="sa">'+v.pre+' स्म</b>'+(v.imp?' → simple past: <b class="sa">'+v.imp+'</b>':'')+'<br>Sentences: <span class="sa">सः '+k.ms+'।</span> (He, male) &nbsp;·&nbsp; <span class="sa">सा '+k.fs+'।</span> (She, female)</div>';
+    box.innerHTML=h;
+  }
+  VERBS.forEach((v,i)=>{const c=el('button','chip',v.r);c.dataset.i=i;c.setAttribute('aria-pressed','false');c.onclick=()=>show(i);roots.appendChild(c);});
+  body.appendChild(roots);body.appendChild(box);show(0);
+
+  body.appendChild(el('h3','','Past tense: three ways (page 55 table)'));
+  body.appendChild(el('p','sub','Scroll sideways on a phone.'));
+  let t='<div class="scroll"><table class="vt"><tr><th>धातुः</th><th>वर्तमानकालः (present)</th><th>सामान्यभूतकालः</th><th>क्तवतु (M)</th><th>क्तवतु (F)</th><th>स्म-प्रयोगः</th></tr>';
+  VERBS.slice(0,10).forEach(v=>{const k=KT(v.st);t+='<tr><td>'+v.r+'<small>'+v.m+'</small></td><td>'+v.pre+'</td><td>'+v.imp+'</td><td>'+k.ms+'</td><td>'+k.fs+'</td><td>'+v.pre+' स्म</td></tr>';});
+  body.appendChild(el('div','',t+'</table></div>'));
+  body.appendChild(el('div','note','All three can express the past:<br><span class="sa"><b>सः गतवान्।</b> He went.<br><b>सः अगच्छत्।</b> He went.<br><b>सः गच्छति स्म।</b> He used to go / he went.</span><br>For Class 7 the main goal is to <b>recognise</b> these forms.'));
+
+  body.appendChild(el('h3','','Another way to say past: स्म'));
+  body.appendChild(el('div','card','<b>Rule:</b> Add <span class="sa"><b>स्म</b></span> after a present-tense verb and the meaning becomes past.<br><div class="sa" style="font-size:20px;font-weight:600;margin-top:6px">सः बाल्ये पुस्तकानि पठति। — He reads books in childhood.<br>सः बाल्ये पुस्तकानि पठति स्म। — He used to read books in childhood.<br>गच्छति स्म = गतवान् / गतवती — went / used to go<br>लिखति स्म = लिखितवान् / लिखितवती — wrote / used to write</div>'));
+  body.appendChild(el('div','note','<b>How to change present to past with क्तवतु:</b> (1) find the verb, (2) find who the doer is: male or female, one or many, (3) use the matching ending.<br>Example: <span class="sa">पिता कषायं पिबति → पिता कषायं पीतवान्।</span> (Father drank the herbal decoction.)<br>For <b>अहम्</b> and <b>त्वम्</b> write both: <span class="sa">अहं पुस्तकं नीतवान् / नीतवती।</span>'));
+}
+
+function lHealth(body){
+  body.appendChild(el('h2','sec','स्वास्थ्यरक्षणाय नियमाः — Rules for health'));
+  body.appendChild(el('p','sub','A verse about staying healthy. For the exam, the broad meaning matters most.'));
+  const v=[["ब्राह्मे मुहूर्ते उत्तिष्ठेत् स्वस्थो रक्षार्थमायुषः।","One should rise early in the Brahma Muhurta to protect health and long life. 🌅"],
+   ["सर्वमेव परित्यज्य शरीरमनुपालयेत्॥","Giving priority over everything else, one should take care of the body."],
+   ["भोजनान्ते पिबेत् तक्रं वासरान्ते पिबेत् पयः।","After food, one should drink buttermilk; at the end of the day, one should drink milk. 🥛"],
+   ["निशान्ते च पिबेत् वारि त्रिभिः रोगो न जायते॥","At the end of the night (early morning), one should drink water. By these practices illness does not arise. 💧"]];
+  const d=el('div','verse');v.forEach(l=>{d.appendChild(el('p','l',l[0]));d.appendChild(el('p','e',l[1]));});body.appendChild(d);
+  body.appendChild(el('h3','','Match the pictures with the sentences (page 56)'));
+  const m=[["धेनुमाता परमशिवा।","The cow is a sacred / benevolent mother.","🐄"],["नित्यं मातापित्रोः सेवा।","Serve one's mother and father every day.","👨‍👩‍👦"],["रोगातुराणाम् उपचारः।","Care / treatment of sick people.","🏥"],["गृहकार्येषु भगिन्याः साहाय्यम्।","Helping one's sister with household work.","🧹"],["परस्परं कार्यकरणे साहाय्यम्।","Helping one another in doing work.","🤝"]];
+  m.forEach(x=>{const l=el('div','line');l.appendChild(el('div','s',x[2]+' '+x[0]));l.appendChild(el('div','e',x[1]));body.appendChild(l);});
+  body.appendChild(el('h3','','Project work'));
+  body.appendChild(el('div','card','1. Collect a story from the life of a great person dedicated to service (for example Buddha, Mother Teresa, Mahatma Gandhi, Baba Amte).<br>2. Write about two people in your family or society who do service work.<br>3. Find useful Ayurvedic / home-remedy items and their benefits. Example: <span class="sa"><b>लवङ्गं दन्तसमस्याः कासं च नाशयति।</b></span> — Clove helps with dental problems and cough. 🌿'));
+}
+
+function lTips(body){
+  body.appendChild(el('h2','sec','परीक्षा-सूत्राणि — 6 things to remember'));
+  body.appendChild(el('ol','tips card',
+   '<li><b>Title:</b> <span class="sa">सेवा हि परमो धर्मः</span> = Service is the highest duty.</li>'+
+   '<li><b>Main character:</b> <span class="sa">नागार्जुनः</span> = famous chemist and physician.</li>'+
+   '<li><b>Why the second youth?</b> He showed <span class="sa">सेवाभावना</span> — a spirit of service and compassion.</li>'+
+   '<li><b>Moral:</b> Knowledge and skill alone are not enough. A good doctor must also have compassion and be willing to serve.</li>'+
+   '<li><b>क्तवतु pattern:</b> <span class="sa">पठितवान्</span> (one male) · <span class="sa">पठितवन्तः</span> (many males) · <span class="sa">पठितवती</span> (one female) · <span class="sa">पठितवत्यः</span> (many females)</li>'+
+   '<li><b>Past with स्म:</b> <span class="sa">गच्छति स्म</span> = used to go / went · <span class="sa">लिखति स्म</span> = used to write / wrote</li>'));
+  body.appendChild(el('div','note','Ready? Press <b>Start the questions</b>. Every question has its answer: you get it the moment you choose or reveal.'));
+}
+
+/* ================= QUIZ ================= */
+const S={score:0,total:0,answered:new Set()};
+
+const Q1=[
+ ["कः प्रसिद्धः चिकित्सकः आसीत्?","Who was the famous physician?","नागार्जुनः","Nagarjuna.",["नागार्जुनः","सिद्धार्थः","महाराजः","प्रथमः युवकः"]],
+ ["अन्यस्मिन् दिवसे कौ आगतौ?","Who came on the next day?","द्वौ युवकौ","Two young men.",["द्वौ युवकौ","द्वौ राजानौ","द्वौ चिकित्सकौ","द्वौ रोगिणौ"]],
+ ["कः खिन्नः आसीत्?","Who was sad?","द्वितीयः युवकः","The second young man.",["द्वितीयः युवकः","प्रथमः युवकः","नागार्जुनः","राजा"]],
+ ["रुग्णस्य परिस्थितिः कथम् आसीत्?","How was the sick person's condition?","शोचनीया","Miserable / pitiable.",["शोचनीया","उत्तमा","सुन्दरा","सरला"]],
+ ["नागार्जुनः सहायकत्वेन कं चितवान्?","Whom did Nagarjuna select as his assistant?","द्वितीयं युवकम्","The second young man.",["द्वितीयं युवकम्","प्रथमं युवकम्","राजानम्","रोगिणम्"]],
+ ["कां विना चिकित्सकः न भवति?","Without what can one not become a doctor?","सेवाभावनाम्","Without a spirit of service.",["सेवाभावनाम्","उपाधिम्","पदवीम्","धनम्"]],
+ ["नागार्जुनः युवकौ केन मार्गेण गन्तुं सूचितवान्?","By which route did Nagarjuna instruct the two young men to travel?","राजमार्गेण","By the highway.",["राजमार्गेण","वनमार्गेण","जलमार्गेण","गृहमार्गेण"]]
+];
+const Q2=[
+ ["अहोरात्रं नागार्जुनः कुत्र कार्यं करोति स्म?","Where did Nagarjuna work day and night?","नागार्जुनः अहोरात्रं प्रयोगशालायां कार्यं करोति स्म।","Nagarjuna used to work in the laboratory day and night."],
+ ["नागार्जुनः महाराजं किं निवेदितवान्?","What did Nagarjuna tell the king?","नागार्जुनः “मम चिकित्साकार्याय एकः सहायकः आवश्यकः” इति महाराजं निवेदितवान्।","Nagarjuna told the king, “I need an assistant for my medical work.”"],
+ ["प्रथमः युवकः कथं कार्यं कृतवान्?","How did the first young man complete the task?","प्रथमः युवकः गृहस्य समस्याः परित्यज्य औषधं निर्मितवान्।","The first young man ignored the problems at home and prepared the medicine."],
+ ["द्वितीयः युवकः राजमार्गे रोगिणं दृष्ट्वा किं कृतवान्?","What did the second young man do after seeing a sick man on the highway?","द्वितीयः युवकः रोगिणं स्वगृहं नीतवान् तथा दिनद्वयं तस्य सेवां कृतवान्।","The second young man took the sick person home and served him for two days."],
+ ["सेवायाः भावनां विना किं न भवेत्?","What cannot one become without the spirit of service?","सेवायाः भावनां विना चिकित्सकः न भवेत्।","Without a spirit of service, one cannot truly be a physician."]
+];
+const Q3V=[["पठित","read"],["गत","went"],["लिखित","wrote"],["खादित","ate"],["क्रीडित","played"],["हसित","laughed"],["निवेदित","informed"],["सूचित","instructed"]];
+const Q4V=[["पठित","read"],["कृत","did"],["दृष्ट","saw"],["दत्त","gave"],["प्रक्षालित","washed"],["धावित","ran"]];
+const Q5=[
+ ["युवकः आपणं गच्छति।","The young man goes to the shop.","युवकः आपणं ____।","गतवान्",["गतवान्","गतवती","गतवन्तः"],"युवकः is one male → <b>वान्</b>."],
+ ["सः रोटिकां खादति।","He eats a roti.","सः रोटिकां ____।","खादितवान्",["खादितवान्","खादितवती","खादितवन्तः"],"सः is one male → <b>वान्</b>."],
+ ["महिला वस्त्रं ददाति।","The woman gives clothes.","महिला वस्त्रं ____।","दत्तवती",["दत्तवती","दत्तवान्","दत्तवत्यः"],"महिला is one female → <b>वती</b>. (दा → दत्त)"],
+ ["बालकः द्विचक्रिकातः पतति।","The boy falls from the bicycle.","बालकः द्विचक्रिकातः ____।","पतितवान्",["पतितवान्","पतितवती","पतितवन्तः"],"बालकः is one male → <b>वान्</b>."],
+ ["पितामही चलचित्रं पश्यति।","Grandmother watches a movie.","पितामही चलचित्रं ____।","दृष्टवती",["दृष्टवती","दृष्टवान्","दृष्टवत्यः"],"पितामही is one female → <b>वती</b>. (दृश् → दृष्ट)"],
+ ["अहं गृहपाठं लिखामि।","I write the homework.","अहं गृहपाठं ____।","लिखितवान् / लिखितवती",["लिखितवान् / लिखितवती","लिखितवन्तः","लिखितवत्यः"],"अहम् can be male or female, so we write both: <b>लिखितवान् / लिखितवती</b>."],
+ ["त्वं कुत्र गच्छसि?","Where are you going?","त्वं कुत्र ____?","गतवान् / गतवती",["गतवान् / गतवती","गतवन्तः","गतवत्यः"],"त्वम् (you) can be male or female → <b>गतवान् / गतवती</b>."],
+ ["अश्वाः वेगेन धावन्ति।","The horses run fast.","अश्वाः वेगेन ____।","धावितवन्तः",["धावितवन्तः","धावितवान्","धावितवत्यः"],"अश्वाः = many male horses → <b>वन्तः</b>."],
+ ["बालिका शीघ्रम् आगच्छति।","The girl comes quickly.","बालिका शीघ्रम् ____।","आगतवती",["आगतवती","आगतवान्","आगतवत्यः"],"बालिका is one female → <b>वती</b>."],
+ ["वयं समुद्रतीरे पयोहिमं खादामः।","We eat ice cream at the seashore.","वयं समुद्रतीरे पयोहिमं ____।","खादितवन्तः",["खादितवन्तः","खादितवान्","खादितवत्यः"],"वयम् = we (many). For a mixed or male group → <b>खादितवन्तः</b>. If the whole group is female → खादितवत्यः."]
+];
+const QSM=[
+ ["सः बाल्ये पुस्तकानि पठति स्म।","What does this mean?",["He used to read books in childhood.","He reads books now.","He will read books.","He is reading a book."],0,"<span class='sa'>स्म</span> after a present verb gives a past meaning."],
+ ["गच्छति स्म","What does this mean?",["Went / used to go","Is going","Will go","Does not go"],0,"गच्छति स्म = गतवान् / गतवती."],
+ ["लिखति स्म","What does this mean?",["Wrote / used to write","Is writing","Will write","Cannot write"],0,"लिखति स्म = लिखितवान् / लिखितवती."],
+ ["छात्रः गच्छति। Add स्म to make it past.","Choose the right sentence:",["छात्रः गच्छति स्म।","छात्रः स्म गच्छति।","छात्रः गच्छतु स्म।","छात्रः गच्छति।"],0,"Put <span class='sa'>स्म</span> right after the present-tense verb."],
+ ["Which of these is NOT a past-tense way of saying “He went”?","",["सः गच्छति।","सः गतवान्।","सः अगच्छत्।","सः गच्छति स्म।"],0,"<span class='sa'>सः गच्छति</span> is plain present: “He goes”."]
+];
+const QPIC=[
+ ["धेनुमाता परमशिवा।",["🐄 Caring for animals","👨‍👩‍👦 Serving parents","🏥 Treating the sick","🧹 Helping sister at home","🤝 Helping each other at work"],0,"The cow is a sacred mother."],
+ ["नित्यं मातापित्रोः सेवा।",["🐄 Caring for animals","👨‍👩‍👦 Serving parents","🏥 Treating the sick","🧹 Helping sister at home","🤝 Helping each other at work"],1,"मातापित्रोः = of mother and father."],
+ ["रोगातुराणाम् उपचारः।",["🐄 Caring for animals","👨‍👩‍👦 Serving parents","🏥 Treating the sick","🧹 Helping sister at home","🤝 Helping each other at work"],2,"रोगातुराणाम् = of sick people; उपचारः = treatment."],
+ ["गृहकार्येषु भगिन्याः साहाय्यम्।",["🐄 Caring for animals","👨‍👩‍👦 Serving parents","🏥 Treating the sick","🧹 Helping sister at home","🤝 Helping each other at work"],3,"गृहकार्येषु = in household work; भगिन्याः = of the sister."],
+ ["परस्परं कार्यकरणे साहाय्यम्।",["🐄 Caring for animals","👨‍👩‍👦 Serving parents","🏥 Treating the sick","🧹 Helping sister at home","🤝 Helping each other at work"],4,"परस्परम् = one another."]
+];
+
+const SECTIONS=[
+ {t:"प्रश्न 1 — One word answers",i:"Choose the correct one-word (or two-word) answer.",n:Q1.length,r:secQ1},
+ {t:"प्रश्न 2 — Full sentence answers",i:"Think of the answer in Sanskrit first, then reveal the model answer and mark yourself honestly.",n:Q2.length,r:secQ2},
+ {t:"प्रश्न 3 — Masculine क्तवतु forms",i:"Given the singular form (one male), choose the plural (many males). Remember: वान् → वन्तः.",n:Q3V.length,r:secQ3},
+ {t:"प्रश्न 4 — Feminine क्तवतु forms",i:"Given the singular form (one female), choose the plural (many females). Remember: वती → वत्यः.",n:Q4V.length,r:secQ4},
+ {t:"प्रश्न 5 — Present to past with क्तवतु",i:"Change each sentence into the past tense. Look at the doer: male or female, one or many?",n:Q5.length,r:secQ5},
+ {t:"Past tense with स्म",i:"Adding स्म to a present verb makes it past.",n:QSM.length,r:secSM},
+ {t:"Match the pictures",i:"Which picture fits each Sanskrit sentence?",n:QPIC.length,r:secPic}
+];
+let sec=0;
+S.total=SECTIONS.reduce((a,s)=>a+s.n,0);
+function award(id){if(S.answered.has(id))return;S.answered.add(id);S.score++;updateScore();}
+function updateScore(){$('#scoreTag').textContent='Score '+S.score+' / '+S.total;$('#barFill').style.width=Math.round(100*S.score/S.total)+'%';}
+
+function mcq(id,qSa,qEn,options,correct,explain,en){
+  const q=el('div','q');q.appendChild(el('p','qt',qSa));if(qEn)q.appendChild(el('p','qe',qEn));
+  const o=el('div','opts');const fb=el('div','fb');let done=false;
+  shuffle(options).forEach(v=>{
+    const b=el('button','opt'+(en?' en':''),v);b.dataset.v=v;
+    b.onclick=()=>{
+      if(done)return;done=true;const ok=v===correct;b.classList.add(ok?'right':'wrong');
+      if(!ok)[...o.children].forEach(c=>{if(c.dataset.v===correct)c.classList.add('right')});
+      [...o.children].forEach(c=>c.disabled=true);if(ok)award(id);
+      fb.className='fb show '+(ok?'ok':'no');
+      fb.innerHTML=(ok?'✅ <b>Correct!</b> ':'❌ <b>Not quite.</b> The answer is <span class="'+(en?'':'sa')+'">'+correct+'</span>. ')+(explain||'');
+    };o.appendChild(b);
+  });
+  q.appendChild(o);q.appendChild(fb);return q;
+}
+const LET='कखगघङचछझञटठ';
+function secQ1(b){Q1.forEach((x,i)=>b.appendChild(mcq('q1-'+i,'('+LET[i]+') '+x[0],x[1],x[4],x[2],'Answer: <span class="sa">'+x[2]+'</span> — '+x[3])));}
+function secQ2(b){
+  Q2.forEach((x,i)=>{
+    const q=el('div','q');q.appendChild(el('p','qt','('+LET[i]+') '+x[0]));q.appendChild(el('p','qe',x[1]));
+    const btn=el('button','btn ghost','Show model answer');
+    const m=el('div','model');m.innerHTML='<div class="a">'+x[2]+'</div><div class="qe">'+x[3]+'</div>';
+    const sm=el('div','selfmark');const g=el('button','btn','✅ I got it'),n=el('button','btn ghost','🔁 Need practice');const res=el('div','fb');
+    g.onclick=()=>{award('q2-'+i);res.className='fb show ok';res.textContent='Great — point added!';sm.classList.remove('show');};
+    n.onclick=()=>{res.className='fb show no';res.textContent='No problem. Re-read that part of the story and try again later.';sm.classList.remove('show');};
+    sm.appendChild(g);sm.appendChild(n);
+    btn.onclick=()=>{m.classList.add('show');sm.classList.add('show');btn.classList.add('hidden');};
+    q.appendChild(btn);q.appendChild(m);q.appendChild(sm);q.appendChild(res);b.appendChild(q);
+  });
+}
+function secQ3(b){
+  b.appendChild(el('div','note','<b>Example:</b> <span class="sa">पठितवान् → पठितवन्तः</span> (read)'));
+  Q3V.forEach((x,i)=>{const k=KT(x[0]);
+    b.appendChild(mcq('q3-'+i,k.ms+' → ?',x[1]+' (male, one → male, many)',[k.mp,k.ms.replace('वान्','वती'),k.fp,k.ms],k.mp,
+      '<span class="sa">'+k.ms+'</span> → <span class="sa">'+k.mp+'</span>: वान् changes to वन्तः.'));});
+}
+function secQ4(b){
+  b.appendChild(el('div','note','<b>Example:</b> <span class="sa">पठितवती → पठितवत्यः</span> (read)'));
+  Q4V.forEach((x,i)=>{const k=KT(x[0]);
+    b.appendChild(mcq('q4-'+i,k.fs+' → ?',x[1]+' (female, one → female, many)',[k.fp,k.mp,k.fs,k.ms],k.fp,
+      '<span class="sa">'+k.fs+'</span> → <span class="sa">'+k.fp+'</span>: वती changes to वत्यः.'));});
+}
+function secQ5(b){
+  b.appendChild(el('div','note','<b>Example:</b> <span class="sa">पिता कषायं पिबति → पिता कषायं पीतवान्।</span> · <span class="sa">अहं पुस्तकं नयामि → अहं पुस्तकं नीतवान् / नीतवती।</span>'));
+  Q5.forEach((x,i)=>{
+    const q=mcq('q5-'+i,'('+LET[i]+') '+x[0],x[1]+'  ▸  '+x[2],x[4],x[3],x[5]+' Full answer: <span class="sa">'+x[2].replace('____','<b>'+x[3]+'</b>')+'</span>');
+    b.appendChild(q);
+  });
+}
+function secSM(b){QSM.forEach((x,i)=>b.appendChild(mcq('sm-'+i,x[0],x[1],x[2],x[2][x[3]],x[4],/^[A-Za-z]/.test(x[2][0]))));}
+function secPic(b){QPIC.forEach((x,i)=>b.appendChild(mcq('pic-'+i,x[0],'',x[1],x[1][x[2]],x[3],true)));}
+
+function renderQuiz(){
+  if(sec>=SECTIONS.length){renderResult();return;}
+  const s=SECTIONS[sec];$('#qTitle').textContent=s.t;$('#qInstr').textContent=s.i;
+  const b=$('#qBody');b.innerHTML='';s.r(b);updateScore();
+  $('#qNext').classList.remove('hidden');$('#qPrev').disabled=sec===0;
+  $('#qNext').textContent=sec===SECTIONS.length-1?'See my result':'Next: '+SECTIONS[sec+1].t.split('—').pop().trim();
+}
+function renderResult(){
+  $('#qTitle').textContent='Result';$('#qInstr').textContent='';
+  const b=$('#qBody');b.innerHTML='';
+  const pct=Math.round(100*S.score/S.total);const stars=pct>=90?3:pct>=70?2:pct>=40?1:0;
+  const msg=pct>=90?'Excellent! You know this chapter very well.':pct>=70?'Very good! Revise the क्तवतु endings once more and you will be ready.':pct>=40?'Good start. Go back to the Grammar part of the lesson and try again.':'Keep going! Read the story and grammar once more, then retry.';
+  const r=el('div','result card');
+  r.innerHTML='<div class="stars" aria-label="'+stars+' stars">'+'★'.repeat(stars)+'☆'.repeat(3-stars)+'</div><div class="big">'+S.score+' / '+S.total+'</div><p>'+msg+'</p>';
+  const a=el('button','btn','🔁 Try again');a.onclick=()=>{S.score=0;S.answered=new Set();sec=0;renderQuiz();window.scrollTo({top:0})};
+  const c=el('button','btn ghost','📖 Back to the lesson');c.style.marginLeft='8px';c.onclick=()=>showMode('lesson');
+  r.appendChild(a);r.appendChild(c);b.appendChild(r);
+  $('#qNext').classList.add('hidden');$('#qPrev').disabled=false;updateScore();
+}
+$('#qNext').onclick=()=>{if(sec<SECTIONS.length){sec++;renderQuiz();window.scrollTo({top:0});}};
+$('#qPrev').onclick=()=>{if(sec>0){sec--;renderQuiz();window.scrollTo({top:0});}};
+
+function showMode(m){
+  const q=m==='quiz';
+  $('#lesson').classList.toggle('hidden',q);$('#quiz').classList.toggle('hidden',!q);
+  $('#tabLesson').setAttribute('aria-selected',!q);$('#tabQuiz').setAttribute('aria-selected',q);
+  if(q)renderQuiz();window.scrollTo({top:0});
+}
+$('#tabLesson').onclick=()=>showMode('lesson');
+$('#tabQuiz').onclick=()=>showMode('quiz');
+renderLesson();
+</script>
+</body>
+</html>

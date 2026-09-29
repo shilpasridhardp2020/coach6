@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sanskrit Tutor – Chapter 4: न लभ्यते चेत् आम्लं द्राक्षाफलम्</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f6f3fb; --surface:#ffffff; --surface2:#efe9f8; --ink:#241a38; --muted:#6a5f82;
+  --line:#d9cfec; --grape:#4a2f86; --grape-ink:#ffffff; --sun:#f2a516; --sun-soft:#fff2d1;
+  --ok:#1f7a4d; --ok-bg:#dff3e7; --bad:#b3261e; --bad-bg:#fbe1de; --end:#c2410c;
+  --sa:'Noto Serif Devanagari','Kokila','Mangal','Nirmala UI',serif;
+  --en:'Nunito','Segoe UI',system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17112a; --surface:#221a3a; --surface2:#2d2350; --ink:#f1ecfb; --muted:#b2a7cc; --line:#3b2f60;
+    --grape:#a58bf0; --grape-ink:#17112a; --sun:#f5b73a; --sun-soft:#3a2f12;
+    --ok:#6fdca0; --ok-bg:#163a29; --bad:#ff9a92; --bad-bg:#4a1d1a; --end:#ffa36b;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17112a; --surface:#221a3a; --surface2:#2d2350; --ink:#f1ecfb; --muted:#b2a7cc; --line:#3b2f60;
+  --grape:#a58bf0; --grape-ink:#17112a; --sun:#f5b73a; --sun-soft:#3a2f12;
+  --ok:#6fdca0; --ok-bg:#163a29; --bad:#ff9a92; --bad-bg:#4a1d1a; --end:#ffa36b;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--en);font-size:17px;line-height:1.55;min-height:100%}
+.sa{font-family:var(--sa);line-height:1.7}
+button{font-family:inherit;font-size:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 72px}
+
+/* header */
+header.top{padding:22px 0 10px}
+header.top h1{margin:0;font-family:var(--sa);font-weight:700;font-size:clamp(26px,5.5vw,40px);line-height:1.35;color:var(--grape)}
+header.top p{margin:4px 0 0;color:var(--muted);font-weight:600}
+.modebar{display:flex;gap:8px;margin:14px 0 6px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:8px 0;border-bottom:1px solid var(--line)}
+.modebar button{flex:1;border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 8px;font-weight:800}
+.modebar button[aria-selected="true"]{background:var(--grape);color:var(--grape-ink);border-color:var(--grape)}
+.themebtn{flex:0 0 auto !important;width:46px}
+
+/* lesson nav */
+.steps{display:flex;gap:6px;overflow-x:auto;padding:10px 0;scrollbar-width:thin}
+.steps button{flex:0 0 auto;border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-weight:700;color:var(--muted)}
+.steps button[aria-current="true"]{background:var(--sun);border-color:var(--sun);color:#2b1d00}
+.steps button.done:not([aria-current="true"]){border-color:var(--ok);color:var(--ok)}
+
+h2.sec{font-family:var(--sa);font-size:28px;margin:22px 0 4px;color:var(--grape)}
+.sub{color:var(--muted);margin:0 0 14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.note{background:var(--sun-soft);border-left:6px solid var(--sun);border-radius:8px;padding:12px 16px;margin:14px 0}
+.note b{color:var(--ink)}
+
+/* story lines */
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 4px}
+.chip{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 14px;font-weight:700}
+.chip[aria-pressed="true"]{background:var(--grape);color:var(--grape-ink);border-color:var(--grape)}
+.scene{margin:26px 0 8px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.scene h3{margin:0;font-size:20px}
+.scene span{color:var(--muted);font-weight:600}
+.line{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:12px 4px;border-bottom:1px dashed var(--line)}
+.line .s{font-family:var(--sa);font-size:22px;font-weight:600;line-height:1.6}
+.line .e{grid-column:1;color:var(--muted);font-size:16.5px}
+.line .say{grid-row:1 / span 2;grid-column:2;align-self:center;border:none;background:var(--surface2);border-radius:50%;width:38px;height:38px}
+.line.hl .s{color:var(--end)}
+.hide-en .line .e{display:none}
+.hide-en .line.peek .e{display:block}
+.hide-en .line{cursor:pointer}
+.words{display:flex;flex-wrap:wrap;gap:6px 8px;margin:6px 0 10px}
+.words span{background:var(--surface2);border-radius:8px;padding:2px 10px;font-size:15.5px}
+.words b{font-family:var(--sa);font-weight:600}
+
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.fc{perspective:700px;border:none;background:none;padding:0;height:96px}
+.fc .in{position:relative;width:100%;height:100%;transition:transform .35s;transform-style:preserve-3d}
+.fc.flip .in{transform:rotateY(180deg)}
+.fc .f,.fc .b{position:absolute;inset:0;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;padding:6px;border:1px solid var(--line)}
+.fc .f{background:var(--surface);font-family:var(--sa);font-size:22px;font-weight:600}
+.fc .b{background:var(--grape);color:var(--grape-ink);transform:rotateY(180deg);font-weight:800;font-size:16px}
+@media (prefers-reduced-motion:reduce){.fc .in{transition:none}}
+
+/* tables */
+table.vt{border-collapse:collapse;width:100%;min-width:520px;margin:8px 0}
+.scroll{overflow-x:auto;max-width:100%}
+.vt th,.vt td{border:1px solid var(--line);padding:9px 10px;text-align:center}
+.vt th{background:var(--surface2);font-size:14px;font-weight:800}
+.vt td{font-family:var(--sa);font-size:21px;font-weight:600;background:var(--surface)}
+.vt td small{display:block;font-family:var(--en);font-size:13px;color:var(--muted);font-weight:600}
+.vt .end{color:var(--end)}
+.vt th.rowh{text-align:left;width:26%}
+.roots{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.roots .chip{font-family:var(--sa);font-size:19px;padding:2px 14px}
+.pattern{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;font-family:var(--sa);font-size:24px;font-weight:700;margin:6px 0}
+.pattern i{font-style:normal;color:var(--muted);font-size:18px}
+
+.verse{border-left:6px solid var(--grape);padding-left:14px;margin:14px 0}
+.verse .l{margin:8px 0 0;font-family:var(--sa);font-size:21px;font-weight:600}
+.verse .e{margin:0;color:var(--muted);font-size:16.5px}
+
+.tips li{margin:8px 0}
+.tips .sa{font-weight:700;font-size:20px}
+
+.navrow{display:flex;justify-content:space-between;gap:10px;margin:26px 0 0}
+.btn{border:2px solid var(--grape);background:var(--grape);color:var(--grape-ink);border-radius:12px;padding:11px 20px;font-weight:800}
+.btn.ghost{background:transparent;color:var(--grape)}
+.btn.sun{background:var(--sun);border-color:var(--sun);color:#2b1d00}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+/* quiz */
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.score{font-weight:800;background:var(--surface2);border-radius:999px;padding:4px 14px}
+.bar{height:10px;background:var(--surface2);border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:14px 0}
+.q .qt{font-family:var(--sa);font-size:22px;font-weight:600;margin:0}
+.q .qe{color:var(--muted);margin:2px 0 10px;font-size:16px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.opt{border:2px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;text-align:left;font-family:var(--sa);font-size:20px;font-weight:600}
+.opt small{display:block;font-family:var(--en);font-size:13.5px;color:var(--muted);font-weight:600}
+.opt:hover:not([disabled]){border-color:var(--grape)}
+.opt.right{background:var(--ok-bg);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-bg);border-color:var(--bad)}
+.fb{margin:10px 0 0;padding:10px 12px;border-radius:10px;font-size:16px;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--ok-bg)}
+.fb.no{background:var(--bad-bg)}
+.fb .sa{font-weight:700}
+.model{display:none;margin-top:10px}
+.model.show{display:block}
+.model .a{font-family:var(--sa);font-size:21px;font-weight:700;color:var(--ok)}
+.selfmark{display:none;gap:8px;margin-top:10px;flex-wrap:wrap}
+.selfmark.show{display:flex}
+select.cell{font-family:var(--sa);font-size:19px;font-weight:600;padding:6px 4px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%;width:100%}
+select.cell.right{background:var(--ok-bg);border-color:var(--ok)}
+select.cell.wrong{background:var(--bad-bg);border-color:var(--bad)}
+.result{text-align:center;padding:28px 16px}
+.result .big{font-size:56px;font-weight:800;color:var(--grape)}
+.stars{font-size:38px;letter-spacing:6px}
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>अध्याय 4 — न लभ्यते चेत् आम्लं द्राक्षाफलम्</h1>
+    <p>Grade 7 Sanskrit · Chapter 4 · “Sour Grapes” story and आत्मनेपदी verbs</p>
+  </header>
+
+  <div class="modebar" role="tablist" aria-label="Choose mode">
+    <button role="tab" id="tabLesson" aria-selected="true">📖 Lesson</button>
+    <button role="tab" id="tabQuiz" aria-selected="false">✏️ Questions &amp; Answers</button>
+    <button class="themebtn" id="themeBtn" aria-label="Switch light or dark theme" title="Light / dark">🌗</button>
+  </div>
+
+  <!-- ================= LESSON ================= -->
+  <main id="lesson">
+    <nav class="steps" id="steps" aria-label="Lesson parts"></nav>
+    <section id="lessonBody"></section>
+    <div class="navrow">
+      <button class="btn ghost" id="prevBtn">Back</button>
+      <button class="btn" id="nextBtn">Next</button>
+    </div>
+  </main>
+
+  <!-- ================= QUIZ ================= -->
+  <main id="quiz" class="hidden">
+    <div class="qhead">
+      <h2 class="sec" id="qTitle" style="margin:6px 0"></h2>
+      <span class="score" id="scoreTag">Score 0</span>
+    </div>
+    <div class="bar"><i id="barFill"></i></div>
+    <p class="sub" id="qInstr"></p>
+    <div id="qBody"></div>
+    <div class="navrow">
+      <button class="btn ghost" id="qPrev">Back</button>
+      <button class="btn" id="qNext">Next section</button>
+    </div>
+  </main>
+</div>
+
+<script>
+/* ---------- helpers ---------- */
+const $ = (s,el=document)=>el.querySelector(s);
+const el = (tag,cls,html)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(html!==undefined)n.innerHTML=html;return n;};
+const shuffle = a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;};
+function say(text){
+  try{
+    if(!('speechSynthesis' in window))return;
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);u.lang='hi-IN';u.rate=.75;speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+/* ---------- theme ---------- */
+$('#themeBtn').onclick=()=>{
+  const r=document.documentElement;
+  const dark = r.getAttribute('data-theme')==='dark' || (!r.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+  r.setAttribute('data-theme', dark?'light':'dark');
+};
+
+/* ---------- verb machinery ---------- */
+const ENDINGS=[["ते","ेते","न्ते"],["से","ेथे","ध्वे"],["े","ावहे","ामहे"]];
+const PERSON=["प्रथमपुरुषः (3rd person)","मध्यमपुरुषः (2nd person)","उत्तमपुरुषः (1st person)"];
+const PRON=[["सः / सा","तौ / ते","ते /ताः"],["त्वम्","युवाम्","यूयम्"],["अहम्","आवाम्","वयम्"]];
+const NUMS=["एकवचनम् (singular)","द्विवचनम् (dual)","बहुवचनम् (plural)"];
+const ROOTS={
+  "लभ्":{b:"लभ",m:"to get / obtain"},"वन्द्":{b:"वन्द",m:"to salute"},"पलाय्":{b:"पलाय",m:"to run away"},
+  "जाय्":{b:"जाय",m:"to become"},"सेव्":{b:"सेव",m:"to serve"},"वीक्ष्":{b:"वीक्ष",m:"to look / watch"},
+  "कम्प्":{b:"कम्प",m:"to shake / tremble"},"वर्ध्":{b:"वर्ध",m:"to grow"},"वर्त्":{b:"वर्त",m:"to exist / be present"},
+  "याच्":{b:"याच",m:"to beg / request"},"लज्ज्":{b:"लज्ज",m:"to feel shy / ashamed"},"शोभ्":{b:"शोभ",m:"to shine / look beautiful"},
+  "प्रकाश्":{b:"प्रकाश",m:"to shine / give light"}
+};
+const form=(r,p,n)=>ROOTS[r].b+ENDINGS[p][n];
+function findPN(r,f){for(let p=0;p<3;p++)for(let n=0;n<3;n++)if(form(r,p,n)===f)return[p,n];return null;}
+
+/* ================= LESSON CONTENT ================= */
+const STORY=[
+ {title:"Page 39 — Introduction",sub:"The teacher and students look at a picture.",lines:[
+  ["प्रियच्छात्राः! एतत् चित्रं पश्यन्तु। चित्रे किं किम् अस्ति?","Dear students! Look at this picture. What all can you see in the picture?"],
+  ["महोदय! चित्रे वृक्षः अस्ति।","Sir, there is a tree in the picture."],
+  ["महोदय! शृगालः अस्ति। द्राक्षाफलानि अपि सन्ति।","Sir, there is a fox/jackal. There are grapes too."],
+  ["बहुसम्यक्। शृगालः किं करोति?","Very good. What is the fox doing?"],
+  ["आचार्य! शृगालः द्राक्षाफलानि खादितुम् इच्छति, किन्तु न शक्नोति।","Teacher, the fox wants to eat the grapes, but he is unable to do so."],
+  ["अहो! भवन्तः कथं जानन्ति?","Oh! How do you all know this?"],
+  ["महोदय! वयम् एतां कथां मातृभाषया श्रुतवन्तः।","Sir, we have heard this story in our mother tongue."],
+  ["बहुसमीचीनम्। तर्हि संस्कृतभाषायाम् एतां कथां गीतरूपेण गायामः। अभिनयं च कुर्मः।","Very good. Then let us sing this story in Sanskrit as a song, and let us act it out too."],
+  ["अस्तु आचार्य! कृपया पाठयतु।","Certainly, Teacher! Please teach us."]
+ ],words:[["शृगालः","fox / jackal"],["द्राक्षाफलानि","grapes"],["खादितुम् इच्छति","wants to eat"],["न शक्नोति","is unable / cannot"]]},
+ {title:"Page 40 — The fox enters the forest",sub:"Song: “एकः शृगालः”",lines:[
+  ["एकः शृगालः।","There is a fox."],
+  ["एकः शृगालः वनं गच्छति।","A fox goes to the forest."],
+  ["पिपासा, तस्य बुभुक्षा।","He is thirsty and hungry."],
+  ["पिपासया बुभुक्षया वनं गच्छति।","Because of thirst and hunger, he goes into the forest."],
+  ["सः वनं गच्छति, किमपि न लभते।","He goes into the forest, but he does not find anything."],
+  ["इतोऽपि गच्छति, किमपि न लभते।","He goes still farther, but still finds nothing."],
+  ["श्रान्तः जायते, खिन्नः जायते।","He becomes tired; he becomes sad."],
+  ["सः श्रान्तः जायते, खिन्नः जायते।","He becomes tired and disappointed."],
+  ["किं च करोति? सः किं च करोति?","What does he do then? What does he do?"],
+  ["वामतः पश्यति, दक्षिणतः पश्यति।","He looks to the left; he looks to the right."],
+  ["अग्रतः पश्यति, पृष्ठतः पश्यति।","He looks in front and behind."],
+  ["स्वेदः जायते, तृषा जायते।","He begins to sweat, and his thirst increases."],
+  ["तस्य स्वेदः जायते, तृषा जायते।","He becomes sweaty and thirsty."],
+  ["किं च पश्यति? सः किं च पश्यति?","What does he see? What does he see?"]
+ ],words:[["पिपासा","thirst"],["बुभुक्षा","hunger"],["किमपि","anything"],["न लभते","does not get"],["इतोऽपि","even farther"],["श्रान्तः","tired"],["खिन्नः","sad / dejected"],["वामतः","to the left"],["दक्षिणतः","to the right"],["अग्रतः","in front"],["पृष्ठतः","behind"],["स्वेदः","sweat"],["तृषा","thirst"]]},
+ {title:"Page 41 — He sees the grapes",sub:"The fox jumps, fails, and says the famous line.",lines:[
+  ["पश्यति द्राक्षालताम्।","He sees a grapevine."],
+  ["सः पश्यति द्राक्षाफलम्।","He sees the grapes."],
+  ["उपरि उपरि लतासु दृश्यते च तत्फलम्।","The fruit can be seen high up on the vines."],
+  ["अनुक्षणं तन्मुखे रसः जायते।","Every moment, saliva gathers in his mouth. (His mouth waters.)"],
+  ["किं च करोति? सः किं च करोति?","What does he do now? What does he do?"],
+  ["एकवारम् उत्पतति, द्विवारम् उत्पतति।","He jumps once; he jumps twice."],
+  ["त्रिवारम् उत्पतति, पुनः पुनः उत्पतति।","He jumps three times; he jumps again and again."],
+  ["स्वेदः जायते, तस्य श्रमः जायते।","He sweats and becomes exhausted."],
+  ["किं कथयति? सः किं कथयति?","What does he say? What does he say?"],
+  ["आम्लं द्राक्षाफलम्, आम्लं द्राक्षाफलम्।","The grapes are sour! The grapes are sour!",1],
+  ["इत्येवं कथयति, सः पलायते।","Saying this, he runs away.",1],
+  ["इत्येवं कथयति, सः पलायते॥","Thus saying, he runs away.",1]
+ ],words:[["द्राक्षालता","grapevine"],["उपरि","above"],["लतासु","on the vines"],["दृश्यते","is seen"],["अनुक्षणम्","every moment"],["रसः","saliva / juice"],["एकवारम्","once"],["द्विवारम्","twice"],["त्रिवारम्","three times"],["उत्पतति","jumps"],["पुनः पुनः","again and again"],["श्रमः","exhaustion"],["आम्लम्","sour"],["पलायते","runs away"]]}
+];
+
+const VOCAB=[["शृगालः","Fox / jackal"],["वनम्","Forest"],["पिपासा","Thirst"],["बुभुक्षा","Hunger"],["किमपि","Anything"],["इतोऽपि","Even farther"],["लभते","Gets / obtains"],["श्रान्तः","Tired"],["खिन्नः","Sad / disappointed"],["जायते","Becomes"],["वामतः","Towards the left"],["दक्षिणतः","Towards the right"],["अग्रतः","In front"],["पृष्ठतः","Behind"],["स्वेदः","Sweat"],["तृषा","Thirst"],["द्राक्षालता","Grapevine"],["उपरि","Above"],["दृश्यते","Is seen"],["अनुक्षणम्","Immediately / every moment"],["रसः","Saliva / juice"],["एकवारम्","Once"],["द्विवारम्","Twice"],["उत्पतति","Jumps"],["पुनः पुनः","Again and again"],["कथयति","Says / tells"],["आम्लम्","Sour"],["द्राक्षाफलम्","Grapes"],["पलायते","Runs away"]];
+
+const PARTS=["Story","Words","Grammar","Verses","Exam tips"];
+let part=0, hideEN=false;
+const seen=new Set([0]);
+
+function renderSteps(){
+  const s=$('#steps');s.innerHTML='';
+  PARTS.forEach((p,i)=>{
+    const b=el('button',seen.has(i)?'done':'',(i+1)+'. '+p);
+    if(i===part)b.setAttribute('aria-current','true');
+    b.onclick=()=>{part=i;renderLesson();window.scrollTo({top:0,behavior:'smooth'});};
+    s.appendChild(b);
+  });
+}
+
+function renderLesson(){
+  seen.add(part);renderSteps();
+  const body=$('#lessonBody');body.innerHTML='';
+  [lStory,lVocab,lGrammar,lVerses,lTips][part](body);
+  $('#prevBtn').disabled=part===0;
+  const nb=$('#nextBtn');
+  nb.textContent = part===PARTS.length-1 ? 'Start the questions ✏️' : 'Next: '+PARTS[part+1];
+  nb.className = part===PARTS.length-1 ? 'btn sun' : 'btn';
+}
+$('#prevBtn').onclick=()=>{if(part>0){part--;renderLesson();window.scrollTo({top:0})}};
+$('#nextBtn').onclick=()=>{
+  if(part<PARTS.length-1){part++;renderLesson();window.scrollTo({top:0})}
+  else{showMode('quiz');}
+};
+
+function lStory(body){
+  body.appendChild(el('h2','sec','कथा — The Story'));
+  body.appendChild(el('p','sub','A hungry fox, some grapes he cannot reach, and a very famous excuse. Each Sanskrit line has its English meaning right below it.'));
+  body.appendChild(el('div','note','<b>Idea of the chapter:</b> न लभ्यते चेत् आम्लं द्राक्षाफलम् — “If the grapes cannot be obtained, they are sour.” When people cannot get something, they pretend they never wanted it. English calls this <b>“sour grapes”</b>.'));
+  const tools=el('div','tools');
+  const hb=el('button','chip','🙈 Hide English (test yourself)');hb.setAttribute('aria-pressed','false');
+  hb.onclick=()=>{hideEN=!hideEN;hb.setAttribute('aria-pressed',hideEN);$('#lessonBody').classList.toggle('hide-en',hideEN);};
+  tools.appendChild(hb);tools.appendChild(el('span','sub','Tap 🔊 to hear a line. With English hidden, tap a line to peek.'));
+  body.appendChild(tools);
+  body.classList.toggle('hide-en',hideEN);hb.setAttribute('aria-pressed',hideEN);
+  STORY.forEach(sc=>{
+    const h=el('div','scene');h.appendChild(el('h3','',sc.title));h.appendChild(el('span','',sc.sub));body.appendChild(h);
+    sc.lines.forEach(l=>{
+      const d=el('div','line'+(l[2]?' hl':''));
+      d.appendChild(el('div','s',l[0]));d.appendChild(el('div','e',l[1]));
+      const sp=el('button','say','🔊');sp.setAttribute('aria-label','Hear this line');
+      sp.onclick=ev=>{ev.stopPropagation();say(l[0]);};
+      d.appendChild(sp);
+      d.onclick=()=>{if(hideEN)d.classList.toggle('peek');};
+      body.appendChild(d);
+    });
+    const w=el('div','words');
+    sc.words.forEach(x=>w.appendChild(el('span','','<b>'+x[0]+'</b> = '+x[1])));
+    body.appendChild(w);
+  });
+  body.appendChild(el('h3','', 'The story in simple English'));
+  body.appendChild(el('div','card','A hungry and thirsty fox goes into a forest looking for food. He cannot find anything and becomes tired and disappointed. He looks everywhere and finally sees grapes hanging high on a vine. His mouth waters. He jumps once, twice, three times and keeps trying, but he cannot reach them. Exhausted, he finally says, <b>“The grapes are sour,”</b> and walks away.'));
+  body.appendChild(el('div','note','<b>Moral:</b> Instead of accepting that he could not reach the grapes, the fox made an excuse. Do not make excuses when you fail — keep trying.'));
+}
+
+function lVocab(body){
+  body.appendChild(el('h2','sec','शब्दसङ्ग्रहः — Important Words'));
+  body.appendChild(el('p','sub','Tap a card to flip it and see the English meaning. Try to guess before you flip.'));
+  const g=el('div','vgrid');
+  VOCAB.forEach(v=>{
+    const c=el('button','fc');c.setAttribute('aria-label',v[0]+' — tap to flip');
+    c.innerHTML='<div class="in"><div class="f">'+v[0]+'</div><div class="b">'+v[1]+'</div></div>';
+    c.onclick=()=>c.classList.toggle('flip');g.appendChild(c);
+  });
+  body.appendChild(g);
+}
+
+function lGrammar(body){
+  body.appendChild(el('h2','sec','व्याकरणम् — आत्मनेपदी क्रियापदानि'));
+  body.appendChild(el('p','sub','Verbs like <b class="sa">लभते, जायते, पलायते</b> belong to a family called <b>आत्मनेपदी</b> verbs. They all change their endings the same way.'));
+  body.appendChild(el('div','note','<b>The big pattern</b> — for he/she/it, two people and many people, the endings are:'+
+    '<div class="pattern"><span>ते</span><i>1 person</i><span>एते</span><i>2 people</i><span>न्ते</span><i>3 or more</i></div>'+
+    'Example: <b class="sa">लभते → लभेते → लभन्ते</b> (he gets → those two get → they get)'));
+  body.appendChild(el('h3','','Try it: pick a verb'));
+  const roots=el('div','roots');const tblBox=el('div');
+  function show(r){
+    [...roots.children].forEach(c=>c.setAttribute('aria-pressed',c.dataset.r===r));
+    tblBox.innerHTML='';
+    tblBox.appendChild(el('p','', '<b class="sa" style="font-size:22px">'+r+'</b> — '+ROOTS[r].m+' <span class="sub">(present tense, आत्मनेपदी)</span>'));
+    const sc=el('div','scroll');
+    let h='<table class="vt"><tr><th></th>'+NUMS.map(n=>'<th>'+n+'</th>').join('')+'</tr>';
+    for(let p=0;p<3;p++){
+      h+='<tr><th class="rowh">'+PERSON[p]+'</th>';
+      for(let n=0;n<3;n++)h+='<td>'+ROOTS[r].b+'<span class="end">'+ENDINGS[p][n]+'</span><small>'+PRON[p][n]+'</small></td>';
+      h+='</tr>';
+    }
+    sc.innerHTML=h+'</table>';tblBox.appendChild(sc);
+  }
+  Object.keys(ROOTS).forEach(r=>{
+    const c=el('button','chip',r);c.dataset.r=r;c.setAttribute('aria-pressed','false');c.onclick=()=>show(r);roots.appendChild(c);
+  });
+  body.appendChild(roots);body.appendChild(tblBox);show("लभ्");
+  body.appendChild(el('p','sub','The orange part is the ending. It only depends on <i>who</i> is doing the action and <i>how many</i>.'));
+
+  body.appendChild(el('h3','','Match the subject to the verb'));
+  body.appendChild(el('div','card',
+   '<div class="sa" style="font-size:21px;font-weight:600">सः वन्दते — He salutes.<br>ते वन्दन्ते — They salute.<br>त्वं वन्दसे — You salute.<br>अहं वन्दे — I salute.<br>वयं वन्दामहे — We salute.</div>'));
+  body.appendChild(el('div','note','<b>How to solve “change to dual and plural” questions:</b> do not look only at the root. First find which person the given word is.<br>'+
+    '• <span class="sa">वन्दते</span> → 3rd person → <span class="sa">वन्देते, वन्दन्ते</span><br>'+
+    '• <span class="sa">वन्दसे</span> → 2nd person → <span class="sa">वन्देथे, वन्दध्वे</span><br>'+
+    '• <span class="sa">वन्दे</span> → 1st person → <span class="sa">वन्दावहे, वन्दामहे</span>'));
+  body.appendChild(el('h3','','Sentences with the verb'));
+  body.appendChild(el('div','card','<div class="sa" style="font-size:20px;font-weight:600">छात्रः पलायते। — The student runs away.<br>चोराः पलायन्ते। — The thieves run away.<br>वृक्षः वर्धते। — The tree grows.<br>बालाः वर्धन्ते। — The children grow.<br>अहं देवं वन्दे। — I salute God.<br>त्वं किमर्थं लज्जसे? — Why are you feeling shy?<br>वयं देशं सेवामहे। — We serve the country.</div><p class="sub" style="margin-bottom:0">One person → <b class="sa">ते</b>. Many people → <b class="sa">न्ते</b>.</p>'));
+}
+
+function lVerses(body){
+  body.appendChild(el('h2','sec','अतिरिक्तश्लोकाः — Page 46'));
+  body.appendChild(el('p','sub','Two verses that carry the same message as the story: do not give up just because something is difficult.'));
+  const v1=[["प्रारभ्यते न खलु विघ्नभयेन नीचैः।","Inferior people do not even begin a task because they fear difficulties."],
+    ["प्रारभ्य विघ्नविहता विरमन्ति मध्याः।","Average people begin, but stop when obstacles arise."],
+    ["विघ्नैः पुनः पुनरपि प्रतिहन्यमानाः।","Even when struck by difficulties again and again,"],
+    ["प्रारब्धमुत्तमजनाः न परित्यजन्ति॥","good / superior people do not abandon what they have begun."]];
+  body.appendChild(el('h3','','श्लोकः 1'));
+  const a=el('div','verse');v1.forEach(l=>{a.appendChild(el('p','l',l[0]));a.appendChild(el('p','e',l[1]));});body.appendChild(a);
+  body.appendChild(el('div','card','<b>Three kinds of people</b><br>1. <b class="sa">नीचाः</b> — do not start because they fear failure.<br>2. <b class="sa">मध्याः</b> — start, but quit when problems come.<br>3. <b class="sa">उत्तमजनाः</b> — keep going even when difficulties come again and again.<br><br>The fox gave up and made an excuse. This verse says the opposite: keep trying.'));
+  const v2=[["गच्छन् पिपीलको याति योजनानां शतान्यपि।","An ant that keeps walking can travel even hundreds of yojanas."],
+    ["अगच्छन् वैनतेयोऽपि पदमेकं न गच्छति॥","Even Garuda, if he does not move, cannot travel even one step."]];
+  body.appendChild(el('h3','','श्लोकः 2'));
+  const b=el('div','verse');v2.forEach(l=>{b.appendChild(el('p','l',l[0]));b.appendChild(el('p','e',l[1]));});body.appendChild(b);
+  body.appendChild(el('div','note','<b>Moral:</b> A small ant that keeps moving can go very far. A mighty bird like Garuda goes nowhere if he does nothing. Continuous effort matters more than strength alone.'));
+}
+
+function lTips(body){
+  body.appendChild(el('h2','sec','परीक्षा-सूत्राणि — 5 things to know for the exam'));
+  body.appendChild(el('ol','tips card',
+   '<li><b>Story:</b> hungry fox → sees grapes → jumps again and again → cannot reach → says <span class="sa">“आम्लं द्राक्षाफलम्”</span> → runs away.</li>'+
+   '<li><b>Moral:</b> do not make excuses when you fail; keep trying.</li>'+
+   '<li><b>Key story verbs:</b><br><span class="sa">लभते</span> = gets · <span class="sa">जायते</span> = becomes · <span class="sa">पलायते</span> = runs away · <span class="sa">दृश्यते</span> = is seen · <span class="sa">उत्पतति</span> = jumps</li>'+
+   '<li><b>आत्मनेपदी pattern:</b> <span class="sa">लभते – लभेते – लभन्ते</span></li>'+
+   '<li><b>Match subject to verb:</b><br><span class="sa">सः वन्दते</span> (He) · <span class="sa">ते वन्दन्ते</span> (They) · <span class="sa">त्वं वन्दसे</span> (You) · <span class="sa">अहं वन्दे</span> (I) · <span class="sa">वयं वन्दामहे</span> (We)</li>'));
+  body.appendChild(el('div','note','Ready? Press <b>Start the questions</b> below. You will practise exactly the kinds of questions in the book: one-word answers, full sentences, verb tables, dual/plural conversion, and sentence-making.'));
+}
+
+/* ================= QUIZ ================= */
+const S={score:0,total:0,answered:new Set()};
+
+/* Q2 – one-word answers */
+const Q2=[
+ ["कः वनं गच्छति?","Who goes to the forest?","शृगालः","The fox.",["शृगालः","वृक्षः","आचार्यः","छात्रः"]],
+ ["शृगालः कां पश्यति?","What does the fox see?","द्राक्षालताम्","The grapevine.",["द्राक्षालताम्","द्राक्षाफलम्","वनम्","वृक्षम्"]],
+ ["शृगालस्य मुखे किं जायते?","What forms in the fox's mouth?","रसः","Saliva.",["रसः","स्वेदः","तृषा","श्रमः"]],
+ ["शृगालः किं पश्यति?","What does the fox see?","द्राक्षाफलम्","Grapes.",["द्राक्षाफलम्","द्राक्षालताम्","शृगालम्","चित्रम्"]],
+ ["द्राक्षाफलं कुत्र दृश्यते?","Where are the grapes seen?","उपरि लतासु","High up on the vines.",["उपरि लतासु","अधः","वने","पृष्ठतः"]],
+ ["किं शृगालः पुनः पुनः उत्पतति?","Does the fox jump again and again?","आम्","Yes.",["आम्","न"]],
+ ["किं शृगालः द्राक्षाफलं प्राप्नोति?","Does the fox obtain the grapes?","न","No.",["न","आम्"]]
+];
+/* Q3 – full sentences */
+const Q3=[
+ ["शृगालः कथं वनं गच्छति?","How does the fox go into the forest?","शृगालः पिपासया बुभुक्षया च वनं गच्छति।","The fox goes into the forest because of thirst and hunger."],
+ ["वनं गत्वा शृगालस्य किं जायते?","What happens to the fox after going into the forest?","वनं गत्वा शृगालः श्रान्तः खिन्नः च जायते।","After going into the forest, the fox becomes tired and disappointed."],
+ ["शृगालः द्राक्षाफलं कुत्र पश्यति?","Where does the fox see the grapes?","शृगालः द्राक्षाफलं लतासु उपरि पश्यति।","The fox sees the grapes high up on the vines."],
+ ["द्राक्षाफलं दृष्ट्वा कस्य मुखे रसः जायते?","On seeing the grapes, whose mouth waters?","द्राक्षाफलं दृष्ट्वा शृगालस्य मुखे रसः जायते।","On seeing the grapes, the fox's mouth waters."],
+ ["अन्ते शृगालः किं वदति?","What does the fox say at the end?","अन्ते शृगालः “आम्लं द्राक्षाफलम्” इति वदति।","At the end, the fox says, “The grapes are sour.”"]
+];
+/* Q5 – dual & plural */
+const Q5=[["कम्प्","कम्पते"],["वर्ध्","वर्धते"],["वर्त्","वर्तसे"],["प्रकाश्","प्रकाशते"],["वन्द्","वन्दे"],["याच्","याचते"],["लज्ज्","लज्जसे"],["वीक्ष्","वीक्षते"],["सेव्","सेवे"],["वन्द्","वन्दसे"],["शोभ्","शोभते"]];
+/* Q6 – subject + verb */
+const Q6=[
+ ["वृक्षः","वर्ध्",0,"The tree grows."],["बालाः","वर्ध्",2,"The children grow."],
+ ["छात्रः","वन्द्",0,"The student salutes."],["भक्ताः","वन्द्",2,"The devotees salute."],
+ ["वैद्यः","वीक्ष्",0,"The doctor observes."],["प्रेक्षकाः","वीक्ष्",2,"The spectators watch."],
+ ["कर्मचारी","सेव्",0,"The employee serves."],["महिलाः","सेव्",2,"The women serve."],
+ ["वृक्षः","कम्प्",0,"The tree shakes."],["रुग्णाः","कम्प्",2,"The sick people tremble."]
+];
+/* Q7 – complete the sentence */
+const Q7=[
+ ["शुनकं दृष्ट्वा बालकस्य भयं ____ (जाय्)।","On seeing the dog, fear arises in the boy.","जाय्",[0,0],[[0,0],[0,2],[2,0]],"बालकस्य भयम् is one thing (singular, he/it) → 3rd person singular → ते ending."],
+ ["मूषकः मार्जारं दृष्ट्वा ____ (पलाय्)।","The mouse runs away on seeing the cat.","पलाय्",[0,0],[[0,0],[0,2],[1,0]],"मूषकः is one animal → third person singular → पलायते."],
+ ["रात्रिकाले मार्गदीपः ____ (प्रकाश्)।","The streetlight shines at night.","प्रकाश्",[0,0],[[0,0],[0,2],[2,0]],"मार्गदीपः is one lamp → third person singular → प्रकाशते."],
+ ["अहं देवं ____ (वन्द्)।","I salute God.","वन्द्",[2,0],[[2,0],[0,0],[2,2]],"अहम् = I (1st person singular) → वन्दे, not वन्दते."],
+ ["त्वं किमर्थं ____ (लज्ज्)?","Why are you feeling shy?","लज्ज्",[1,0],[[1,0],[0,0],[2,0],[1,2]],"त्वम् = you (2nd person singular) → लज्जसे."],
+ ["वयं देशं ____ (सेव्)।","We serve the country.","सेव्",[2,2],[[2,2],[0,2],[2,0],[2,1]],"वयम् = we (1st person plural) → सेवामहे."]
+];
+
+const SECTIONS=[
+ {t:"प्रश्न 2 — One word answers",i:"Choose the correct one-word (or two-word) answer.",r:secQ2},
+ {t:"प्रश्न 3 — Full sentence answers",i:"Think of the answer in Sanskrit first, then reveal the model answer and mark yourself honestly.",r:secQ3},
+ {t:"प्रश्न 4 — Fill the verb tables",i:"Pick the correct form for every box, then press Check.",r:secQ4},
+ {t:"प्रश्न 5 — Dual and plural",i:"Look at the given singular form. Decide which person it is, then choose the matching dual and plural forms.",r:secQ5},
+ {t:"प्रश्न 6 — Make sentences",i:"One person → ते. Many people → न्ते. Choose the right verb for the subject.",r:secQ6},
+ {t:"प्रश्न 7 — Complete the sentences",i:"Look at the subject (अहम्, त्वम्, वयम्, सः…) and choose the matching verb form.",r:secQ7}
+];
+let sec=0, started=false;
+
+function totalPoints(){
+  return Q2.length+Q3.length+27+Q5.length+Q6.length+Q7.length;
+}
+function award(id,pts=1){
+  if(S.answered.has(id))return;S.answered.add(id);S.score+=pts;updateScore();
+}
+function updateScore(){
+  $('#scoreTag').textContent='Score '+S.score+' / '+S.total;
+  $('#barFill').style.width=Math.round(100*S.score/S.total)+'%';
+}
+S.total=totalPoints();
+
+function mcq(id,qSa,qEn,options,correct,explain){
+  // options: array of {v:text, sub?}
+  const q=el('div','q');
+  q.appendChild(el('p','qt',qSa));
+  if(qEn)q.appendChild(el('p','qe',qEn));
+  const o=el('div','opts');const fb=el('div','fb');
+  let done=false;
+  shuffle(options).forEach(op=>{
+    const b=el('button','opt',op.v+(op.sub?'<small>'+op.sub+'</small>':''));
+    b.onclick=()=>{
+      if(done)return;done=true;
+      const ok=op.v===correct;
+      b.classList.add(ok?'right':'wrong');
+      if(!ok)[...o.children].forEach(c=>{if(c.firstChild.textContent===correct)c.classList.add('right')});
+      [...o.children].forEach(c=>c.disabled=true);
+      if(ok)award(id);
+      fb.className='fb show '+(ok?'ok':'no');
+      fb.innerHTML=(ok?'✅ <b>Correct!</b> ':'❌ <b>Not quite.</b> The answer is <span class="sa">'+correct+'</span>. ')+(explain||'');
+    };
+    o.appendChild(b);
+  });
+  q.appendChild(o);q.appendChild(fb);return q;
+}
+
+function secQ2(b){
+  Q2.forEach((x,i)=>{
+    b.appendChild(mcq('q2-'+i,'('+'कखगघङचछ'[i]+') '+x[0],x[1],x[4].map(v=>({v})),x[2],'Answer: <span class="sa">'+x[2]+'</span> — '+x[3]));
+  });
+}
+function secQ3(b){
+  Q3.forEach((x,i)=>{
+    const q=el('div','q');
+    q.appendChild(el('p','qt','('+'कखगघङ'[i]+') '+x[0]));
+    q.appendChild(el('p','qe',x[1]));
+    const btn=el('button','btn ghost','Show model answer');
+    const m=el('div','model');m.innerHTML='<div class="a">'+x[2]+'</div><div class="qe">'+x[3]+'</div>';
+    const sm=el('div','selfmark');
+    const g=el('button','btn','✅ I got it'),n=el('button','btn ghost','🔁 Need practice');
+    const res=el('div','fb');
+    g.onclick=()=>{award('q3-'+i);res.className='fb show ok';res.textContent='Great — point added!';sm.classList.remove('show');};
+    n.onclick=()=>{res.className='fb show no';res.textContent='No problem. Read the story lines again and try once more later.';sm.classList.remove('show');};
+    sm.appendChild(g);sm.appendChild(n);
+    btn.onclick=()=>{m.classList.add('show');sm.classList.add('show');btn.classList.add('hidden');};
+    q.appendChild(btn);q.appendChild(m);q.appendChild(sm);q.appendChild(res);b.appendChild(q);
+  });
+}
+function secQ4(b){
+  const items=[["(क)","वन्द्"],["(ख)","पलाय्"],["(ग)","जाय्"]];
+  items.forEach((it,k)=>{
+    const q=el('div','q');
+    q.appendChild(el('p','qt',it[0]+' '+it[1]+' — '+ROOTS[it[1]].m));
+    const opts=[];for(let p=0;p<3;p++)for(let n=0;n<3;n++)opts.push(form(it[1],p,n));
+    const sc=el('div','scroll');
+    let h='<table class="vt"><tr><th></th>'+NUMS.map(n=>'<th>'+n+'</th>').join('')+'</tr>';
+    for(let p=0;p<3;p++){h+='<tr><th class="rowh">'+PERSON[p]+'</th>';for(let n=0;n<3;n++)h+='<td data-p="'+p+'" data-n="'+n+'"></td>';h+='</tr>';}
+    sc.innerHTML=h+'</table>';
+    const cells=[];
+    sc.querySelectorAll('td').forEach(td=>{
+      const s=el('select','cell');s.setAttribute('aria-label','Person '+(+td.dataset.p+1)+' number '+(+td.dataset.n+1));
+      s.appendChild(el('option','','— choose —')).value='';
+      shuffle(opts).forEach(o=>{const op=el('option','',o);op.value=o;s.appendChild(op);});
+      td.appendChild(s);cells.push([s,+td.dataset.p,+td.dataset.n]);
+    });
+    q.appendChild(sc);
+    const fb=el('div','fb');const chk=el('button','btn','Check');
+    let firstDone=false;
+    chk.onclick=()=>{
+      let good=0;
+      cells.forEach(([s,p,n])=>{
+        const ok=s.value===form(it[1],p,n);
+        s.classList.remove('right','wrong');s.classList.add(ok?'right':'wrong');if(ok)good++;
+      });
+      if(!firstDone){firstDone=true;award('q4-'+k,0);S.score+=good;S.answered.add('q4-'+k);updateScore();}
+      fb.className='fb show '+(good===9?'ok':'no');
+      fb.innerHTML=good===9?'✅ <b>All 9 correct!</b>':'You have '+good+' of 9 right. Fix the red boxes and press Check again. Hint: 3rd person ends in <span class="sa">ते / एते / न्ते</span>.';
+    };
+    q.appendChild(chk);q.appendChild(fb);b.appendChild(q);
+  });
+}
+function secQ5(b){
+  Q5.forEach((x,i)=>{
+    const [r,f]=x;const [p]=findPN(r,f);
+    const opts=[0,1,2].map(pp=>({v:form(r,pp,1)+' , '+form(r,pp,2)}));
+    const ans=form(r,p,1)+' , '+form(r,p,2);
+    b.appendChild(mcq('q5-'+i,r+' → '+f,'Given: singular. Which are the dual and plural?',opts,ans,
+      '<span class="sa">'+f+'</span> is <b>'+PERSON[p]+'</b>, so dual = <span class="sa">'+form(r,p,1)+'</span> and plural = <span class="sa">'+form(r,p,2)+'</span>.'));
+  });
+}
+function secQ6(b){
+  b.appendChild(el('div','note','<b>Example:</b> <span class="sa">छात्रः (पलाय्) → छात्रः पलायते।</span> · <span class="sa">चोराः (पलाय्) → चोराः पलायन्ते।</span>'));
+  Q6.forEach((x,i)=>{
+    const [subj,r,n,en]=x;
+    const opts=[0,1,2].map(nn=>({v:form(r,0,nn)}));
+    b.appendChild(mcq('q6-'+i,subj+' ('+r+')  →  '+subj+' ____',en,opts,form(r,0,n),
+      n===0?'One person → <span class="sa">'+form(r,0,0)+'</span>.':'Many people → <span class="sa">'+form(r,0,2)+'</span>.'));
+  });
+}
+function secQ7(b){
+  b.appendChild(el('div','note','<b>Remember:</b> अहम् → <span class="sa">े</span> ending (वन्दे) · त्वम् → <span class="sa">से</span> ending · वयम् → <span class="sa">आमहे</span> ending · सः / one thing → <span class="sa">ते</span> ending.'));
+  Q7.forEach((x,i)=>{
+    const [q,en,r,ans,opts,why]=x;
+    b.appendChild(mcq('q7-'+i,q,en,opts.map(o=>({v:form(r,o[0],o[1])})),form(r,ans[0],ans[1]),why));
+  });
+}
+
+function renderQuiz(){
+  const s=SECTIONS[sec];
+  $('#qTitle').textContent=s.t;$('#qInstr').textContent=s.i;
+  const b=$('#qBody');b.innerHTML='';
+  if(sec===SECTIONS.length){renderResult(b);return;}
+  s.r(b);
+  updateScore();
+  $('#qPrev').disabled=sec===0;
+  $('#qNext').textContent= sec===SECTIONS.length-1 ? 'See my result' : 'Next: '+SECTIONS[sec+1].t.split('—')[0].trim();
+}
+function renderResult(b){
+  $('#qTitle').textContent='Result';$('#qInstr').textContent='';
+  const pct=Math.round(100*S.score/S.total);
+  const stars=pct>=90?3:pct>=70?2:pct>=40?1:0;
+  const msg=pct>=90?'Excellent! You know this chapter very well.':pct>=70?'Very good! Revise the verb endings once more and you will be ready.':pct>=40?'Good start. Go back to the Grammar part of the lesson and try again.':'Keep going! Read the story and grammar once more, then retry.';
+  const r=el('div','result card');
+  r.innerHTML='<div class="stars" aria-label="'+stars+' stars">'+'★'.repeat(stars)+'☆'.repeat(3-stars)+'</div><div class="big">'+S.score+' / '+S.total+'</div><p>'+msg+'</p>';
+  const a=el('button','btn','🔁 Try again');a.onclick=()=>{S.score=0;S.answered=new Set();sec=0;renderQuiz();window.scrollTo({top:0})};
+  const c=el('button','btn ghost','📖 Back to the lesson');c.style.marginLeft='8px';c.onclick=()=>showMode('lesson');
+  r.appendChild(a);r.appendChild(c);b.appendChild(r);
+  $('#qNext').classList.add('hidden');$('#qPrev').disabled=false;
+  updateScore();
+}
+$('#qNext').onclick=()=>{if(sec<SECTIONS.length){sec++;$('#qNext').classList.remove('hidden');renderQuiz();window.scrollTo({top:0});}};
+$('#qPrev').onclick=()=>{if(sec>0){sec--;$('#qNext').classList.remove('hidden');renderQuiz();window.scrollTo({top:0});}};
+
+/* ---------- mode switch ---------- */
+function showMode(m){
+  const q=m==='quiz';
+  $('#lesson').classList.toggle('hidden',q);$('#quiz').classList.toggle('hidden',!q);
+  $('#tabLesson').setAttribute('aria-selected',!q);$('#tabQuiz').setAttribute('aria-selected',q);
+  if(q)renderQuiz();
+  window.scrollTo({top:0});
+}
+$('#tabLesson').onclick=()=>showMode('lesson');
+$('#tabQuiz').onclick=()=>showMode('quiz');
+
+renderLesson();
+</script>
+</body>
+</html>
